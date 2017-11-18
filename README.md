@@ -1,8 +1,9 @@
 # Footprint 2.0 Frontend
 
-## 技术选型
-Angular + TypeScript + LESS
+## Techniques
+TypeScript + Angular + LESS + TSLint
 
-## 开发日志
+## Logs
 ### 2017.11.18
-* 脚手架搭建
+* initialization
+* top-level router
