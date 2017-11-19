@@ -7,3 +7,8 @@ TypeScript + Angular + LESS + TSLint
 ### 2017.11.18
 * initialization
 * top-level router
+
+### 2017.11.19
+* master page
+* index page
+* 404 page

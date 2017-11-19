@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+html, body {
+    width: 100%;
+    min-width: 300px;
+    /*height: 100%;*/
+    min-height: 100vh;
+    font-family: Helvetica, Arial, 'Microsoft YaHei UI', '微软雅黑';
+    overflow-x: hidden;
+}
+pre {
+    font-family: Helvetica, Arial, 'Microsoft YaHei UI', '微软雅黑';
+}
+
+/*min-width*/
+@media screen and (max-width: 300px) {
+    html, body {
+        overflow-x: auto;
+    }
+}

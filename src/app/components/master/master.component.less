@@ -1,0 +1,130 @@
+.loading {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+}
+.main {
+    width: 100%;
+    /*overflow-y: scroll;*/
+    position: relative;
+    transition: all 0.4s ease;
+}
+.main.sidebar{
+    transform: translateX(-150px);
+}
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 6.25%;
+    height: 40px;
+    width: 218px;
+    background-image: url("/assets/logo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left center;
+    font-size: 0;
+}
+.container {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding-top: 80px;
+}
+footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 30px 0;
+    a{
+        color: #fff;
+        font-weight: bold;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+.side{
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    transition: all 0.4s ease;
+    position: fixed;
+    z-index: 10;
+    /*overflow-y: scroll;*/
+    /*overflow-x: visible;*/
+    top: 0;
+    right: 0;
+    transform: translateX(300px);
+    &.sidebar {
+        transform: translateX(0);
+    }
+    .menu-btn {
+        position: fixed;
+        top: 0;
+        left: -80px;
+        height: 80px;
+        width: 80px;
+        background-color: #fff;
+        line-height: 80px;
+        font-size: 50px;
+        text-align: center;
+        color: #000;
+        cursor: pointer;
+    }
+    ul {
+        list-style: none;
+        width: 100%;
+        overflow-y: auto;
+        height: 100%;
+        a {
+            li{
+                padding: 20px;
+                font-size: 25px;
+                font-weight: bold;
+                color: #000;
+                transition: all 0.2s;
+            }
+            &:hover li {
+                opacity: 0.75;
+            }
+        } 
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    
+    .logo {
+        top: 13px;
+        height: 24px;
+        width: 130px;
+    }
+    .side{
+        width: calc(~'100% - 50px');
+        transform: translateX(100%);
+        .menu-btn {
+            left: -50px;
+            height: 50px;
+            width: 50px;
+            line-height: 50px;
+            font-size: 30px;
+        }
+        ul {
+            a {
+                li {
+                    padding: 15px 20px;
+                    font-size: 20px;
+                }
+            } 
+        }
+    }
+    .container {
+        padding-top: 50px;
+    }
+}

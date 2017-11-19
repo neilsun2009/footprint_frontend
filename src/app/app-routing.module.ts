@@ -7,11 +7,11 @@ import { FourOFourComponent } from './components/four-o-four/four-o-four.compone
 import { IndexComponent } from './components/index/index.component';
 
 const appRoutes: Routes = [
-  {
-    path: 'admin',
-    loadChildren: 'admin/admin.module#AdminModule'
-    // canLoad: [AuthGuard]
-  },
+  // {
+  //   path: 'admin',
+  //   loadChildren: 'admin/admin.module#AdminModule'
+  //   // canLoad: [AuthGuard]
+  // },
   {
     path: '',
     component: MasterComponent,
@@ -34,7 +34,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       {
-        enableTracing: true // <-- debugging purposes only
+        // enableTracing: true // <-- debugging purposes only
       }
     )
   ],

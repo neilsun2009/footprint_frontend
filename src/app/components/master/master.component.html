@@ -1,4 +1,27 @@
-<p>
-  master works!
-</p>
-<router-outlet></router-outlet>
+<div class="loading" [@loading]="showLoading">
+    <!-- <app-loading ></app-loading> -->
+</div>
+<div class="main" [class.sidebar]="showSidebar">
+  <div class="container" [style.background-color]="primaryColor">
+    <router-outlet></router-outlet>    
+  </div>
+  <a routerLink="/" class="logo">
+      Footprint
+  </a>
+  <footer>
+      <a target="_blank" href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action">粤ICP备17002636号-1</a><br/>
+      &copy;copyright <a target="_blank" href="http://bogobogo.cn">Bogo</a> 2017<br/>
+      All Rights Reserved.
+  </footer>
+</div>
+<div class="side" [class.sidebar]="showSidebar">
+  <div class="menu-btn" (click)="toggleMenu()" [style.color]="primaryColor">
+      <i id="menu-icon" class="fa fa-bars" aria-hidden="true"></i>
+  </div>
+  <ul>
+      <a *ngFor="let menu of menuConfigs" [routerLink]="menu.routerLink">
+        <li *ngIf="menu.show" [style.color]="primaryColor">{{menu.name}}</li>
+      </a>
+      <!-- <a href="#/"><li style="color:{{primaryColor}}">首页</li></a> -->
+  </ul>
+</div>
