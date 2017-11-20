@@ -16,3 +16,4 @@ TypeScript + Angular + LESS + TSLint
 
 ### 2017.11.20
 * login page & api
+* signup page & api

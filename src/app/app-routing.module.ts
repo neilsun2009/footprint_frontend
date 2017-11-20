@@ -6,6 +6,7 @@ import { MasterComponent } from './components/master/master.component';
 import { FourOFourComponent } from './components/four-o-four/four-o-four.component';
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 import { LoginAuthGuard } from './services/login-auth-guard.service';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
@@ -30,6 +31,11 @@ const appRoutes: Routes = [
         path: 'login',
         canActivate: [LoginAuthGuard],
         component: LoginComponent
+      },
+      {
+        path: 'signup',
+        canActivate: [LoginAuthGuard],
+        component: SignupComponent
       },
       {
         path: '**',

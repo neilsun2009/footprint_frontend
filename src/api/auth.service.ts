@@ -6,6 +6,8 @@ import { User } from '../models/user';
 export class AuthService {
 
   private loginUrl = '/api/login';
+  private signupUrl = '/api/signup';
+
   hasLoggedIn = false;
   redirectUrl = '/';
   user: User;
@@ -16,6 +18,10 @@ export class AuthService {
 
   login(username, password, callback, err) {
     this.http.post<IResponse<User>>(this.loginUrl, {username, password}, callback, err);
+  }
+
+  signup(username, password, callback, err) {
+    this.http.post<IResponse<User>>(this.signupUrl, {username, password}, callback, err);
   }
 
 }

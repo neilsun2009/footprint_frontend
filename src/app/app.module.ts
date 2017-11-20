@@ -18,6 +18,7 @@ import { LoginAuthGuard } from './services/login-auth-guard.service';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
 import { HttpService } from '../api/http.service';
 import { AuthService } from '../api/auth.service';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AuthService } from '../api/auth.service';
     IndexComponent,
     MasterComponent,
     BackgroundComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

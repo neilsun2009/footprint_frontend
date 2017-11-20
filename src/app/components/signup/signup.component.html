@@ -1,0 +1,43 @@
+<app-background bgInput="/assets/bg-2.jpg"></app-background>
+<div class="container">
+  <!--signup form-->
+  <div class="login-content" [hidden]="hasSignedUp">
+    <h1>注册</h1>
+    <div class="login-error" [hidden]="!hasError" [@error]="hasError">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{errorMsg}}
+    </div>
+    <form (ngSubmit)="trySignup()" name="signup" #signupForm="ngForm">
+        <div class="big-form">
+            <span>
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </span>
+            <input placeholder="用户名" required [(ngModel)]="param.username" 
+            name="username" #username="ngModel">
+        </div>
+        <div class="big-form">
+            <span>
+                <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            </span>
+            <input placeholder="密码" required type="password" [(ngModel)]="param.password"
+            name="password" #password="ngModel">
+        </div>
+        <div class="big-form">
+          <span>
+              <i class="fa fa-lock" aria-hidden="true"></i>
+          </span>
+          <input placeholder="确认密码" required type="password" [(ngModel)]="param.passwordRepeat"
+          name="password-repeat" #passwordRepeat="ngModel">
+      </div>
+        <button type="submit" class="big-button big-button-fix white-btn" [disabled]="!signupForm.form.valid">注册</button>
+    </form>
+    <hr/>
+    <p>已有账号？现在</p>
+    <a class="big-button" routerLink="/login">登录</a>
+  </div>
+  <!--signup success-->
+  <div class="login-content" [hidden]="!hasSignedUp">
+    <h1><i class="fa fa-check-circle" aria-hidden="true"></i></h1>
+    <p>注册成功，{{remainSeconds}}秒钟后跳转至登录页面</p>
+    <a class="big-button" routerLink="/login">直接跳转</a>
+  </div>
+</div>
