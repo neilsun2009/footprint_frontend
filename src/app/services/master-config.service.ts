@@ -6,6 +6,7 @@ export class MasterConfig {
     secondaryColor?: string;
     showSidebar?: boolean;
     showLoading?: boolean;
+    loggedIn?: boolean;
 }
 
 @Injectable()

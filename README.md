@@ -12,3 +12,7 @@ TypeScript + Angular + LESS + TSLint
 * master page
 * index page
 * 404 page
+* loading animation
+
+### 2017.11.20
+* login page & api

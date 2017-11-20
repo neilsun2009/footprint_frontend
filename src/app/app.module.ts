@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -9,8 +11,13 @@ import { FourOFourComponent } from './components/four-o-four/four-o-four.compone
 import { IndexComponent } from './components/index/index.component';
 import { MasterComponent } from './components/master/master.component';
 import { BackgroundComponent } from './components/background/background.component';
+import { LoginComponent } from './components/login/login.component';
 
 import { MasterConfigService } from './services/master-config.service';
+import { LoginAuthGuard } from './services/login-auth-guard.service';
+import { GlobalAuthGuard } from './services/global-auth-guard.service';
+import { HttpService } from '../api/http.service';
+import { AuthService } from '../api/auth.service';
 
 @NgModule({
   declarations: [
@@ -18,14 +25,23 @@ import { MasterConfigService } from './services/master-config.service';
     FourOFourComponent,
     IndexComponent,
     MasterComponent,
-    BackgroundComponent
+    BackgroundComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [MasterConfigService],
+  providers: [
+    MasterConfigService,
+    LoginAuthGuard,
+    GlobalAuthGuard,
+    HttpService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

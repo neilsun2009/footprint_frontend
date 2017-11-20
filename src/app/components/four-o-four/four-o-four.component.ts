@@ -21,7 +21,7 @@ export class FourOFourComponent implements OnInit {
       this.masterConfigService.setConfig({
         showLoading: false
       });
-    }, 3000);
+    }, 200);
   }
 
 }
