@@ -46,4 +46,25 @@ import { SignupComponent } from './components/signup/signup.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    authService: AuthService,
+    masterConfigService: MasterConfigService
+  ) {
+    authService.auth(
+      (data) => {
+        console.log(data);
+        if (data.result) {
+          authService.hasLoggedIn = true;
+          authService.user = data.data;
+          masterConfigService.setConfig({
+            loggedIn: true
+          });
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+}

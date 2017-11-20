@@ -7,6 +7,7 @@ export class AuthService {
 
   private loginUrl = '/api/login';
   private signupUrl = '/api/signup';
+  private authUrl = '/api/self';
 
   hasLoggedIn = false;
   redirectUrl = '/';
@@ -22,6 +23,10 @@ export class AuthService {
 
   signup(username, password, callback, err) {
     this.http.post<IResponse<User>>(this.signupUrl, {username, password}, callback, err);
+  }
+
+  auth(callback, err) {
+    this.http.get<IResponse<User>>(this.authUrl, callback, err);
   }
 
 }

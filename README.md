@@ -17,3 +17,5 @@ TypeScript + Angular + LESS + TSLint
 ### 2017.11.20
 * login page & api
 * signup page & api
+* auth check api
+* publish FPII temp page online
