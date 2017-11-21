@@ -23,3 +23,5 @@ TypeScript + Angular + LESS + TSLint
 ### 2017.11.21
 * advice page & api
 * background animation
+* about page
+* a bunch of apis

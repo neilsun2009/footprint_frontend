@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="top-container container-patch">
+      <h1>Footprint is online</h1>
+      <div class="running-time">{{runningTime | time}}</div>
+      <div class="about">
+          <p>
+              Footprint（足印），是一款自娱自乐的、记录足球观赛的网站。网站的构想来自于我希望将现场看球的经历做一个完整的记录。我在高中狐朋狗友/看球/扯淡小分队的群聊里，提出来这个初步想法后，他们建议我（准确来说好像是凡和彤），不如加上我们一直关注的家乡球队长春亚泰，以及其他我们会在线上一起扯淡的比赛，而不再局限于一个人现场看球的记录。
+          </p>
+          <p>
+              于是这个网站就应运而生，里面大多是我们小分队在意看的和现场看过的比赛。设计了前瞻、碎碎念、复盘、现场看球记录等一系列互动功能。并从SofaScore拉取了比赛数据（感谢彤发现了这个网站）。
+          </p>
+          <p>
+              这个网站是我的web全栈方向又一次实践，从UI设计到交互设计，从数据模型设计、数据库到后台接口，以及最终响应式前端页面的搭建都由我一人完成，当然也离不开我的小分队提出的建议和需求。
+          </p>
+          <p>
+              现在大家见到的2.0前端版本，使用了Angular 5框架，维护与拓展都更加便捷，当然重构也花费了很多精力。
+          </p>
+          <p>
+              感谢小分队成员（排名不分先后，此顺序来自群聊成员顺序）：龙、朙、zuo、法师、凢、彤，以及SofaScore的数据，还有莱比锡红牛队的官网——我的UI设计灵感来源。
+          </p>
+          <p>
+              最后关于我的更多信息，欢迎点击我的<a href="http://bogobogo.cn" target="_blank">个人网站</a>一探究竟；-）
+          </p>
+      </div>
+      <div class="balls">
+          <i class="fa fa-futbol-o" aria-hidden="true"></i>
+          <i class="fa fa-futbol-o" aria-hidden="true"></i>
+          <i class="fa fa-futbol-o" aria-hidden="true"></i>
+      </div>
+  </div>
+  <div class="static-container container-patch">
+      <h1>网站统计</h1>
+      <div class="static-detail">
+          <div class="number" *ngIf="matchCount" [appCounter]="matchCount" [color]="primaryColor"></div>
+          <div class="text">比赛</div>
+      </div>
+      <div class="static-detail">
+          <div class="number" *ngIf="userCount" [appCounter]="userCount" [color]="primaryColor"></div>
+          <div class="text">用户</div>
+      </div>
+      <div class="static-detail">
+          <div class="number" *ngIf="fieldCount" [appCounter]="fieldCount" [color]="primaryColor"></div>
+          <div class="text">现场记录</div>
+      </div>
+      <div class="static-detail">
+          <div class="number" *ngIf="forecastCount" [appCounter]="forecastCount" [color]="primaryColor"></div>
+          <div class="text">前瞻</div>
+      </div>
+      <div class="static-detail">
+          <div class="number" *ngIf="chatCount" [appCounter]="chatCount" [color]="primaryColor"></div>
+          <div class="text">碎碎念</div>
+      </div>
+      <div class="static-detail">
+          <div class="number"  *ngIf="postmatchCount" [appCounter]="postmatchCount" [color]="primaryColor"></div>
+          <div class="text">复盘</div>
+      </div>
+  </div>
+  <div class="log-container container-patch">
+      <h1>网站log</h1>
+      <div class="log" *ngFor="let log of logs">
+          <div class="date">{{log.date | date: 'yyyy-MM-dd'}}</div>
+          <div class="events" *ngFor="let event of log.events">{{event}}</div>
+      </div>
+  </div>
+</div>

@@ -7,8 +7,9 @@ const httpOptions = {
 
 export interface IResponse<T> {
     message: string;
-    data: T;
+    data?: T;
     result: boolean;
+    count?: number;
 }
 
 @Injectable()

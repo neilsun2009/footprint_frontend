@@ -8,6 +8,7 @@ import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AdviceComponent } from './components/advice/advice.component';
+import { AboutComponent } from './components/about/about.component';
 
 import { LoginAuthGuard } from './services/login-auth-guard.service';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
@@ -41,6 +42,10 @@ const appRoutes: Routes = [
       {
         path: 'advice',
         component: AdviceComponent
+      },
+      {
+        path: 'about',
+        component: AboutComponent
       },
       {
         path: '**',
