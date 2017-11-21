@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterConfigService } from '../../services/master-config.service';
+import { BgConfigService } from '../../services/bg-config.service';
 import { AuthService } from '../../../api/auth.service';
 import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
@@ -29,9 +30,11 @@ export class SignupComponent implements OnInit {
     passwordRepeat: string;
   };
   remainSeconds: number;
+  bg: string[];
 
   constructor(
     private masterConfigService: MasterConfigService,
+    private bgConfigService: BgConfigService,
     private authService: AuthService,
     private router: Router
   ) {
@@ -53,6 +56,7 @@ export class SignupComponent implements OnInit {
       showSidebar: false,
       showLoading: false
     });
+    this.bg = this.bgConfigService.bg;
   }
 
   trySignup() {

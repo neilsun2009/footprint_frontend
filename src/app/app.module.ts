@@ -6,19 +6,23 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { LoginAuthGuard } from './services/login-auth-guard.service';
+import { GlobalAuthGuard } from './services/global-auth-guard.service';
+
+import { MasterConfigService } from './services/master-config.service';
+import { BgConfigService } from './services/bg-config.service';
+import { HttpService } from '../api/http.service';
+import { AuthService } from '../api/auth.service';
+import { AdviceService } from '../api/advice.service';
+
 import { AppComponent } from './app.component';
 import { FourOFourComponent } from './components/four-o-four/four-o-four.component';
 import { IndexComponent } from './components/index/index.component';
 import { MasterComponent } from './components/master/master.component';
 import { BackgroundComponent } from './components/background/background.component';
 import { LoginComponent } from './components/login/login.component';
-
-import { MasterConfigService } from './services/master-config.service';
-import { LoginAuthGuard } from './services/login-auth-guard.service';
-import { GlobalAuthGuard } from './services/global-auth-guard.service';
-import { HttpService } from '../api/http.service';
-import { AuthService } from '../api/auth.service';
 import { SignupComponent } from './components/signup/signup.component';
+import { AdviceComponent } from './components/advice/advice.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,8 @@ import { SignupComponent } from './components/signup/signup.component';
     MasterComponent,
     BackgroundComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    AdviceComponent
   ],
   imports: [
     BrowserModule,
@@ -39,10 +44,12 @@ import { SignupComponent } from './components/signup/signup.component';
   ],
   providers: [
     MasterConfigService,
+    BgConfigService,
     LoginAuthGuard,
     GlobalAuthGuard,
     HttpService,
-    AuthService
+    AuthService,
+    AdviceService
   ],
   bootstrap: [AppComponent]
 })
@@ -51,9 +58,9 @@ export class AppModule {
     authService: AuthService,
     masterConfigService: MasterConfigService
   ) {
+    // get auth data
     authService.auth(
       (data) => {
-        console.log(data);
         if (data.result) {
           authService.hasLoggedIn = true;
           authService.user = data.data;

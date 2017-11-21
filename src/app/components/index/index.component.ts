@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterConfigService } from '../../services/master-config.service';
+import { BgConfigService } from '../../services/bg-config.service';
 
 @Component({
   selector: 'app-index',
@@ -8,7 +9,11 @@ import { MasterConfigService } from '../../services/master-config.service';
 })
 export class IndexComponent implements OnInit {
 
-  constructor(private masterConfigService: MasterConfigService) { }
+  bg: string[];
+  constructor(
+    private masterConfigService: MasterConfigService,
+    private bgConfigService: BgConfigService
+  ) { }
 
   ngOnInit() {
     this.masterConfigService.setConfig({
@@ -17,6 +22,7 @@ export class IndexComponent implements OnInit {
       showSidebar: false,
       showLoading: false
     });
+    this.bg = this.bgConfigService.bg;
   }
 
 }

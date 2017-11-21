@@ -19,3 +19,7 @@ TypeScript + Angular + LESS + TSLint
 * signup page & api
 * auth check api
 * publish FPII temp page online
+
+### 2017.11.21
+* advice page & api
+* background animation

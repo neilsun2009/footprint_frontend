@@ -1,0 +1,26 @@
+<app-background [bgInput]="bg"></app-background>
+<div class="container">
+  <!-- form -->
+  <div class="login-content advice-content" [hidden]="hasSubmitted">
+    <h1>添加</h1>
+    <p>请在这里填入你想添加的球队、色彩方案或比赛<br/>比赛信息请尽量详尽<br/>如交战双方、比赛日期、赛事类型等</p>
+    <div class="login-error" [hidden]="!hasError" [@error]="hasError">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{errorMsg}}
+    </div>
+    <form (ngSubmit)="trySubmit()" name="advice" #adviceForm="ngForm">
+        <div class="big-form extra-big">
+            <span>
+                <i class="fa fa-futbol-o" aria-hidden="true"></i>
+            </span>
+            <input placeholder="添加内容" required [(ngModel)]="submitContent" name="submitContent">
+        </div>
+        <button type="submit" class="big-button white-btn" [disabled]="!adviceForm.form.valid">确定</button>
+    </form>
+  </div>
+  <!--success-->
+  <div class="login-content advice-content" [hidden]="!hasSubmitted">
+      <h1><i class="fa fa-check-circle" aria-hidden="true"></i></h1>
+      <p>提交成功，我们将马上审核并添加，感谢您的支持，敬请期待！</p>
+      <a class="big-button" routerLink="/advice" (click)="reloadAdvice($event)">再来一个</a>
+  </div>
+</div>

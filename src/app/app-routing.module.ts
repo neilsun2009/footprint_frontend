@@ -7,6 +7,7 @@ import { FourOFourComponent } from './components/four-o-four/four-o-four.compone
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AdviceComponent } from './components/advice/advice.component';
 
 import { LoginAuthGuard } from './services/login-auth-guard.service';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
@@ -36,6 +37,10 @@ const appRoutes: Routes = [
         path: 'signup',
         canActivate: [LoginAuthGuard],
         component: SignupComponent
+      },
+      {
+        path: 'advice',
+        component: AdviceComponent
       },
       {
         path: '**',
