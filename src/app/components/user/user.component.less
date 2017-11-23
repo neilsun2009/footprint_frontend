@@ -1,0 +1,176 @@
+@import '../../global.less';
+.container {
+  .normal-patch;
+}
+
+.basic-container {
+  padding-bottom: 40px;
+  text-align: center;
+  .username {
+    text-align: center;
+    font-size: 60px;
+    margin: 20px 0 0;
+  }
+  .number {
+    text-align: center;
+    font-size: 200px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .teams {
+    max-width: 400px;
+    margin: 0 auto;
+    img {
+      width: 50px;
+      margin: 5px;
+    }
+  }
+  .edit {
+    background-color: #fff;
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    margin: 20px auto;
+    font-size: 20px;
+    transition: all 0.2s;
+    &.show {
+      display: block;
+    }
+    &:hover{
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+}
+
+.field-container {
+  position: relative;
+  .line {
+    position: absolute;
+    height: 10px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(15px);
+  }
+  .point {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translateY(10px)  translateX(-10px);
+  }
+  .field {
+    margin: 20px 0;
+    width: 100%;
+    position: relative;
+    .number {
+      font-size: 100px;
+      font-weight: bold;
+      width: 250px;
+      height: 250px;
+      text-align: center;
+      margin: 0 auto;
+      border-radius: 50%;
+      border: 10px solid;
+      line-height: 250px;
+      text-shadow: #000 2px 2px;
+    }
+  }
+}
+.field-container h1, .comment-container h1 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+.comment-container {
+  background-color: #fff;
+  margin: 0 auto;
+  text-align: center;
+  .comment-detail{
+    width: 30%;
+    margin: 20px 1.4%;
+    display: inline-block;
+    text-align: center;
+    .number {
+      font-size: 60px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    .text {
+      border-top: 1px solid;
+      font-size: 25px;
+      padding-top: 5px;
+    }
+  }
+}
+.logout-container {
+  background-color: #000;
+  text-align: center;
+  .logout{
+    text-decoration: none;
+    display: block;
+    margin: 10px auto;
+    height: 40px;
+    font-size: 20px;
+    line-height: 40px;
+    width: 150px;
+    border: 3px solid #fff;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    transition: all 0.2s;
+    &:hover {
+      color: #000;
+      font-weight: bold;
+      background-color: #fff;
+      cursor: pointer;
+    }
+  }
+}
+
+.support-team {
+  display: inline-block;
+  position: relative;
+  transition: all 0.2s;
+  padding: 5px;
+  margin: 5px;
+  border: #fff 2px dashed;
+  cursor: pointer;
+  &:hover{
+    color: #000;
+    background-color: #fff;
+  }
+  .delete-icon {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 16px;
+    color: #fff;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .comment-container {
+    .comment-detail {
+      width: 80%;
+      display: block;
+      margin: 20px auto;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .field-container {
+    .field {
+      .number {
+        width: 150px;
+        height: 150px;
+        line-height: 150px;
+        font-size: 75px;
+      }
+    }
+  }
+}

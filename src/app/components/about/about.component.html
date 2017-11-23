@@ -31,27 +31,27 @@
   <div class="static-container container-patch">
       <h1>网站统计</h1>
       <div class="static-detail">
-          <div class="number" *ngIf="matchCount" [appCounter]="matchCount" [color]="primaryColor"></div>
+          <div class="number" *ngIf="matchCount" [appCounter]="matchCount" [style.color]="primaryColor"></div>
           <div class="text">比赛</div>
       </div>
       <div class="static-detail">
-          <div class="number" *ngIf="userCount" [appCounter]="userCount" [color]="primaryColor"></div>
+          <div class="number" *ngIf="userCount" [appCounter]="userCount" [style.color]="primaryColor"></div>
           <div class="text">用户</div>
       </div>
       <div class="static-detail">
-          <div class="number" *ngIf="fieldCount" [appCounter]="fieldCount" [color]="primaryColor"></div>
+          <div class="number" *ngIf="fieldCount" [appCounter]="fieldCount" [style.color]="primaryColor"></div>
           <div class="text">现场记录</div>
       </div>
       <div class="static-detail">
-          <div class="number" *ngIf="forecastCount" [appCounter]="forecastCount" [color]="primaryColor"></div>
+          <div class="number" *ngIf="forecastCount" [appCounter]="forecastCount" [style.color]="primaryColor"></div>
           <div class="text">前瞻</div>
       </div>
       <div class="static-detail">
-          <div class="number" *ngIf="chatCount" [appCounter]="chatCount" [color]="primaryColor"></div>
+          <div class="number" *ngIf="chatCount" [appCounter]="chatCount" [style.color]="primaryColor"></div>
           <div class="text">碎碎念</div>
       </div>
       <div class="static-detail">
-          <div class="number"  *ngIf="postmatchCount" [appCounter]="postmatchCount" [color]="primaryColor"></div>
+          <div class="number"  *ngIf="postmatchCount" [appCounter]="postmatchCount" [style.color]="primaryColor"></div>
           <div class="text">复盘</div>
       </div>
   </div>

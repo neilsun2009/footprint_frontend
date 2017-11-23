@@ -10,9 +10,11 @@ import { LoginAuthGuard } from './services/login-auth-guard.service';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
 
 import { TimePipe } from './pipes/time.pipe';
+import { CensorshipPipe } from './pipes/censorship.pipe';
 
 import { MasterConfigService } from './services/master-config.service';
 import { BgConfigService } from './services/bg-config.service';
+import { UserResolver } from './services/user-resolver.service';
 import { HttpService } from '../api/http.service';
 import { AuthService } from '../api/auth.service';
 import { AdviceService } from '../api/advice.service';
@@ -21,6 +23,8 @@ import { CommentService } from '../api/comment.service';
 import { UserService } from '../api/user.service';
 import { FieldService } from '../api/field.service';
 import { LogService } from '../api/log.service';
+import { TeamService } from '../api/team.service';
+import { ColorService } from '../api/color.service';
 
 import { CounterDirective } from './directives/counter.directive';
 
@@ -33,6 +37,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AdviceComponent } from './components/advice/advice.component';
 import { AboutComponent } from './components/about/about.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,9 @@ import { AboutComponent } from './components/about/about.component';
     AdviceComponent,
     AboutComponent,
     TimePipe,
-    CounterDirective
+    CensorshipPipe,
+    CounterDirective,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +65,7 @@ import { AboutComponent } from './components/about/about.component';
   providers: [
     MasterConfigService,
     BgConfigService,
+    UserResolver,
     LoginAuthGuard,
     GlobalAuthGuard,
     HttpService,
@@ -67,7 +75,9 @@ import { AboutComponent } from './components/about/about.component';
     CommentService,
     UserService,
     FieldService,
-    LogService
+    LogService,
+    TeamService,
+    ColorService
   ],
   bootstrap: [AppComponent]
 })

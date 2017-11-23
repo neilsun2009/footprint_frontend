@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="basic-container container-patch" [style.background-color]="primaryColor">
+    <div class="username" [style.color]="secondaryColor">{{user.username | censorship}}</div>
+    <div class="number" [style.color]="secondaryColor">{{user.number}}</div>
+    <div class="teams">
+        <img *ngFor="let team of user._teams" [src]="team.logo" [alt]="team.teamName" [title]="team.teamName">
+    </div>
+    <div class="edit" *ngIf="loggedUser?._id === user?._id" (click)="showUpdateModel = true" [style.color]="primaryColor">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="field-container container-patch" [style.background-color]="secondaryColor">
+    <h1 [style.color]="primaryColor">现场观战</h1>
+    <div class="line" [style.background-color]="primaryColor"></div>
+    <div class="point" [style.background-color]="primaryColor"></div>
+    <div class="field">
+        <div class="number" *ngIf="fieldCount > -1" [appCounter]="fieldCount" [style.color]="primaryColor"></div>
+    </div>
+  </div>
+  <div class="comment-container container-patch">
+    <h1 [style.color]="primaryColor">共发表过</h1>
+    <div class="comment-detail">
+        <div class="number" *ngIf="forecastCount || forecastCount === 0" [appCounter]="forecastCount" [style.color]="primaryColor"></div>        
+        <div class="text" [style.color]="primaryColor" [style.border-color]="primaryColor">前瞻</div>
+    </div>
+    <div class="comment-detail">
+        <div class="number" *ngIf="chatCount || chatCount === 0" [appCounter]="chatCount" [style.color]="primaryColor"></div>
+        <div class="text" [style.color]="primaryColor" [style.border-color]="primaryColor">碎碎念</div>
+    </div>
+    <div class="comment-detail">
+        <div class="number" *ngIf="postmatchCount || postmatchCount === 0" [appCounter]="postmatchCount" [style.color]="primaryColor"></div>
+        <div class="text" [style.color]="primaryColor" [style.border-color]="primaryColor">复盘</div>
+    </div>
+  </div>
+  <div class="logout-container container-patch" *ngIf="loggedUser?._id === user?._id">
+    <div (click)="logout()" class="logout">
+        退出登录
+    </div>
+  </div>
+</div>
+
+<!-- update model -->
+<div *ngIf="showUpdateModel" [@model]="showUpdateModel" class="popup-window comment-popup scroll">
+    <div class="inner">
+        <h3>编辑个人信息</h3>
+        <form (ngSubmit)="updateUser()" name="update-user">
+            用户名: <input class="short" placeholder="用户名" name="username" [(ngModel)]="updateParam.username">
+            号码：<input class="short" placeholder="号码" name="number" [(ngModel)]="updateParam.number">
+            <br/>
+            主颜色：<input class="short" placeholder="主颜色" name="color1" [(ngModel)]="updateParam.colors[0]" [style.background-color]="updateParam.colors[0]">
+            次颜色：<input class="short" placeholder="次颜色" name="color2" [(ngModel)]="updateParam.colors[1]" [style.background-color]="updateParam.colors[1]">
+            <br/>
+            使用队伍颜色：
+            <select class="short" (change)="selectColor(color)" name="newColor" #color="ngModel" ngModel>
+                <option *ngFor="let color of colors" [ngValue]="color">{{color.colorName}}</option>
+            </select>
+            <br/>
+            主队：
+            <div class="support-team" *ngFor="let team of updateParam._teams; let i = index">
+                {{team.teamName}}
+                <div class="delete-icon" (click)="deleteTeam(i)">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                </div>
+            </div>
+            <br/>
+            添加主队：
+            <select class="short" (change)="selectTeam(team)" name="newTeam" #team="ngModel" ngModel>
+                <option *ngFor="let team of teams" [ngValue]="team">{{team.teamName}}</option>
+            </select>
+            <br/>
+            <a target="_blank" routerLink="/advice">缺少你的主队或颜色？来这里添加！</a>
+            <br/>
+            <button type="submit">确定</button>
+            <button type="button" (click)="showUpdateModel=false">取消</button>
+        </form>
+    </div>
+</div>

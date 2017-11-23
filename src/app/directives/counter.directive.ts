@@ -6,7 +6,7 @@ import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@
 export class CounterDirective implements OnInit {
 
   @Input('appCounter') countTo: number;
-  @Input() color: string;
+  // @Input() color: string;
   private scrollLock: boolean;
   private currentNum: number;
   private elem;
@@ -23,7 +23,7 @@ export class CounterDirective implements OnInit {
   ngOnInit() {
     this.elem = this.el.nativeElement;
     this.elemTop = this.elem.offsetTop;
-    this.renderer.setStyle(this.elem, 'color', this.color);
+    // this.renderer.setStyle(this.elem, 'color', this.color);
     // this.el.nativeElement.style.color = this.color;
     this.elem.innerHTML = '0';
     // this.renderer.listen('window', 'scroll', () => {
@@ -49,6 +49,7 @@ export class CounterDirective implements OnInit {
   scrollHandler() {
     const scrollTop = document.body.scrollTop,
       clientHeight = document.documentElement.clientHeight;
+    this.elemTop = this.elem.offsetTop;
     if (this.scrollLock) {
         return;
     }

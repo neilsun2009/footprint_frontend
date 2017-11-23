@@ -9,9 +9,12 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AdviceComponent } from './components/advice/advice.component';
 import { AboutComponent } from './components/about/about.component';
+import { UserComponent } from './components/user/user.component';
 
 import { LoginAuthGuard } from './services/login-auth-guard.service';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
+
+import { UserResolver } from './services/user-resolver.service';
 
 const appRoutes: Routes = [
   // {
@@ -40,12 +43,21 @@ const appRoutes: Routes = [
         component: SignupComponent
       },
       {
+        path: 'user/:id',
+        resolve: {user: UserResolver},
+        component: UserComponent
+      },
+      {
         path: 'advice',
         component: AdviceComponent
       },
       {
         path: 'about',
         component: AboutComponent
+      },
+      {
+        path: '404',
+        component: FourOFourComponent
       },
       {
         path: '**',

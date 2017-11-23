@@ -7,5 +7,5 @@ export class User {
     access: string;
     avatar?: string;
     number?: string;
-    _teams?: Team;
+    _teams?: Team[];
 }

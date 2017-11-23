@@ -47,7 +47,6 @@ export class BackgroundComponent implements OnInit {
 
   ngOnInit() {
     const { bgInput, arrConfig } = this;
-    console.log(bgInput);
     if (Array.isArray(bgInput)) {
       arrConfig.length = bgInput.length;
       this.changeBg(true);

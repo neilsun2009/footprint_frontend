@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -28,6 +29,10 @@ export class HttpService {
             errCallback(err);
         }
     );
+  }
+
+  getAsync<T>(url: string): Observable<T> {
+    return this.http.get<T>(url);
   }
 
   post<T>(url: string, body: {}, callback: ({}) => void, errCallback: ({}) => void) {

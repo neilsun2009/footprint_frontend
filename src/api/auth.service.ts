@@ -6,6 +6,7 @@ import { User } from '../models/user';
 export class AuthService {
 
   private loginUrl = '/api/login';
+  private logoutUrl = '/api/logout';
   private signupUrl = '/api/signup';
   private authUrl = '/api/self';
 
@@ -27,6 +28,10 @@ export class AuthService {
 
   auth(callback, err) {
     this.http.get<IResponse<User>>(this.authUrl, callback, err);
+  }
+
+  logout(callback, err) {
+    this.http.post<IResponse<null>>(this.logoutUrl, null, callback, err);
   }
 
 }
