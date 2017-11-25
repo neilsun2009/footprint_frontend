@@ -25,6 +25,7 @@ import { FieldService } from '../api/field.service';
 import { LogService } from '../api/log.service';
 import { TeamService } from '../api/team.service';
 import { ColorService } from '../api/color.service';
+import { WallpaperService } from '../api/wallpaper.service';
 
 import { CounterDirective } from './directives/counter.directive';
 
@@ -38,6 +39,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AdviceComponent } from './components/advice/advice.component';
 import { AboutComponent } from './components/about/about.component';
 import { UserComponent } from './components/user/user.component';
+import { WallpaperComponent } from './components/wallpaper/wallpaper.component';
+import { MatchComponent } from './components/match/match.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,9 @@ import { UserComponent } from './components/user/user.component';
     TimePipe,
     CensorshipPipe,
     CounterDirective,
-    UserComponent
+    UserComponent,
+    WallpaperComponent,
+    MatchComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +82,8 @@ import { UserComponent } from './components/user/user.component';
     FieldService,
     LogService,
     TeamService,
-    ColorService
+    ColorService,
+    WallpaperService
   ],
   bootstrap: [AppComponent]
 })

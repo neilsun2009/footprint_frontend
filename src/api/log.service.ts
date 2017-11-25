@@ -12,7 +12,7 @@ export class LogService {
   ) { }
 
   getMulti(callback, err) {
-    let params = '?countOnly=true';
+    let params = '?';
     this.http.get<IResponse<Log[]>>(`${this.getMultiUrl}${params}`, callback, err);
   }
 

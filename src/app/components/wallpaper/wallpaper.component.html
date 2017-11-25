@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="wallpaper-container container-patch">
+    <h1>壁纸集</h1>
+    <a [href]="wallpaper.image" target="_blank" class="wallpaper" *ngFor="let wallpaper of wallpapers" [@wallpaper]="wallpaper.wallpaperName">
+        <img [src]="wallpaper.image + '?imageView2/1/w/300/h/150/q/90|imageslim'" [title]="wallpaper.wallpaperName" [alt]="wallpaper.wallpaperName">
+        <span>{{wallpaper.wallpaperName}}</span>
+    </a>
+  </div>
+</div>

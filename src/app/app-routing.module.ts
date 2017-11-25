@@ -10,11 +10,14 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AdviceComponent } from './components/advice/advice.component';
 import { AboutComponent } from './components/about/about.component';
 import { UserComponent } from './components/user/user.component';
+import { WallpaperComponent } from './components/wallpaper/wallpaper.component';
+import { MatchComponent } from './components/match/match.component';
 
 import { LoginAuthGuard } from './services/login-auth-guard.service';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
 
 import { UserResolver } from './services/user-resolver.service';
+import { Wallpaper } from '../models/wallpaper';
 
 const appRoutes: Routes = [
   // {
@@ -54,6 +57,14 @@ const appRoutes: Routes = [
       {
         path: 'about',
         component: AboutComponent
+      },
+      {
+        path: 'wallpaper',
+        component: WallpaperComponent
+      },
+      {
+        path: 'match',
+        component: MatchComponent
       },
       {
         path: '404',

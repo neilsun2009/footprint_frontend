@@ -25,3 +25,10 @@ TypeScript + Angular + LESS + TSLint
 * background animation
 * about page
 * a bunch of apis
+
+### 2017.11.23
+* user page
+* whole lot of apis
+
+### 2017.11.24
+* wallpaper page

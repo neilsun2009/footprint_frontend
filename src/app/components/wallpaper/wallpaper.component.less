@@ -1,0 +1,56 @@
+@import '../../global.less';
+.container {
+  .normal-patch;
+}
+
+.wallpaper-container {
+  background-color: #000;
+  text-align: center;
+  h1 {
+    color: rgba(255,255, 255, 0.8);
+    font-weight: normal;
+  }
+  .wallpaper {
+    color: #fff;
+    display: inline-block;
+    width: 28%;
+    margin: 10px 2.2%;
+    text-align: center;
+    img {
+      box-sizing: border-box;
+      width: 100%;
+      border: 3px solid rgba(255,255,255,0.8);
+      transition: all 0.2s;
+    }
+    span {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+    &:hover {
+      img {
+        border-color: #fff;        
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .wallpaper-container {
+    .wallpaper {
+      width: 45%;
+      margin: 10px 2.1%;
+      span {
+        font-size: 16px;        
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wallpaper-container {
+    .wallpaper {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
+}
