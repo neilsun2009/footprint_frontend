@@ -28,6 +28,7 @@ const appRoutes: Routes = [
   {
     path: '',
     component: MasterComponent,
+    canActivate: [GlobalAuthGuard],
     canActivateChild: [GlobalAuthGuard],
     children: [
       {

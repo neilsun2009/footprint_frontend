@@ -1,6 +1,8 @@
+import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { HttpService, IResponse } from './http.service';
 import { User } from '../models/user';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
@@ -28,6 +30,10 @@ export class AuthService {
 
   auth(callback, err) {
     this.http.get<IResponse<User>>(this.authUrl, callback, err);
+  }
+
+  authAsync() {
+    return this.http.getAsync<IResponse<User>>(this.authUrl);
   }
 
   logout(callback, err) {

@@ -32,3 +32,7 @@ TypeScript + Angular + LESS + TSLint
 
 ### 2017.11.24
 * wallpaper page
+
+### 2017.11.25
+* match page
+* fix bug on login check

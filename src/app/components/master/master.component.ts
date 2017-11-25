@@ -27,7 +27,6 @@ export class MasterComponent implements OnInit {
   }[];
   showSidebar: boolean;
   showLoading: boolean;
-  private loggedIn: boolean;
 
   constructor(
     private masterConfigService: MasterConfigService,
@@ -49,6 +48,12 @@ export class MasterComponent implements OnInit {
    }
 
   ngOnInit() {
+    // set primary user
+    if (this.authService.hasLoggedIn) {
+      this.menuConfigs[1].show = false;
+      this.menuConfigs[4].show = true;
+      this.menuConfigs[4].routerLink = `/user/${this.authService.user._id}`;
+    }
     // get configs
     this.masterConfigService.masterConfig$.subscribe((config) => {
       this.primaryColor = config.primaryColor || this.primaryColor;

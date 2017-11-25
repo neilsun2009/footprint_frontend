@@ -13,7 +13,7 @@ html, body {
     font-family: Helvetica, Arial, 'Microsoft YaHei UI', '微软雅黑';
     overflow-x: hidden;
 }
-pre, input, button {
+pre, input, button, option {
     font-family: Helvetica, Arial, 'Microsoft YaHei UI', '微软雅黑';
 }
 

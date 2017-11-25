@@ -1,3 +1,84 @@
-<p>
-  match works!
-</p>
+<div class="container">
+  <div class="match-container container-patch">
+    <div class="select">
+        <span>{{query.year}}</span>
+        <select (change)="newSearch()" name="query-year" [(ngModel)]="query.year">
+            <option value="ALL">ALL</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+        </select>
+  
+    </div>
+    <div class="select big-select">
+        <div class="line"></div>
+        <span>{{query.month}}</span>
+        <select [disabled]="!monthEnable" (change)="newSearch()" name="query-month" [(ngModel)]="query.month">
+            <option value="ALL">ALL</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+    </div>
+    <div class="find">
+        <form (ngSubmit)="newSearch()">
+            <input name="query-keyword" [(ngModel)]="query.keyWord" placeholder="球队、球场、赛事、天气等">
+            <button type="submit">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+            <div class="check" (click)="checkField()" *ngIf="user && user._id">
+                <i class="fa fa-square-o" aria-hidden="true" *ngIf="!query.onlyField"></i>
+                <i class="fa fa-check-square-o" aria-hidden="true" *ngIf="query.onlyField"></i>
+                现场观战
+            </div>
+        </form>
+    </div>
+    <div class="nofound" *ngIf="noResult" [@match]="noResult">
+        没有比赛记录
+    </div>
+    <a [routerLink]="'/detail/' + match._id " class="display" *ngFor="let match of matches; let i = index;" [@match]="i">
+        <div class="side">
+            <div class="num" [style.border-color]="match.colors[0]">
+                {{i + 1}}
+            </div>
+            <div class="field" [hidden]="!match._fields.length">
+                <i class="fa fa-ticket" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="detail">
+            <div class="score-board" *ngFor="let team of match.teams">
+                <img [src]="team.logo">
+                <span>{{team.teamName}}</span>
+                <span class="right">{{team.score | score}}</span>
+            </div>
+            <div class="misc">
+                <span>
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    {{match.startTime | date: 'yyyy年MM月dd日'}}
+                </span>
+                <span>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    {{match.startTime | date: 'HH:mm'}}
+                </span>
+                <span>
+                    <i class="fa fa-trophy" aria-hidden="true"></i>
+                    {{match.competition}}{{match.round}}
+                </span>
+            </div>
+        </div>
+    </a>
+    <div class="loading" [@loading]="showLoading" *ngIf="showLoading">
+        <i class="fa fa-futbol-o" aria-hidden="true"></i>
+    </div>
+  </div>
+</div>

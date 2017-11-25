@@ -11,6 +11,7 @@ import { GlobalAuthGuard } from './services/global-auth-guard.service';
 
 import { TimePipe } from './pipes/time.pipe';
 import { CensorshipPipe } from './pipes/censorship.pipe';
+import { ScorePipe } from './pipes/score.pipe';
 
 import { MasterConfigService } from './services/master-config.service';
 import { BgConfigService } from './services/bg-config.service';
@@ -55,6 +56,7 @@ import { MatchComponent } from './components/match/match.component';
     AboutComponent,
     TimePipe,
     CensorshipPipe,
+    ScorePipe,
     CounterDirective,
     UserComponent,
     WallpaperComponent,
@@ -88,24 +90,5 @@ import { MatchComponent } from './components/match/match.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(
-    authService: AuthService,
-    masterConfigService: MasterConfigService
-  ) {
-    // get auth data
-    authService.auth(
-      (data) => {
-        if (data.result) {
-          authService.hasLoggedIn = true;
-          authService.user = data.data;
-          masterConfigService.setConfig({
-            loggedIn: true
-          });
-        }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
+  constructor() {}
 }
