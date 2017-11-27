@@ -16,13 +16,13 @@ export class Match {
   round?: string;
   colors?: string[];
   sofaScoreId?: string;
-  hasForecast?: boolean;
-  hasChat?: boolean;
-  hasPostmatch?: boolean;
-  hasPictures?: boolean;
-  hasBet?: boolean;
+  hasForecast?: boolean; /* deprecated */
+  hasChat?: boolean; /* deprecated */
+  hasPostmatch?: boolean; /* deprecated */
+  hasPictures?: boolean; /* deprecated */
+  hasBet?: boolean; /* deprecated */
   isDeleted?: boolean;
-  hasRating?: boolean;
+  hasRating?: boolean; /* deprecated */
   _fields?: Field[] | string[];
   referee?: string;
 }

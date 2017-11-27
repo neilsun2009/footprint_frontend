@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpService, IResponse } from './http.service';
 import { Match } from '../models/match';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class MatchService {
 
   private getMultiUrl = '/api/matches';
+  private getUrl = '/api/match';
+  private updateUrl = '/api/update_match';
 
   constructor(
     private http: HttpService
@@ -61,6 +64,18 @@ export class MatchService {
         params += '&onlyField=true';
     }
     this.http.get<IResponse<number>>(`${this.getMultiUrl}${params}`, callback, err);
+  }
+
+  getOneAsync(id, fieldSelfOnly): Observable<IResponse<Match>> {
+    let params = `?matchid=${id}`;
+    if (fieldSelfOnly) {
+        params += '&fieldSelfOnly=' + fieldSelfOnly.toString();
+    }
+    return this.http.getAsync<IResponse<Match>>(`${this.getUrl}${params}`);
+  }
+
+  update(params, callback, err) {
+    this.http.post<IResponse<Match>>(this.updateUrl, params, callback, err);
   }
 
 }

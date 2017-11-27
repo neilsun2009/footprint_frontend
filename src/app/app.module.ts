@@ -16,6 +16,7 @@ import { ScorePipe } from './pipes/score.pipe';
 import { MasterConfigService } from './services/master-config.service';
 import { BgConfigService } from './services/bg-config.service';
 import { UserResolver } from './services/user-resolver.service';
+import { MatchResolver } from './services/match-resolver.service';
 import { HttpService } from '../api/http.service';
 import { AuthService } from '../api/auth.service';
 import { AdviceService } from '../api/advice.service';
@@ -42,6 +43,9 @@ import { AboutComponent } from './components/about/about.component';
 import { UserComponent } from './components/user/user.component';
 import { WallpaperComponent } from './components/wallpaper/wallpaper.component';
 import { MatchComponent } from './components/match/match.component';
+import { DetailComponent } from './components/detail/detail.component';
+import { ForecastComponent } from './components/detail/forecast/forecast.component';
+import { CommentComponent } from './components/detail/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,10 @@ import { MatchComponent } from './components/match/match.component';
     CounterDirective,
     UserComponent,
     WallpaperComponent,
-    MatchComponent
+    MatchComponent,
+    DetailComponent,
+    ForecastComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +80,7 @@ import { MatchComponent } from './components/match/match.component';
     MasterConfigService,
     BgConfigService,
     UserResolver,
+    MatchResolver,
     LoginAuthGuard,
     GlobalAuthGuard,
     HttpService,

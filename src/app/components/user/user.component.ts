@@ -10,7 +10,6 @@ import { Team } from '../../../models/team';
 import { Color } from '../../../models/color';
 import { TeamService } from '../../../api/team.service';
 import { ColorService } from '../../../api/color.service';
-import { errorHandler } from '@angular/platform-browser/src/browser';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -90,6 +89,8 @@ export class UserComponent implements OnInit {
 
   updateUser() {
     if (!this.loggedUser || this.loggedUser._id !== this.user._id) {
+      alert('请先登录');
+      this.router.navigate(['/login']);
       return;
     }
     this.userService.updateSelf(this.updateParam,
@@ -108,7 +109,7 @@ export class UserComponent implements OnInit {
     }, err => {
       if (err.message === 'login required') {
         alert('请先登录');
-        this.router.navigate(['/login']);
+        window.open('/login');
       } else {
         this.handleError(err);
       }

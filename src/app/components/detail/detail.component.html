@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="detail-container container-patch" [style.background-color]="primaryColor" [@header]="primaryColor">
+    <div class="header">
+        <p>{{detail.competition}}</p>
+    </div>
+    <div class="header big-header" [style.background-color]="secondaryColor">
+        <!--<div class="line" style="background-color: {{secondaryColor}}"></div>-->
+        <p [style.background-color]="primaryColor">
+            {{detail.round}}
+        </p>
+    </div>
+    <div class="scoreboard">
+        <div class="team-logo" [@logo]="primaryColor">
+            <img [src]="detail.teams[0].logo" [alt]="detail.teams[0].teamName" [title]="detail.teams[0].teamName">
+        </div>
+        <div class="score" (click)="changeScoreCheck()" [@score]="primaryColor">
+            <span>
+                {{detail.teams[0].score | score}}:{{detail.teams[1].score | score}}
+            </span>
+        </div>
+        <div class="team-logo right" [@logoRight]="primaryColor">
+            <img [src]="detail.teams[1].logo" [alt]="detail.teams[1].teamName" [title]="detail.teams[1].teamName">
+        </div>
+    </div>
+    <div class="misc">
+        <h3>{{detail.stadium}}</h3>
+        <div class="line" [style.background-color]="secondaryColor"></div>
+        <span>
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            {{detail.startTime | date: 'yyyy.MM.dd'}}
+        </span>
+        <span>
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            {{detail.startTime | date: 'HH:mm'}}
+        </span>
+        <span>
+            <i class="fa fa-cloud" aria-hidden="true"></i>
+            {{detail.weather}}
+        </span>
+        <span *ngIf="detail.referee">
+            <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+            {{detail.referee}}
+        </span>
+    </div>
+  </div>
+  <div class="switch-container container-patch" [style.background-color]="secondaryColor" [style.color]="primaryColor">
+      <span [class.on]="onSection === 'forecast'" (click)="onSection = 'forecast'">前瞻</span>
+      <span [class.on]="onSection === 'report'" (click)="onSection = 'report'">赛况</span>
+      <span [class.on]="onSection === 'chat'" (click)="onSection = 'chat'">碎碎念</span>
+      <span [class.on]="onSection === 'postmatch'" (click)="onSection = 'postmatch'">复盘</span>
+      <span [class.on]="onSection === 'field'" (click)="onSection = 'field'">现场</span>
+  </div>
+  <app-forecast *ngIf="onSection === 'forecast'" [match]="detail" [user]="loggedUser"></app-forecast>
+</div>
+
+<!-- change score model -->
+<div *ngIf="showScoreModel" [@model]="showScoreModel" class="popup-window">
+  <div class="inner">
+      <form (ngSubmit)="changeScore()" name="change-score">
+          <input class="short" name="score1" [(ngModel)]="detail.teams[0].score">:<input class="short" name="score2" [(ngModel)]="detail.teams[1].score">
+          <br/>
+          <button type="submit">确定</button>
+          <button type="button" (click)="showScoreModel=false">取消</button>
+      </form>
+  </div>
+</div>

@@ -12,12 +12,13 @@ import { AboutComponent } from './components/about/about.component';
 import { UserComponent } from './components/user/user.component';
 import { WallpaperComponent } from './components/wallpaper/wallpaper.component';
 import { MatchComponent } from './components/match/match.component';
+import { DetailComponent } from './components/detail/detail.component';
 
 import { LoginAuthGuard } from './services/login-auth-guard.service';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
 
 import { UserResolver } from './services/user-resolver.service';
-import { Wallpaper } from '../models/wallpaper';
+import { MatchResolver } from './services/match-resolver.service';
 
 const appRoutes: Routes = [
   // {
@@ -66,6 +67,11 @@ const appRoutes: Routes = [
       {
         path: 'match',
         component: MatchComponent
+      },
+      {
+        path: 'detail/:id',
+        component: DetailComponent,
+        resolve: {match: MatchResolver},
       },
       {
         path: '404',

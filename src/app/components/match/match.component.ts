@@ -47,6 +47,7 @@ export class MatchComponent implements OnInit {
   noResult: boolean;
   monthEnable: boolean;
   scrollLock: boolean;
+  getLock: boolean;
 
   constructor(
     private masterConfigService: MasterConfigService,
@@ -58,6 +59,7 @@ export class MatchComponent implements OnInit {
     this.noResult = false;
     this.monthEnable = true;
     this.scrollLock = false;
+    this.getLock = false;
     this.matches = [];
   }
 
@@ -81,10 +83,11 @@ export class MatchComponent implements OnInit {
     });
     // logged in user
     this.user = this.authService.user;
-    this.getMatches();
+    if (!this.getLock) {
+      this.getMatches();
+    }
     // history api
     window.onpopstate = (event) => {
-      console.log(1);
       this.popState(event);
     };
     history.replaceState(this.query, 'match', `${location.pathname}${location.search}`);
@@ -108,6 +111,8 @@ export class MatchComponent implements OnInit {
         offset: 0
       };
     }
+    this.matches = [];
+    this.query.offset = 0;
     this.getMatches();
   }
 
@@ -116,6 +121,7 @@ export class MatchComponent implements OnInit {
       height = document.documentElement.offsetHeight,
       clientHeight = document.documentElement.clientHeight;
     // console.log(scrollTop + ' ' + height + ' ' + clientHeight);
+    // console.log(height, clientHeight, scrollTop);
     if (height - clientHeight - scrollTop < 50 && !this.scrollLock) {
         this.scrollLock = true;
         this.getMatches();
@@ -142,6 +148,10 @@ export class MatchComponent implements OnInit {
     // init
     this.noResult = false;
     this.showLoading = true;
+    if (this.getLock) {
+      return;
+    }
+    this.getLock = true;
     // calculate before & after
     if (year !== 'ALL') {
       this.monthEnable = true;
@@ -176,6 +186,7 @@ export class MatchComponent implements OnInit {
             };
           }
         }
+        this.getLock = false;
       }, (err) => {
         alert(`网络错误：${err.message}`);
         console.log(err);

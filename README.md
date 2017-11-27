@@ -36,3 +36,9 @@ TypeScript + Angular + LESS + TSLint
 ### 2017.11.25
 * match page
 * fix bug on login check
+
+### 2017.11.26
+* detail page
+
+### 2017.11.27
+* forecast section
