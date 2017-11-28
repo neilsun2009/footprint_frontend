@@ -47,7 +47,8 @@ export class CommentComponent implements OnInit {
 
   updateParam: {
     commentid: string,
-    text: string
+    text: string,
+    star?: number
   };
 
   constructor(
@@ -66,6 +67,13 @@ export class CommentComponent implements OnInit {
       commentid: this.comment._id,
       text: this.comment.text
     };
+    if (this.commentType === 'postmatch') {
+      this.updateParam.star = this.comment.star;
+    }
+  }
+
+  updateStar(event) {
+    this.updateParam.star = event;
   }
 
   updateComment() {
@@ -79,6 +87,7 @@ export class CommentComponent implements OnInit {
       if (data.result) {
         this.showUpdateModel = false;
         this.comment.text = this.updateParam.text;
+        this.comment.star = this.updateParam.star;
       } else {
         this.errorHandler(data);
       }

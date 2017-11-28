@@ -1,0 +1,12 @@
+<div class="stars">
+  <i [ngClass]="classes[0]" (mousemove)="edit && onMouseMove($event, 0)" (mouseleave)="edit && onMouseLeave()"
+  (click)="edit && onClick($event, 0)" [style.cursor]="edit ? 'pointer' : 'default'" aria-hidden="true"></i>
+  <i [ngClass]="classes[1]" (mousemove)="edit && onMouseMove($event, 1)" (mouseleave)="edit && onMouseLeave()"
+  (click)="edit && onClick($event, 1)" [style.cursor]="edit ? 'pointer' : 'default'" aria-hidden="true"></i>
+  <i [ngClass]="classes[2]" (mousemove)="edit && onMouseMove($event, 2)" (mouseleave)="edit && onMouseLeave()"
+  (click)="edit && onClick($event, 2)" [style.cursor]="edit ? 'pointer' : 'default'" aria-hidden="true"></i>
+  <i [ngClass]="classes[3]" (mousemove)="edit && onMouseMove($event, 3)" (mouseleave)="edit && onMouseLeave()"
+  (click)="edit && onClick($event, 3)" [style.cursor]="edit ? 'pointer' : 'default'" aria-hidden="true"></i>
+  <i [ngClass]="classes[4]" (mousemove)="edit && onMouseMove($event, 4)" (mouseleave)="edit && onMouseLeave()"
+  (click)="edit && onClick($event, 4)" [style.cursor]="edit ? 'pointer' : 'default'" aria-hidden="true"></i> 
+</div>

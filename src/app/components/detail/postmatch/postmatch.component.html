@@ -1,0 +1,30 @@
+<div class="postmatch-container container-patch" [style.background-color]="secondaryColor">
+  <div class="loading" [@loading]="showLoading" *ngIf="showLoading" [style.color]="primaryColor">
+      <i class="fa fa-futbol-o" aria-hidden="true"></i>
+  </div>
+  <div class="plus" *ngIf="showAdd" [style.background-color]="primaryColor"
+  [style.color]="secondaryColor" (click)="showAddModel = true" [@scale]="showAdd">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+  </div>
+  <div class="main">
+      <div *ngFor="let postmatch of postmatches">
+          <app-comment (onDelete)="onDelete()" [comment]="postmatch" [showEdit]="showEdit" [match]="match" [user]="user"></app-comment>
+      </div>
+  </div>
+  <div class="none" *ngIf="noResult" [@fadeIn]="noResult" [style.color]="primaryColor">
+      本场比赛无人前瞻
+  </div>
+</div>
+
+<!-- add model -->
+<div *ngIf="showAddModel" [@model]="showAddModel" class="popup-window">
+  <div class="inner">
+      <h3>添加前瞻</h3>
+      <form (ngSubmit)="addPostmatch()" name="add-postmatch">
+          <textarea name="text" [(ngModel)]="addParam.text" rows="5"></textarea>
+          <br/>
+          <button type="submit">确定</button>
+          <button type="button" (click)="showAddModel=false">取消</button>
+      </form>
+  </div>
+</div>

@@ -4,6 +4,9 @@
       <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showUpdateModel = true"></i>
       <i class="fa fa-trash" aria-hidden="true" (click)="showDeleteModel = true"></i>
   </div>
+  <div class="stars" *ngIf="commentType === 'postmatch'" [style.color]="secondaryColor">
+    <app-star [edit]="false" [star]="comment.star"></app-star>
+  </div>
   <div class="username" [style.border-color]="secondaryColor">
       <a target="_blank" [routerLink]="'/user/' + comment._user._id">
           {{comment._user.username | censorship}}
@@ -18,6 +21,9 @@
       <form (ngSubmit)="updateComment()" name="update-comment">
           <textarea name="text" [(ngModel)]="updateParam.text" rows="5"></textarea>
           <br/>
+          <div class="stars" *ngIf="commentType === 'postmatch'" style.color="#fff">
+            <app-star [edit]="true" [star]="updateParam.star" (onChange)="updateStar($event)"></app-star>
+          </div>
           <button type="submit">确定</button>
           <button type="button" (click)="showUpdateModel=false">取消</button>
       </form>

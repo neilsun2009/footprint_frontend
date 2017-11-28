@@ -51,6 +51,7 @@
       <span [class.on]="onSection === 'field'" (click)="onSection = 'field'">现场</span>
   </div>
   <app-forecast *ngIf="onSection === 'forecast'" [match]="detail" [user]="loggedUser"></app-forecast>
+  <app-postmatch *ngIf="onSection === 'postmatch'" [match]="detail" [user]="loggedUser"></app-postmatch>
 </div>
 
 <!-- change score model -->

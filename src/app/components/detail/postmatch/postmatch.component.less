@@ -1,0 +1,37 @@
+@import '../../../global.less';
+.postmatch-container {
+  min-height: 400px;
+  padding-top: 0;
+  .plus {
+    margin: 0 0 15px;
+    font-size: 25px;
+    transition: 0.2s all;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;    
+    }
+  }
+  .loading {
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 40px;
+    line-height: 40px;
+    height: 40px;
+    color: rgba(0, 0, 0, 0.3);
+    animation: my-rotate 2s infinite linear;
+  }
+  .none {
+    text-align: center;
+    padding-top: 50px;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.3);
+  }
+}
