@@ -12,17 +12,20 @@
       </div>
   </div>
   <div class="none" *ngIf="noResult" [@fadeIn]="noResult" [style.color]="primaryColor">
-      本场比赛无人前瞻
+      本场比赛无人复盘
   </div>
 </div>
 
 <!-- add model -->
 <div *ngIf="showAddModel" [@model]="showAddModel" class="popup-window">
   <div class="inner">
-      <h3>添加前瞻</h3>
+      <h3>添加复盘</h3>
       <form (ngSubmit)="addPostmatch()" name="add-postmatch">
           <textarea name="text" [(ngModel)]="addParam.text" rows="5"></textarea>
           <br/>
+          <div class="stars" style.color="#fff">
+            <app-star [edit]="true" [star]="addParam.star" (onChange)="updateStar($event)"></app-star>
+          </div>
           <button type="submit">确定</button>
           <button type="button" (click)="showAddModel=false">取消</button>
       </form>

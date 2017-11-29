@@ -48,6 +48,7 @@ import { ForecastComponent } from './components/detail/forecast/forecast.compone
 import { CommentComponent } from './components/detail/comment/comment.component';
 import { PostmatchComponent } from './components/detail/postmatch/postmatch.component';
 import { StarComponent } from './components/detail/star/star.component';
+import { FieldComponent } from './components/detail/field/field.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { StarComponent } from './components/detail/star/star.component';
     ForecastComponent,
     CommentComponent,
     PostmatchComponent,
-    StarComponent
+    StarComponent,
+    FieldComponent
   ],
   imports: [
     BrowserModule,

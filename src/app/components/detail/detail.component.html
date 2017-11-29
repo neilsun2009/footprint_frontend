@@ -52,6 +52,7 @@
   </div>
   <app-forecast *ngIf="onSection === 'forecast'" [match]="detail" [user]="loggedUser"></app-forecast>
   <app-postmatch *ngIf="onSection === 'postmatch'" [match]="detail" [user]="loggedUser"></app-postmatch>
+  <app-field *ngIf="onSection === 'field'" [match]="detail" [user]="loggedUser"></app-field>
 </div>
 
 <!-- change score model -->

@@ -1,0 +1,66 @@
+<div class="field-container container-patch" [style.background-color]="secondaryColor">
+  <div class="loading" [@loading]="showLoading" *ngIf="showLoading" [style.color]="primaryColor">
+      <i class="fa fa-futbol-o" aria-hidden="true"></i>
+  </div>
+  <div class="plus" *ngIf="user && !field" [style.background-color]="primaryColor"
+  [style.color]="secondaryColor" (click)="showAddModel = true" [@scale]="showAdd">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+  </div>
+  <div class="main" [style.display]="field ? 'block' : 'none'" [@field]="!!field">
+    <canvas id="field-canvas" width="800" height="300">你的浏览器不支持canvas，是时候升级了</canvas>
+    <div class="edit">
+        <i class="fa fa-pencil-square-o" [style.background-color]="primaryColor"
+        [style.color]="secondaryColor" aria-hidden="true" (click)="showUpdateModel = true"></i>
+        <i class="fa fa-trash" [style.background-color]="primaryColor"
+        [style.color]="secondaryColor" aria-hidden="true" (click)="showDeleteModel = true"></i>
+    </div>
+  </div>
+  <div class="none" *ngIf="user && !field" [@fadeIn]="user && !field" [style.color]="primaryColor">
+    点击加号记录现场观球信息
+  </div>
+  <a class="none" *ngIf="!user" [@fadeIn]="!user"  routerLink="/login" [style.color]="primaryColor">
+    登录记录现场观球信息
+  </a>
+</div>
+
+<!-- add model -->
+<div *ngIf="showAddModel" [@model]="showAddModel" class="popup-window">
+  <div class="inner">
+      <h3>添加现场观赛记录</h3>
+      <form (ngSubmit)="addField()" name="add-field">
+        <input placeholder="价格（加上货币符号更佳）" name="price" [(ngModel)]="addParam.price">
+        <input placeholder="座位" name="seat" [(ngModel)]="addParam.seat">
+        <input placeholder="球友" name="companion" [(ngModel)]="addParam.companion">
+          <br/>
+          <button type="submit">确定</button>
+          <button type="button" (click)="showAddModel=false">取消</button>
+      </form>
+  </div>
+</div>
+
+<!-- update model -->
+<div *ngIf="showUpdateModel" [@model]="showUpdateModel" class="popup-window">
+  <div class="inner">
+      <h3>修改现场记录</h3>
+      <form (ngSubmit)="updateField()" name="update-field">
+        <input placeholder="价格（加上货币符号更佳）" name="price" [(ngModel)]="updateParam.price">
+        <input placeholder="座位" name="seat" [(ngModel)]="updateParam.seat">
+        <input placeholder="球友" name="companion" [(ngModel)]="updateParam.companion">
+          <br/>
+          <button type="submit">确定</button>
+          <button type="button" (click)="showUpdateModel=false">取消</button>
+      </form>
+  </div>
+</div>
+
+<!-- delete model -->
+<div *ngIf="showDeleteModel" [@model]="showDeleteModel" class="popup-window">
+  <div class="inner">
+      <h3>确定删除这条现场记录吗？</h3>
+      <form (ngSubmit)="deleteField()" name="delete-field">
+        <br/>
+        <button type="submit">确定</button>
+        <button type="button" (click)="showDeleteModel=false">取消</button>
+      </form>
+  </div>
+</div>

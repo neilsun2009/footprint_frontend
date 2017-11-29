@@ -57,7 +57,12 @@ export class PostmatchComponent implements OnInit {
   showLoading: boolean;
   noResult: boolean;
 
-  addParam: {};
+  addParam: {
+    matchid: string;
+    commentType: string;
+    text: string;
+    star: number;
+  };
 
   constructor(
     private commentService: CommentService,
@@ -76,7 +81,8 @@ export class PostmatchComponent implements OnInit {
     this.addParam = {
       matchid: this.match._id,
       commentType: 'postmatch',
-      text: ''
+      text: '',
+      star: 2.5
     };
     this.getPostmatches();
   }
@@ -134,6 +140,10 @@ export class PostmatchComponent implements OnInit {
       alert(`网络错误：${err.message}`);
       console.log(err);
     });
+  }
+
+  updateStar(event) {
+    this.addParam.star = event;
   }
 
   onDelete() {
