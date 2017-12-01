@@ -28,6 +28,7 @@ import { LogService } from '../api/log.service';
 import { TeamService } from '../api/team.service';
 import { ColorService } from '../api/color.service';
 import { WallpaperService } from '../api/wallpaper.service';
+import { SofaService } from '../api/sofa.service';
 
 import { CounterDirective } from './directives/counter.directive';
 
@@ -49,6 +50,7 @@ import { CommentComponent } from './components/detail/comment/comment.component'
 import { PostmatchComponent } from './components/detail/postmatch/postmatch.component';
 import { StarComponent } from './components/detail/star/star.component';
 import { FieldComponent } from './components/detail/field/field.component';
+import { ReportComponent } from './components/detail/report/report.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { FieldComponent } from './components/detail/field/field.component';
     CommentComponent,
     PostmatchComponent,
     StarComponent,
-    FieldComponent
+    FieldComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +102,8 @@ import { FieldComponent } from './components/detail/field/field.component';
     LogService,
     TeamService,
     ColorService,
-    WallpaperService
+    WallpaperService,
+    SofaService
   ],
   bootstrap: [AppComponent]
 })
