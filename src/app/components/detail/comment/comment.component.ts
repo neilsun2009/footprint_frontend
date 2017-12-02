@@ -82,6 +82,10 @@ export class CommentComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
+    if (!this.updateParam.text.length) {
+      alert('内容不能为空');
+      return;
+    }
     this.commentService.update(this.updateParam,
     (data) => {
       if (data.result) {

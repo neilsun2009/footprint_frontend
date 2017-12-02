@@ -51,3 +51,8 @@ TypeScript + Angular + LESS + TSLint
 
 ### 2017.12.01
 * report section
+
+### 2017.12.02
+* chat section
+* socket.io api
+* finish user frontend

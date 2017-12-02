@@ -1,0 +1,50 @@
+<div class="chat-container container-patch" [style.background-color]="secondaryColor">
+  <div class="loading" [@loading]="showLoading" *ngIf="showLoading" [style.color]="primaryColor">
+      <i class="fa fa-futbol-o" aria-hidden="true"></i>
+  </div>
+  <div class="main" *ngIf="!noResult" [@flyUp]="!noResult">
+    <div class="timeline" [style.background-color]="primaryColor"></div>
+    <div class="circle" [style.background-color]="primaryColor"></div>
+    <div class="chat" *ngFor="let chat of chats; let i = index" [@flyUp]="i+1">
+        <div class="time"  [style.background-color]="primaryColor" (click)="checkDelete(i)">
+          {{chat.submitTime | date: 'HH:mm'}}
+        </div>
+        <div class="username" [style.border-color]="primaryColor">
+            <a target="_blank" [style.color]="primaryColor" [routerLink]="'/user/' + chat._user._id">
+                {{chat._user.username | censorship}}
+            </a>
+        </div>
+        <div class="text" [style.color]="primaryColor" >
+            {{chat.text}}
+        </div>
+    </div>
+    <div class="circle" [style.background-color]="primaryColor"></div>
+  </div>
+  <div class="sender" *ngIf="showSender" [@fadeIn]="showSender" [style.background-color]="primaryColor">
+    <form *ngIf="user && user._id" name="submit-chat" (ngSubmit)="sendChat()">
+        <input [(ngModel)]="sendParam.text" placeholder="我有一句话不知当讲不当讲" name="text">
+        <button type="submit" [style.background-color]="primaryColor">发送</button>
+    </form>
+    <a class="ask-login" *ngIf="!user" routerLink="/login">
+        登录参与碎碎念
+    </a>
+  </div>
+  <div class="none" *ngIf="noResult" [@flyUp]="noResult" [style.color]="primaryColor">
+      本场比赛还没有碎碎念
+  </div>
+</div>
+
+<!-- delete model -->
+<div *ngIf="showDeleteModel" [@model]="showDeleteModel" class="popup-window">
+  <div class="inner">
+    <h3>确定删除这条碎碎念？</h3>
+    <p>
+      {{deleteParam.submitTime | date: 'MM:ss'}} {{deleteParam._user.username}}: <br/>
+      {{deleteParam.text}}<br/>
+    </p>
+    <form (ngSubmit)="deleteChat()" name="delete-chat">
+      <button type="submit">确定</button>
+      <button type="button" (click)="showDeleteModel = false">取消</button>
+    </form>
+  </div>
+</div>

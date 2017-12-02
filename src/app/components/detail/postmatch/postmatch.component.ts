@@ -32,6 +32,13 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
         animate('300ms 300ms ease-out')
       ])
     ]),
+    trigger('flyUp', [
+      state('*', style({opacity: 1, transform: 'translateY(0px)'})),
+      transition(':enter', [
+        style({transform: 'translateY(500px)', opacity: 0}),
+        animate('500ms ease-out')
+      ])
+    ]),
     trigger('model', [
       state('true', style({opacity: 1, transform: 'translateY(0)'})),
       transition(':enter', [
@@ -118,6 +125,10 @@ export class PostmatchComponent implements OnInit {
     if (!this.user) {
       alert('请先登录');
       this.router.navigate(['/login']);
+      return;
+    }
+    if (!this.addParam.text.length) {
+      alert('内容不能为空');
       return;
     }
     this.commentService.add(this.addParam,

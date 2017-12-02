@@ -54,6 +54,7 @@
   <app-report *ngIf="onSection === 'report'" [match]="detail"></app-report>
   <app-postmatch *ngIf="onSection === 'postmatch'" [match]="detail" [user]="loggedUser"></app-postmatch>
   <app-field *ngIf="onSection === 'field'" [match]="detail" [user]="loggedUser"></app-field>
+  <app-chat *ngIf="onSection === 'chat'" [match]="detail" [user]="loggedUser"></app-chat>
 </div>
 
 <!-- change score model -->

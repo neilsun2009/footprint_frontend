@@ -100,14 +100,14 @@ export class DetailComponent implements OnInit {
   }
 
   changeScoreCheck() {
-    if (this.loggedUser.access !== 'administrator') {
+    if (!this.loggedUser || this.loggedUser.access !== 'administrator') {
       return;
     }
     this.showScoreModel = true;
   }
 
   changeScore() {
-    if (this.loggedUser.access !== 'administrator') {
+    if (!this.loggedUser || this.loggedUser.access !== 'administrator') {
       return;
     }
     this.matchService.update({

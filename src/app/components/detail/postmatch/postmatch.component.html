@@ -11,7 +11,7 @@
           <app-comment (onDelete)="onDelete()" [comment]="postmatch" [showEdit]="showEdit" [match]="match" [user]="user"></app-comment>
       </div>
   </div>
-  <div class="none" *ngIf="noResult" [@fadeIn]="noResult" [style.color]="primaryColor">
+  <div class="none" *ngIf="noResult" [@flyUp]="noResult" [style.color]="primaryColor">
       本场比赛无人复盘
   </div>
 </div>

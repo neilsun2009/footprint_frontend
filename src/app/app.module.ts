@@ -51,6 +51,7 @@ import { PostmatchComponent } from './components/detail/postmatch/postmatch.comp
 import { StarComponent } from './components/detail/star/star.component';
 import { FieldComponent } from './components/detail/field/field.component';
 import { ReportComponent } from './components/detail/report/report.component';
+import { ChatComponent } from './components/detail/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { ReportComponent } from './components/detail/report/report.component';
     PostmatchComponent,
     StarComponent,
     FieldComponent,
-    ReportComponent
+    ReportComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
