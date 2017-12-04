@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { HttpService } from '../../api/http.service';
 import { AuthService } from '../../api/auth.service';
@@ -49,6 +50,8 @@ import { WallpaperComponent } from './components/wallpaper/wallpaper.component';
 import { DeleteWallpaperComponent } from './components/wallpaper/delete-wallpaper/delete-wallpaper.component';
 import { UpdateWallpaperComponent } from './components/wallpaper/update-wallpaper/update-wallpaper.component';
 import { AddWallpaperComponent } from './components/wallpaper/add-wallpaper/add-wallpaper.component';
+import { UserComponent } from './components/user/user.component';
+import { DeleteUserComponent } from './components/user/delete-user/delete-user.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,9 @@ import { AddWallpaperComponent } from './components/wallpaper/add-wallpaper/add-
     WallpaperComponent,
     DeleteWallpaperComponent,
     UpdateWallpaperComponent,
-    AddWallpaperComponent
+    AddWallpaperComponent,
+    UserComponent,
+    DeleteUserComponent
   ],
   imports: [
     CommonModule,
@@ -84,7 +89,8 @@ import { AddWallpaperComponent } from './components/wallpaper/add-wallpaper/add-
     MatNativeDateModule,
     MatInputModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatSlideToggleModule
   ],
   providers: [
     HttpService,
@@ -109,7 +115,8 @@ import { AddWallpaperComponent } from './components/wallpaper/add-wallpaper/add-
     DeleteAdviceComponent,
     DeleteWallpaperComponent,
     UpdateWallpaperComponent,
-    AddWallpaperComponent
+    AddWallpaperComponent,
+    DeleteUserComponent
   ]
 })
 export class AdminModule {}

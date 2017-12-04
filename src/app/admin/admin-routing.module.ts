@@ -7,6 +7,7 @@ import { IndexComponent } from './components/index/index.component';
 import { LogComponent } from './components/log/log.component';
 import { AdviceComponent } from './components/advice/advice.component';
 import { WallpaperComponent } from './components/wallpaper/wallpaper.component';
+import { UserComponent } from './components/user/user.component';
 
 const adminRoutes: Routes = [
   {
@@ -30,6 +31,10 @@ const adminRoutes: Routes = [
       {
         path: 'wallpaper',
         component: WallpaperComponent
+      },
+      {
+        path: 'user',
+        component: UserComponent
       }
     ]
   }

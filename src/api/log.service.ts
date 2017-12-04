@@ -20,7 +20,7 @@ export class LogService {
       params += 'offset=' + offset;
     }
     if (limit) {
-      params += 'limit=' + limit;
+      params += '&limit=' + limit;
     }
     this.http.get<IResponse<Log[]>>(`${this.getMultiUrl}${params}`, callback, err);
   }

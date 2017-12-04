@@ -66,3 +66,4 @@ TypeScript + Angular + LESS + TSLint
 * admin log
 * admin advice
 * admin wallpaper
+* admin user

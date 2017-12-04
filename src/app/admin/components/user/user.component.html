@@ -1,0 +1,64 @@
+<div class="loading" *ngIf="showLoading">
+    <mat-spinner></mat-spinner>        
+</div>
+<h1>
+  <mat-icon>account_box</mat-icon>
+  User
+</h1>
+<br/>
+<mat-slide-toggle (change)="changeAccess()" color="primary" [checked]="access === 'deleted'">
+  已删除？
+</mat-slide-toggle>
+<br/>
+<br/>
+<div class="mat-elevation-z8">
+    <mat-table #table [dataSource]="users">
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> 用户名 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="access">
+        <mat-header-cell *matHeaderCellDef> 权限 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.access}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="number">
+        <mat-header-cell *matHeaderCellDef> 号码 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.number}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="colors">
+        <mat-header-cell *matHeaderCellDef> 颜色1 </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div class="color" [style.background-color]="element.colors[0]">
+              {{element.colors[0]}}               
+          </div>
+          <div class="color" [style.background-color]="element.colors[1]">
+              {{element.colors[1]}}               
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="teams">
+        <mat-header-cell *matHeaderCellDef> 主队 </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <img *ngFor="let team of element._teams" [src]="team.logo">
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="operations">
+        <mat-header-cell *matHeaderCellDef> 操作 </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <button [disabled]="access === 'deleted'" mat-raised-button color="warn" (click)="deleteUser(element)">删除</button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <mat-paginator #paginator [pageSize]="limit" [pageSizeOptions]="[limit]"
+    [length]="dataLength" (page)="changePage($event)">
+    </mat-paginator>
+  </div>

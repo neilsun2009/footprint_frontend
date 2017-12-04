@@ -20,7 +20,7 @@ export class WallpaperService {
       params += 'offset=' + offset;
     }
     if (limit) {
-      params += 'limit=' + limit;
+      params += '&limit=' + limit;
     }
     if (wallpaperName.length !== 0) {
       params += '&wallpaperName=' + encodeURIComponent(wallpaperName);
