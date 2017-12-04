@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>添加壁纸</h2>
+<form (ngSubmit)="add()" name="addForm" #addForm="ngForm">
+    <mat-form-field class="form-full-width">
+        <input name="name" required matInput placeholder="名称" [(ngModel)]="addParam.wallpaperName">
+      </mat-form-field>
+      <mat-form-field class="form-full-width">
+        <input name="link" required matInput placeholder="URL" [(ngModel)]="addParam.image">
+      </mat-form-field>
+      <img [src]="addParam.image + '?imageView2/1/w/300/h/150/q/90|imageslim'">
+      <mat-dialog-actions>
+    <button type="submit" mat-raised-button color="primary" 
+    [disabled]="!addForm.form.valid">添加</button>    
+    <button mat-button mat-dialog-close>取消</button>
+  </mat-dialog-actions>
+</form>

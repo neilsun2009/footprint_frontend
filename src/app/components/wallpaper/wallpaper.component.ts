@@ -34,7 +34,7 @@ export class WallpaperComponent implements OnInit {
       showSidebar: false,
       showLoading: false
     });
-    this.wallpaperService.getMulti('',
+    this.wallpaperService.getMulti(0, 0, '',
     (data) => {
       this.wallpapers = data.data;
     }, (err) => {

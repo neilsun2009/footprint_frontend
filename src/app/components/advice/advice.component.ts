@@ -53,6 +53,7 @@ export class AdviceComponent implements OnInit {
     (data) => {
       if (data.result) {
         this.hasSubmitted = true;
+        this.submitContent = '';
       } else  {
         this.hasError = true;
         this.errorMsg = data.message;

@@ -64,3 +64,5 @@ TypeScript + Angular + LESS + TSLint
 
 ### 2017.12.04
 * admin log
+* admin advice
+* admin wallpaper

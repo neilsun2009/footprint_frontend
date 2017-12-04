@@ -5,6 +5,8 @@ import { AuthGuard } from './services/auth-guard.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { IndexComponent } from './components/index/index.component';
 import { LogComponent } from './components/log/log.component';
+import { AdviceComponent } from './components/advice/advice.component';
+import { WallpaperComponent } from './components/wallpaper/wallpaper.component';
 
 const adminRoutes: Routes = [
   {
@@ -20,6 +22,14 @@ const adminRoutes: Routes = [
       {
         path: 'log',
         component: LogComponent
+      },
+      {
+        path: 'advice',
+        component: AdviceComponent
+      },
+      {
+        path: 'wallpaper',
+        component: WallpaperComponent
       }
     ]
   }

@@ -6,6 +6,8 @@ import { Advice } from '../models/advice';
 export class AdviceService {
 
   private addUrl = '/api/add_advice';
+  private getMultiUrl = '/api/get_advices';
+  private deleteUrl = '/api/delete_advice';
 
   constructor(
     private http: HttpService
@@ -13,6 +15,15 @@ export class AdviceService {
 
   add(content, callback, err) {
     this.http.post<IResponse<Advice>>(this.addUrl, {content}, callback, err);
+  }
+
+  delete(params, callback, err) {
+    this.http.post<IResponse<Comment>>(this.deleteUrl, params, callback, err);
+  }
+
+  getMulti(params, callback, err) {
+
+    this.http.post<IResponse<Advice[]>>(this.getMultiUrl, params, callback, err);
   }
 
 }

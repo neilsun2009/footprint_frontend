@@ -19,6 +19,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
 
 import { HttpService } from '../../api/http.service';
 import { AuthService } from '../../api/auth.service';
@@ -42,6 +43,12 @@ import { DeleteLogComponent } from './components/log/delete-log/delete-log.compo
 import { UpdateLogComponent } from './components/log/update-log/update-log.component';
 import { MatNativeDateModule } from '@angular/material';
 import { AddLogComponent } from './components/log/add-log/add-log.component';
+import { AdviceComponent } from './components/advice/advice.component';
+import { DeleteAdviceComponent } from './components/advice/delete-advice/delete-advice.component';
+import { WallpaperComponent } from './components/wallpaper/wallpaper.component';
+import { DeleteWallpaperComponent } from './components/wallpaper/delete-wallpaper/delete-wallpaper.component';
+import { UpdateWallpaperComponent } from './components/wallpaper/update-wallpaper/update-wallpaper.component';
+import { AddWallpaperComponent } from './components/wallpaper/add-wallpaper/add-wallpaper.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +57,13 @@ import { AddLogComponent } from './components/log/add-log/add-log.component';
     LogComponent,
     DeleteLogComponent,
     UpdateLogComponent,
-    AddLogComponent
+    AddLogComponent,
+    AdviceComponent,
+    DeleteAdviceComponent,
+    WallpaperComponent,
+    DeleteWallpaperComponent,
+    UpdateWallpaperComponent,
+    AddWallpaperComponent
   ],
   imports: [
     CommonModule,
@@ -70,7 +83,8 @@ import { AddLogComponent } from './components/log/add-log/add-log.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCardModule
   ],
   providers: [
     HttpService,
@@ -91,7 +105,11 @@ import { AddLogComponent } from './components/log/add-log/add-log.component';
   entryComponents: [
     DeleteLogComponent,
     UpdateLogComponent,
-    AddLogComponent
+    AddLogComponent,
+    DeleteAdviceComponent,
+    DeleteWallpaperComponent,
+    UpdateWallpaperComponent,
+    AddWallpaperComponent
   ]
 })
 export class AdminModule {}

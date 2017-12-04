@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>更新wallpaper</h2>
+<form (ngSubmit)="update()" name="updateForm" #updateForm="ngForm">
+  <mat-form-field class="form-full-width">
+    <input name="name" required matInput placeholder="名称" [(ngModel)]="data.wallpaper.wallpaperName">
+  </mat-form-field>
+  <mat-form-field class="form-full-width">
+    <input name="link" required matInput placeholder="URL" [(ngModel)]="data.wallpaper.image">
+  </mat-form-field>
+  <img [src]="data.wallpaper.image + '?imageView2/1/w/300/h/150/q/90|imageslim'">
+  <mat-dialog-actions>
+    <button type="submit" mat-raised-button color="accent" 
+    [disabled]="!updateForm.form.valid">修改</button>    
+    <button mat-button mat-dialog-close>取消</button>
+  </mat-dialog-actions>
+</form>
