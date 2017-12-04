@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>添加log</h2>
+<form (ngSubmit)="add()" name="addForm" #addForm="ngForm">
+  <mat-form-field class="form-full-width" hintLabel="向后选择一天，以匹配UTC时间">
+    <input name="date" required matInput [matDatepicker]="picker" placeholder="日期" [(ngModel)]="addParam.date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="form-full-width">
+    <input name="events" required matInput placeholder="事件" [(ngModel)]="addParam.events">
+  </mat-form-field>
+  <mat-dialog-actions>
+    <button type="submit" mat-raised-button color="primary" 
+    [disabled]="!addForm.form.valid">添加</button>    
+    <button mat-button mat-dialog-close>取消</button>
+  </mat-dialog-actions>
+</form>

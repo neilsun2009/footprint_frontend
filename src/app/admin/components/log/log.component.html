@@ -1,0 +1,39 @@
+<div class="loading" *ngIf="showLoading">
+    <mat-spinner></mat-spinner>        
+</div>
+<h1>
+  <mat-icon>format_align_justify</mat-icon>
+  Log
+</h1>
+<br/>
+<button mat-raised-button color="primary" (click)="addLog()">添加</button>
+<br/>
+<br/>
+<div class="mat-elevation-z8">
+    <mat-table #table [dataSource]="logs">
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> 日期 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.date | date: 'yyyy-MM-dd'}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="events">
+        <mat-header-cell *matHeaderCellDef> 事件 </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.events.join('|')}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="operations">
+        <mat-header-cell *matHeaderCellDef> 操作 </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <button mat-raised-button color="accent" (click)="updateLog(element)">更新</button>
+            <button mat-raised-button color="warn" (click)="deleteLog(element)">删除</button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <mat-paginator #paginator [pageSize]="limit" [pageSizeOptions]="[limit]"
+    [length]="dataLength" (page)="changePage($event)">
+    </mat-paginator>
+  </div>

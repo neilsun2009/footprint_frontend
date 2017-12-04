@@ -94,6 +94,7 @@ export class ReportComponent implements OnInit, OnDestroy {
       return;
     }
     this.sofaService.getGeneral(sofaScoreId,
+    // this.sofaService.getGeneral('7429781',
       (data) => {
         this.showLoading = false;
         // console.log(data);
@@ -181,7 +182,7 @@ export class ReportComponent implements OnInit, OnDestroy {
               addedTimeFirst = incident['length'];
           } else if (incident.timeSpecial === 90) {
               addedTimeSecond = incident['length'];
-          } else if (incident.timeSpecial === 120) {
+          } else if (incident.timeSpecial === 120 || incident.timeSpecial === 105) {
               addedExtraTime += incident['length'];
           }
       }
@@ -222,9 +223,11 @@ export class ReportComponent implements OnInit, OnDestroy {
             incident.time = 90 + addedTimeFirst + addedTimeSecond + addedExtraTime + (++penaltyNum);
         } else if (incident.timeSpecial > 45 && incident.timeSpecial <= 90) {
             incident.time = incident.timeSpecial + addedTimeFirst;
-        } else if (incident.timeSpecial > 90) {
+        } else if (incident.timeSpecial > 90 && incident.timeSpecial <= 120) {
             incident.time = incident.timeSpecial + addedTimeFirst + addedTimeSecond;
             // console.log(incident.time);
+        } else if (incident.timeSpecial > 120) {
+            incident.time = 90 + addedTimeFirst + addedTimeSecond + addedExtraTime;
         }
         if (incident.addedTime) {
             if (incident.timeSpecial === 45) {
@@ -321,6 +324,7 @@ export class ReportComponent implements OnInit, OnDestroy {
           - smallCircleWidth / 2 - smallCircleBorderWidth + 'px';
         minIncidentCount[incident.time]++;
         fragment.appendChild(circle);
+        // console.log(incident);
     }
     this.renderer.appendChild(bigContainer, fragment);
     // document.getElementById('report-incidents').appendChild(fragment);

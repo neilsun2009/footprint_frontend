@@ -138,7 +138,7 @@ export class AboutComponent implements OnInit {
   }
 
   private getLogs() {
-    this.logService.getMulti(
+    this.logService.getMulti(0, 0,
     (data) => {
       if (data.result) {
           this.logs = data.data;

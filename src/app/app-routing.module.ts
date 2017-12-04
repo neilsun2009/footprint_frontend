@@ -21,11 +21,11 @@ import { UserResolver } from './services/user-resolver.service';
 import { MatchResolver } from './services/match-resolver.service';
 
 const appRoutes: Routes = [
-  // {
-  //   path: 'admin',
-  //   loadChildren: 'admin/admin.module#AdminModule'
-  //   // canLoad: [AuthGuard]
-  // },
+  {
+    path: 'admin',
+    loadChildren: 'app/admin/admin.module#AdminModule'
+    // canLoad: [AuthGuard]
+  },
   {
     path: '',
     component: MasterComponent,

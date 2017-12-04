@@ -116,14 +116,14 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.showLoading = false;
       this.noResult = !this.chats.length;
       // in time
-      // if (deltaTime >= -30 * 60 * 1000 && deltaTime <= 240 * 60 * 1000) {
+      if (deltaTime >= -60 * 60 * 1000 && deltaTime <= 240 * 60 * 1000) {
         this.showSender = true;
         setTimeout(function() {
           document.body.scrollTop = document.documentElement.offsetHeight;
         }, 50);
         this.socket.open();
         this.socket.emit('chat-match', {matchid: this.match._id});
-      // }
+      }
     }, this.errorHandler);
   }
 

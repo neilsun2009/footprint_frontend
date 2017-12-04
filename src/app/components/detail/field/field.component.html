@@ -1,7 +1,7 @@
 <div class="field-container container-patch" [style.background-color]="secondaryColor">
-  <div class="loading" [@loading]="showLoading" *ngIf="showLoading" [style.color]="primaryColor">
+  <!-- <div class="loading" [@loading]="showLoading" *ngIf="showLoading" [style.color]="primaryColor">
       <i class="fa fa-futbol-o" aria-hidden="true"></i>
-  </div>
+  </div> -->
   <div class="plus" *ngIf="user && !field" [style.background-color]="primaryColor"
   [style.color]="secondaryColor" (click)="showAddModel = true" [@scale]="showAdd">
       <i class="fa fa-plus" aria-hidden="true"></i>

@@ -1,0 +1,35 @@
+<div class="mat-app-background container">
+  <mat-toolbar color="primary" class="mat-elevation-z6">
+    <button mat-icon-button (click)="toggleSidenav()">
+      <mat-icon>{{openSidenav ? 'more_vert' : 'menu'}}</mat-icon>
+    </button>      
+    <span>Footprint Admin</span>
+    <span class="example-fill-remaining-space"></span>
+    <a mat-button routerLink="/" target="_blank">首页</a>
+    <button mat-button (click)="logout()">注销</button>
+  </mat-toolbar>
+  <mat-sidenav-container>
+      <mat-sidenav [(opened)]="openSidenav" mode="push">
+        <mat-nav-list>
+          <a mat-list-item routerLink="/admin"> 首页 </a>
+          <a mat-list-item routerLink="/admin/match"> 比赛 </a>
+          <a mat-list-item routerLink="/admin/team"> 球队 </a>
+          <a mat-list-item routerLink="/admin/color"> 色彩方案 </a>
+          <a mat-list-item routerLink="/admin/user"> 用户 </a>
+          <a mat-list-item routerLink="/admin/comment"> 评论 </a>
+          <a mat-list-item routerLink="/admin/field"> 现场 </a>
+          <a mat-list-item routerLink="/admin/wallpaper"> 壁纸 </a>
+          <a mat-list-item routerLink="/admin/advice"> 投稿 </a>
+          <a mat-list-item routerLink="/admin/log"> Log </a>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+        <footer>
+            <a target="_blank" href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action">粤ICP备17002636号-1</a><br/>
+            &copy;copyright <a target="_blank" href="http://bogobogo.cn">Bogo</a> 2017<br/>
+            All Rights Reserved.
+        </footer>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

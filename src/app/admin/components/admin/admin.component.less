@@ -1,0 +1,38 @@
+@import "../../global.less";
+.container {
+  min-height: 100vh;
+  width: 100vw;
+}
+.example-fill-remaining-space {
+  flex: 1 1 auto;
+}
+mat-sidenav-container {
+  height: calc(~'100vh - 64px');
+}
+mat-sidenav {
+  width: 200px;
+  box-sizing: border-box;
+}
+mat-sidenav-content {
+  padding: 20px;
+  box-sizing: border-box;
+}
+footer {
+  // background-color: #000;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  a {
+    color: #999;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  mat-sidenav-container {
+    height: calc(~'100vh - 56px');
+  }
+}

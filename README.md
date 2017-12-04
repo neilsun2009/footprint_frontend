@@ -56,3 +56,11 @@ TypeScript + Angular + LESS + TSLint
 * chat section
 * socket.io api
 * finish user frontend
+
+### 2017.12.03
+* admin init
+* angular-material init
+* admin index
+
+### 2017.12.04
+* admin log

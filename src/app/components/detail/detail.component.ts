@@ -74,6 +74,7 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
     this.loggedUser = this.authService.user;
     this.route.data.subscribe((data: {match: Match}) => {
       let timeMinus: number;
@@ -88,7 +89,7 @@ export class DetailComponent implements OnInit {
       });
       // section
       timeMinus = +new Date() - +new Date(this.detail.startTime);
-      if (timeMinus < -60 * 60 * 1000) {
+      if (timeMinus < -30 * 60 * 1000) {
           this.onSection = 'forecast';
           // angular.element('#forecast-plus').addClass('show');
       } else if (timeMinus <= 2.5 * 60 * 60 * 1000) {
