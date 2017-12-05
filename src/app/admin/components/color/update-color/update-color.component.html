@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>更新色彩</h2>
+<form (ngSubmit)="update()" name="updateForm" #updateForm="ngForm">
+  <mat-form-field class="form-full-width">
+    <input name="name" required matInput placeholder="色彩名称" [(ngModel)]="data.color.colorName">
+  </mat-form-field>
+  <mat-form-field class="form-full-width">
+    <input name="color1" required matInput placeholder="颜色1"
+    [(ngModel)]="data.color.colors[0]" [style.background-color]="data.color.colors[0]">
+  </mat-form-field>
+  <mat-form-field class="form-full-width">
+    <input name="color2" required matInput placeholder="颜色2"
+    [(ngModel)]="data.color.colors[1]" [style.background-color]="data.color.colors[1]">
+  </mat-form-field>
+  <mat-form-field class="form-full-width">
+    <mat-select required placeholder="球队" [(ngModel)]="data.color.teamid" name="team">
+      <mat-option *ngFor="let team of data.teams" [value]="team._id">
+        <img [src]="team.logo">{{team.teamName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-dialog-actions>
+    <button type="submit" mat-raised-button color="accent" 
+    [disabled]="!updateForm.form.valid">修改</button>    
+    <button mat-button mat-dialog-close>取消</button>
+  </mat-dialog-actions>
+</form>

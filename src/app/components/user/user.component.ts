@@ -129,7 +129,7 @@ export class UserComponent implements OnInit {
   }
 
   getColors() {
-    this.colorService.getMulti('', '',
+    this.colorService.getMulti(0, 0, '', '',
     (data) => {
       this.colors = data.data;
     }, (err) => {

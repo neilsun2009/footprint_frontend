@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
 
 import { HttpService } from '../../api/http.service';
 import { AuthService } from '../../api/auth.service';
@@ -57,6 +58,10 @@ import { TeamComponent } from './components/team/team.component';
 import { DeleteTeamComponent } from './components/team/delete-team/delete-team.component';
 import { UpdateTeamComponent } from './components/team/update-team/update-team.component';
 import { AddTeamComponent } from './components/team/add-team/add-team.component';
+import { ColorComponent } from './components/color/color.component';
+import { DeleteColorComponent } from './components/color/delete-color/delete-color.component';
+import { AddColorComponent } from './components/color/add-color/add-color.component';
+import { UpdateColorComponent } from './components/color/update-color/update-color.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +82,11 @@ import { AddTeamComponent } from './components/team/add-team/add-team.component'
     TeamComponent,
     DeleteTeamComponent,
     UpdateTeamComponent,
-    AddTeamComponent
+    AddTeamComponent,
+    ColorComponent,
+    DeleteColorComponent,
+    AddColorComponent,
+    UpdateColorComponent
   ],
   imports: [
     CommonModule,
@@ -99,7 +108,8 @@ import { AddTeamComponent } from './components/team/add-team/add-team.component'
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule
   ],
   providers: [
     HttpService,
@@ -129,7 +139,10 @@ import { AddTeamComponent } from './components/team/add-team/add-team.component'
     DeleteUserComponent,
     DeleteTeamComponent,
     UpdateTeamComponent,
-    AddTeamComponent
+    AddTeamComponent,
+    DeleteColorComponent,
+    UpdateColorComponent,
+    AddColorComponent
   ]
 })
 export class AdminModule {}

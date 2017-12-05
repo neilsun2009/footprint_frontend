@@ -71,3 +71,4 @@ TypeScript + Angular + LESS + TSLint
 ### 2017.12.05
 * admin team
 * qiniu cloud upload
+* admin color

@@ -1,0 +1,34 @@
+<div class="loading" *ngIf="showLoading">
+    <mat-spinner></mat-spinner>        
+  </div>
+  <h1>
+  <mat-icon>color_lens</mat-icon>
+  Color
+  </h1>
+  <br/>
+  <button mat-raised-button color="primary" (click)="addColor()">添加</button>
+  <div class="right">
+    <form name="search" (ngSubmit)="search()">
+      <mat-form-field class="example-full-width">
+        <input name="color-name" matInput placeholder="色彩名称" [(ngModel)]="colorName">
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary">检索</button>
+    </form>
+  </div>
+  <br/>
+  <br/>
+  
+  <mat-card *ngFor="let color of colors">
+  <mat-card-header>
+    <mat-card-title>{{color.colorName}}</mat-card-title>
+  </mat-card-header>
+  <div class="color" [style.background-color]="color.colors[0]">{{color.colors[0]}}</div> 
+  <div class="color" [style.background-color]="color.colors[1]">{{color.colors[1]}}</div> 
+  <mat-card-actions>
+    <button mat-raised-button color="accent" (click)="updateColor(color)">更新</button>
+    <button mat-raised-button color="warn" (click)="deleteColor(color)">删除</button>
+  </mat-card-actions>
+  </mat-card>
+  
+  <mat-paginator #paginator [pageSize]="limit" [pageSizeOptions]="[limit]"
+  [length]="dataLength" (page)="changePage($event)"></mat-paginator>

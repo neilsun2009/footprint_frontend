@@ -9,6 +9,7 @@ import { AdviceComponent } from './components/advice/advice.component';
 import { WallpaperComponent } from './components/wallpaper/wallpaper.component';
 import { UserComponent } from './components/user/user.component';
 import { TeamComponent } from './components/team/team.component';
+import { ColorComponent } from './components/color/color.component';
 
 const adminRoutes: Routes = [
   {
@@ -40,6 +41,10 @@ const adminRoutes: Routes = [
       {
         path: 'team',
         component: TeamComponent
+      },
+      {
+        path: 'color',
+        component: ColorComponent
       }
     ]
   }
