@@ -70,7 +70,9 @@ export class ReportComponent implements OnInit, OnDestroy {
       title: '全场比分',
       defaultScore: '?-?',
       team: 0,
-      text: ''
+      text: '',
+      minCount: 90,
+      minAngle: 0
     };
   }
 
@@ -106,7 +108,8 @@ export class ReportComponent implements OnInit, OnDestroy {
             this.incidents = data.incidents;
             this.setIncidents(this.incidents);
             window.onresize = () => {
-              this.setIncidents(this.incidents);
+              this.resize();
+              // this.setIncidents(this.incidents);
             };
           } else {
             this.noIncidents = true;
@@ -116,6 +119,65 @@ export class ReportComponent implements OnInit, OnDestroy {
         alert(`网络错误：${err.message}`);
         console.log(err);
       });
+  }
+
+  resize() {
+    let bigContainer = document.getElementById('report-incidents'),
+        bigCircle = document.getElementById('incidents-big-circle'),
+        // containerDefault = angular.element('#incidents-default'),
+        // containerDouble = angular.element('#incidents-double'),
+        // containerSingle = angular.element('#incidents-single'),
+        bigContainerWidth = bigContainer.offsetWidth,
+        bigCircleWidth,
+        smallCircleWidth = 32,
+        smallCircleBorderWidth = 3,
+        tinyCircles = document.getElementsByClassName('tiny-circle'),
+        smallCircles = document.getElementsByClassName('small-circle');
+    if (document.documentElement.offsetWidth <= 500) {
+        smallCircleWidth = 16;
+    } else if (document.documentElement.offsetWidth <= 800) {
+        smallCircleWidth = 24;
+    }
+    bigCircleWidth = bigContainerWidth - smallCircleWidth * 6;
+    // bigCircleCenter = bigContainerWidth/2;
+    // set offset
+    bigContainer.style.height = bigContainerWidth + 'px';
+    bigCircle.style.width = bigCircleWidth + 'px';
+    bigCircle.style.height = bigCircleWidth + 'px';
+    bigCircle.style.top = (bigContainerWidth - bigCircleWidth) / 2 + 'px';
+    bigCircle.style.left = (bigContainerWidth - bigCircleWidth) / 2 + 'px';
+    // tiny circle
+    for (let i = 0, len = tinyCircles.length; i < len; ++i) {
+        let circle = tinyCircles.item(i);
+        this.renderer.setStyle(circle, 'left', bigContainerWidth / 2 + (Math.sin(this.incidentParam.minAngle * i)
+            * (bigCircleWidth / 2 + smallCircleWidth / 2)) + 'px');
+        this.renderer.setStyle(circle, 'top', bigContainerWidth / 2 - (Math.cos(this.incidentParam.minAngle * i)
+            * (bigCircleWidth / 2 + smallCircleWidth / 2)) + 'px');
+        if (document.documentElement.offsetWidth <= 500) {
+            this.renderer.setStyle(circle, 'display', 'none');
+        } else {
+            this.renderer.setStyle(circle, 'display', 'block');
+        }
+        // circle.style.left = bigContainerWidth / 2 + (Math.sin(this.incidentParam.minAngle * i)
+        //     * (bigCircleWidth / 2 + smallCircleWidth / 2)) + 'px';
+        // circle.style.top = bigContainerWidth / 2 - (Math.cos(this.incidentParam.minAngle * i)
+        //     * (bigCircleWidth / 2 + smallCircleWidth / 2)) + 'px';
+    }
+    // small circle
+    for (let len = this.incidents.length, i = len - 1; i >= 0; --i) {
+        let incident = this.incidents[i],
+          circle = <HTMLElement>smallCircles.item(len - i - 1),
+          minIncidentCount = +circle.dataset.minIncidentCount;
+        if (this.incidentParam.showDouble && this.incidentParam.title === '全场比分') {
+          this.incidentParam.score = this.incidentParam.defaultScore;
+        }
+        this.renderer.setStyle(circle, 'left', bigContainerWidth / 2 + (Math.sin(this.incidentParam.minAngle * incident.time) *
+            (bigCircleWidth / 2 + smallCircleWidth / 2 + minIncidentCount * smallCircleWidth))
+            - smallCircleWidth / 2 - smallCircleBorderWidth + 'px');
+        this.renderer.setStyle(circle, 'top', bigContainerWidth / 2 - (Math.cos(this.incidentParam.minAngle * incident.time) *
+            (bigCircleWidth / 2 + smallCircleWidth / 2 + minIncidentCount * smallCircleWidth))
+            - smallCircleWidth / 2 - smallCircleBorderWidth + 'px');
+    }
   }
 
   setIncidents(incidents) {
@@ -134,8 +196,6 @@ export class ReportComponent implements OnInit, OnDestroy {
       addedExtraTime = 0,
       addedPenalty = 0,
       penaltyNum = 0,
-      minCount = 90,
-      minAngle,
       fragment = document.createDocumentFragment(),
       minIncidentCount = [],
       oriTinyCircles = document.getElementsByClassName('tiny-circle'),
@@ -144,14 +204,14 @@ export class ReportComponent implements OnInit, OnDestroy {
     bigCircle.style.display = 'block';
     // delete original circles
     // console.log(oriTinyCircles);
-    while (oriTinyCircles.item(0)) {
+    /*while (oriTinyCircles.item(0)) {
       let node = oriTinyCircles.item(0);
       this.renderer.removeChild(bigContainer, node);
     }
     while (oriSmallCircles.item(0)) {
       let node = oriSmallCircles.item(0);
       this.renderer.removeChild(bigContainer, node);
-    }
+    }*/
     // set media query
     if (document.documentElement.offsetWidth <= 500) {
       smallCircleWidth = 16;
@@ -195,25 +255,30 @@ export class ReportComponent implements OnInit, OnDestroy {
           addedPenalty++;
       }
     }
-    minCount += addedTimeFirst + addedTimeSecond + addedExtraTime + addedPenalty;
+    this.incidentParam.minCount += addedTimeFirst + addedTimeSecond + addedExtraTime + addedPenalty;
     // console.log('count:' + minCount);
-    minAngle = 2 * Math.PI / (minCount + 1);
+    this.incidentParam.minAngle = 2 * Math.PI / (this.incidentParam.minCount + 1);
     // draw tiny circle
-    if (document.documentElement.offsetWidth > 500) {
-        for (let i = 0; i <= minCount; ++i) {
-            let circle = this.renderer.createElement('div');
-            this.renderer.addClass(circle, 'tiny-circle');
-            circle.style.backgroundColor = this.primaryColor;
-            circle.style.left = bigContainerWidth / 2 + (Math.sin(minAngle * i) * (bigCircleWidth / 2 + smallCircleWidth / 2)) + 'px';
-            circle.style.top = bigContainerWidth / 2 - (Math.cos(minAngle * i) * (bigCircleWidth / 2 + smallCircleWidth / 2)) + 'px';
-            if ((i <= 45 && i % 15 === 0) ||
-              (i > 45 && i <= 90 + addedTimeFirst && (i - addedTimeFirst) % 15 === 0)) {
-                this.renderer.addClass(circle, 'big');
-            }
-            this.renderer.appendChild(fragment, circle);
-            fragment.appendChild(circle);
+    // if (document.documentElement.offsetWidth > 500) {
+    for (let i = 0; i <= this.incidentParam.minCount; ++i) {
+        let circle = this.renderer.createElement('div');
+        this.renderer.addClass(circle, 'tiny-circle');
+        circle.style.backgroundColor = this.primaryColor;
+        circle.style.left = bigContainerWidth / 2 + (Math.sin(this.incidentParam.minAngle * i)
+            * (bigCircleWidth / 2 + smallCircleWidth / 2)) + 'px';
+        circle.style.top = bigContainerWidth / 2 - (Math.cos(this.incidentParam.minAngle * i)
+            * (bigCircleWidth / 2 + smallCircleWidth / 2)) + 'px';
+        if ((i <= 45 && i % 15 === 0) ||
+            (i > 45 && i <= 90 + addedTimeFirst && (i - addedTimeFirst) % 15 === 0)) {
+            this.renderer.addClass(circle, 'big');
         }
+        if (document.documentElement.offsetWidth <= 500) {
+            circle.style.display = 'none';
+        }
+        this.renderer.appendChild(fragment, circle);
+        fragment.appendChild(circle);
     }
+    // }
     // draw incidents
     for (let i = incidentCount - 1; i >= 0; --i) {
         let incident = incidents[i],
@@ -316,12 +381,13 @@ export class ReportComponent implements OnInit, OnDestroy {
             minIncidentCount.length = incident.time + 1;
             minIncidentCount[incident.time] = 0;
         }
-        circle.style.left = bigContainerWidth / 2 + (Math.sin(minAngle * incident.time) *
+        circle.style.left = bigContainerWidth / 2 + (Math.sin(this.incidentParam.minAngle * incident.time) *
           (bigCircleWidth / 2 + smallCircleWidth / 2 + minIncidentCount[incident.time] * smallCircleWidth))
           - smallCircleWidth / 2 - smallCircleBorderWidth + 'px';
-        circle.style.top = bigContainerWidth / 2 - (Math.cos(minAngle * incident.time) *
+        circle.style.top = bigContainerWidth / 2 - (Math.cos(this.incidentParam.minAngle * incident.time) *
           (bigCircleWidth / 2 + smallCircleWidth / 2 + minIncidentCount[incident.time] * smallCircleWidth))
           - smallCircleWidth / 2 - smallCircleBorderWidth + 'px';
+        circle.dataset.minIncidentCount = minIncidentCount[incident.time];
         minIncidentCount[incident.time]++;
         fragment.appendChild(circle);
         // console.log(incident);
@@ -447,7 +513,7 @@ export class ReportComponent implements OnInit, OnDestroy {
         case 'substitution':
             title = '换人';
             title = time + ' ' + title;
-            team = +incident.isHome;
+            team = +!incident.isHome;
             if (incident.playerIn) {
                 text1 = incident.playerIn.name;
             } else {

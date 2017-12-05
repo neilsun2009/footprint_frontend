@@ -22,10 +22,10 @@ import { parse } from 'query-string';
       ])
     ]),
     trigger('match', [
-      state('*', style({opacity: 1, height: '*', transform: 'translateX(0)'})),
+      state('*', style({opacity: 1, height: '*'})),
       // transition('false => true', animate(100)),
       transition(':enter', [
-        style({opacity: 0.5, height: 0}),
+        style({opacity: 0, height: 0}),
         animate('500ms ease-out')
       ])
     ]),
@@ -122,7 +122,7 @@ export class MatchComponent implements OnInit {
       clientHeight = document.documentElement.clientHeight;
     // console.log(scrollTop + ' ' + height + ' ' + clientHeight);
     // console.log(height, clientHeight, scrollTop);
-    if (height - clientHeight - scrollTop < 50 && !this.scrollLock) {
+    if (height - clientHeight - scrollTop < 150 && !this.scrollLock) {
         this.scrollLock = true;
         this.getMatches();
     }
@@ -136,7 +136,7 @@ export class MatchComponent implements OnInit {
   newSearch() {
     this.matches = [];
     history.pushState(this.query, 'match',
-      `match?year=${this.query.year}&month=${this.query.month}` + 
+      `match?year=${this.query.year}&month=${this.query.month}` +
       `&keyWord=${encodeURIComponent(this.query.keyWord)}&onlyField=${this.query.onlyField}`);
     this.query.offset = 0;
     this.getMatches();
