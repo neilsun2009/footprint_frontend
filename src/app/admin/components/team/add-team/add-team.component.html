@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>添加球队</h2>
+<form (ngSubmit)="add()" name="addForm" #addForm="ngForm">
+  <mat-form-field class="form-full-width">
+    <input name="name" required matInput placeholder="球队名" [(ngModel)]="addParam.teamName">
+  </mat-form-field>
+  <mat-form-field class="form-full-width">
+    <input name="eng-name" required matInput placeholder="英文名" [(ngModel)]="addParam.engTeamName">
+  </mat-form-field>
+  <mat-form-field class="form-full-width">
+    <input name="country" required matInput placeholder="国家" [(ngModel)]="addParam.country">
+  </mat-form-field>
+  <mat-form-field id="uploadCtn" class="form-70-width">
+    <input name="logo" required matInput placeholder="队徽" [(ngModel)]="addParam.logo">
+  </mat-form-field>
+  <button mat-button color="primary" id="uploadBtn">选择图片</button>   
+  <br/>
+  <img [src]="addParam.logo">
+  <mat-dialog-actions>
+    <button type="submit" mat-raised-button color="primary" 
+    [disabled]="!addForm.form.valid">添加</button>    
+    <button mat-button mat-dialog-close>取消</button>
+  </mat-dialog-actions>
+</form>

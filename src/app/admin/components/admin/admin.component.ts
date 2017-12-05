@@ -16,6 +16,16 @@ export class AdminComponent implements OnInit {
     private router: Router
   ) {
     this.openSidenav = false;
+    this.loadScript('/assets/js/plupload.full.min.js');
+    this.loadScript('/assets/js/moxie.min.js');
+    this.loadScript('/assets/js/qiniu.min.js');
+  }
+
+  loadScript(url) {
+    let script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    document.body.appendChild(script);
   }
 
   ngOnInit() {

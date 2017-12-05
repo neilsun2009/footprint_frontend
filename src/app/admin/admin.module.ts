@@ -34,6 +34,7 @@ import { TeamService } from '../../api/team.service';
 import { ColorService } from '../../api/color.service';
 import { WallpaperService } from '../../api/wallpaper.service';
 import { SofaService } from '../../api/sofa.service';
+import { QiniuService } from '../../api/qiniu.service';
 
 import { AuthGuard } from './services/auth-guard.service';
 
@@ -52,6 +53,10 @@ import { UpdateWallpaperComponent } from './components/wallpaper/update-wallpape
 import { AddWallpaperComponent } from './components/wallpaper/add-wallpaper/add-wallpaper.component';
 import { UserComponent } from './components/user/user.component';
 import { DeleteUserComponent } from './components/user/delete-user/delete-user.component';
+import { TeamComponent } from './components/team/team.component';
+import { DeleteTeamComponent } from './components/team/delete-team/delete-team.component';
+import { UpdateTeamComponent } from './components/team/update-team/update-team.component';
+import { AddTeamComponent } from './components/team/add-team/add-team.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +73,11 @@ import { DeleteUserComponent } from './components/user/delete-user/delete-user.c
     UpdateWallpaperComponent,
     AddWallpaperComponent,
     UserComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    TeamComponent,
+    DeleteTeamComponent,
+    UpdateTeamComponent,
+    AddTeamComponent
   ],
   imports: [
     CommonModule,
@@ -106,6 +115,7 @@ import { DeleteUserComponent } from './components/user/delete-user/delete-user.c
     WallpaperService,
     SofaService,
     AuthGuard,
+    QiniuService
     // {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
   ],
   entryComponents: [
@@ -116,7 +126,10 @@ import { DeleteUserComponent } from './components/user/delete-user/delete-user.c
     DeleteWallpaperComponent,
     UpdateWallpaperComponent,
     AddWallpaperComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    DeleteTeamComponent,
+    UpdateTeamComponent,
+    AddTeamComponent
   ]
 })
 export class AdminModule {}

@@ -67,3 +67,7 @@ TypeScript + Angular + LESS + TSLint
 * admin advice
 * admin wallpaper
 * admin user
+
+### 2017.12.05
+* admin team
+* qiniu cloud upload

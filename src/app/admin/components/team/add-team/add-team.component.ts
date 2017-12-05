@@ -1,38 +1,40 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { WallpaperService } from '../../../../../api/wallpaper.service';
-import { Wallpaper } from '../../../../../models/wallpaper';
+import { TeamService } from '../../../../../api/team.service';
+import { Team } from '../../../../../models/team';
 import { QiniuService } from '../../../../../api/qiniu.service';
 
 @Component({
-  selector: 'app-add-wallpaper',
-  templateUrl: './add-wallpaper.component.html',
-  styleUrls: ['./add-wallpaper.component.less']
+  selector: 'app-add-team',
+  templateUrl: './add-team.component.html',
+  styleUrls: ['./add-team.component.less']
 })
-export class AddWallpaperComponent implements OnInit {
+export class AddTeamComponent implements OnInit {
 
   addParam: {
-    wallpaperName: string;
-    image: string;
+    teamName: string;
+    logo: string;
+    country: string;
   };
 
   constructor(
-    public dialogRef: MatDialogRef<AddWallpaperComponent>,
-    private wallpaperService: WallpaperService,
+    public dialogRef: MatDialogRef<AddTeamComponent>,
+    private teamService: TeamService,
     private qiniuService: QiniuService
   ) {
     let date = new Date();
     this.addParam = {
-      wallpaperName: '',
-      image: ''
+      teamName: '',
+      logo: '',
+      country: ''
     };
   }
 
   ngOnInit() {
-    this.qiniuService.upload(window['Qiniu'], 'uploadBtn', 'uploadCtn', 'uploadCtn', 'footprint/wallpaper/',
+    this.qiniuService.upload(window['Qiniu'], 'uploadBtn', 'uploadCtn', 'uploadCtn', 'footprint/team/',
     (up, file, info) => {
       let res = JSON.parse(info.response);
-      this.addParam.image = `${this.qiniuService.domainUrl}${res.key}`;
+      this.addParam.logo = `${this.qiniuService.domainUrl}${res.key}`;
     }, (up, err, errTip) => {
       alert('err');
       console.log(errTip);
@@ -40,7 +42,7 @@ export class AddWallpaperComponent implements OnInit {
   }
 
   add() {
-    this.wallpaperService.add(this.addParam,
+    this.teamService.add(this.addParam,
     (data) => {
       if (data.result) {
         this.dialogRef.close(data);

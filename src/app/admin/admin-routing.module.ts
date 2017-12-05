@@ -8,6 +8,7 @@ import { LogComponent } from './components/log/log.component';
 import { AdviceComponent } from './components/advice/advice.component';
 import { WallpaperComponent } from './components/wallpaper/wallpaper.component';
 import { UserComponent } from './components/user/user.component';
+import { TeamComponent } from './components/team/team.component';
 
 const adminRoutes: Routes = [
   {
@@ -35,6 +36,10 @@ const adminRoutes: Routes = [
       {
         path: 'user',
         component: UserComponent
+      },
+      {
+        path: 'team',
+        component: TeamComponent
       }
     ]
   }

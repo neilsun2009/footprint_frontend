@@ -138,7 +138,7 @@ export class UserComponent implements OnInit {
   }
 
   getTeams() {
-    this.teamService.getMulti('', '',
+    this.teamService.getMulti(0,  0, '', '',
     (data) => {
       this.teams = data.data;
     }, (err) => {

@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>更新球队</h2>
+<form (ngSubmit)="update()" name="updateForm" #updateForm="ngForm">
+  <mat-form-field class="form-full-width">
+    <input name="name" required matInput placeholder="球队名" [(ngModel)]="data.team.teamName">
+  </mat-form-field>
+  <mat-form-field class="form-full-width">
+    <input name="eng-name" required matInput placeholder="英文名" [(ngModel)]="data.team.engTeamName">
+  </mat-form-field>
+  <mat-form-field class="form-full-width">
+    <input name="country" required matInput placeholder="国家" [(ngModel)]="data.team.country">
+  </mat-form-field>
+  <mat-form-field id="uploadCtn" class="form-70-width">
+    <input name="logo" required matInput placeholder="队徽" [(ngModel)]="data.team.logo">
+  </mat-form-field>
+  <button mat-button color="primary" id="uploadBtn">选择图片</button>  
+  <img [src]="data.team.logo">
+  <mat-dialog-actions>
+    <button type="submit" mat-raised-button color="accent" 
+    [disabled]="!updateForm.form.valid">修改</button>    
+    <button mat-button mat-dialog-close>取消</button>
+  </mat-dialog-actions>
+</form>
