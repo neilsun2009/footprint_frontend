@@ -109,7 +109,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   getInitChats() {
     this.chats = [];
     this.showLoading = true;
-    this.commentService.getMulti(this.match._id, 'chat', false,
+    this.commentService.getMulti(0, 0, this.match._id, 'chat', false,
     (data) => {
       let deltaTime = +new Date() - +new Date(this.match.startTime);
       this.chats = data.data;

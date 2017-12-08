@@ -91,7 +91,7 @@ export class ForecastComponent implements OnInit {
   getForecasts() {
     this.forecasts = [];
     this.showLoading = true;
-    this.commentService.getMulti(this.match._id, 'forecast', false,
+    this.commentService.getMulti(0, 0, this.match._id, 'forecast', false,
     (data) => {
       this.forecasts = data.data;
       this.showLoading = false;

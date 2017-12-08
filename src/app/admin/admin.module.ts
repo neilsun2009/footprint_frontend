@@ -22,6 +22,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { HttpService } from '../../api/http.service';
 import { AuthService } from '../../api/auth.service';
@@ -62,6 +64,13 @@ import { ColorComponent } from './components/color/color.component';
 import { DeleteColorComponent } from './components/color/delete-color/delete-color.component';
 import { AddColorComponent } from './components/color/add-color/add-color.component';
 import { UpdateColorComponent } from './components/color/update-color/update-color.component';
+import { MatchComponent } from './components/match/match.component';
+import { DeleteMatchComponent } from './components/match/delete-match/delete-match.component';
+import { AddMatchComponent } from './components/match/add-match/add-match.component';
+import { UpdateMatchComponent } from './components/match/update-match/update-match.component';
+import { DetailComponent } from './components/detail/detail.component';
+import { DeleteCommentComponent } from './components/detail/delete-comment/delete-comment.component';
+import { DeleteFieldComponent } from './components/detail/delete-field/delete-field.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +95,14 @@ import { UpdateColorComponent } from './components/color/update-color/update-col
     ColorComponent,
     DeleteColorComponent,
     AddColorComponent,
-    UpdateColorComponent
+    UpdateColorComponent,
+    MatchComponent,
+    DeleteMatchComponent,
+    AddMatchComponent,
+    UpdateMatchComponent,
+    DetailComponent,
+    DeleteCommentComponent,
+    DeleteFieldComponent
   ],
   imports: [
     CommonModule,
@@ -109,7 +125,9 @@ import { UpdateColorComponent } from './components/color/update-color/update-col
     MatFormFieldModule,
     MatCardModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSortModule,
+    MatTabsModule
   ],
   providers: [
     HttpService,
@@ -142,7 +160,12 @@ import { UpdateColorComponent } from './components/color/update-color/update-col
     AddTeamComponent,
     DeleteColorComponent,
     UpdateColorComponent,
-    AddColorComponent
+    AddColorComponent,
+    DeleteMatchComponent,
+    UpdateMatchComponent,
+    AddMatchComponent,
+    DeleteCommentComponent,
+    DeleteFieldComponent
   ]
 })
 export class AdminModule {}

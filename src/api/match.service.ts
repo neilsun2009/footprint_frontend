@@ -9,6 +9,8 @@ export class MatchService {
   private getMultiUrl = '/api/matches';
   private getUrl = '/api/match';
   private updateUrl = '/api/update_match';
+  private deleteUrl = '/api/delete_match';
+  private addUrl = '/api/add_match';
 
   constructor(
     private http: HttpService
@@ -76,6 +78,14 @@ export class MatchService {
 
   update(params, callback, err) {
     this.http.post<IResponse<Match>>(this.updateUrl, params, callback, err);
+  }
+
+  delete(params, callback, err) {
+    this.http.post<IResponse<Comment>>(this.deleteUrl, params, callback, err);
+  }
+
+  add(params, callback, err) {
+    this.http.post<IResponse<Comment>>(this.addUrl, params, callback, err);
   }
 
 }

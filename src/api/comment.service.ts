@@ -29,9 +29,15 @@ export class CommentService {
     this.http.get<IResponse<number>>(`${this.getMultiUrl}${params}`, callback, err);
   }
 
-  getMulti(matchid: string, commentType: string, fullMatch: boolean,
+  getMulti(offset: number, limit: number, matchid: string, commentType: string, fullMatch: boolean,
     callback, err) {
     let params = '?';
+    if (offset !== 0) {
+      params += '&offset=' + offset;
+    }
+    if (limit !== 0) {
+        params += '&limit=' + limit;
+    }
     if (matchid.length !== 0) {
       params += '&matchid=' + encodeURIComponent(matchid);
     }

@@ -1,0 +1,95 @@
+<h2 mat-dialog-title>添加比赛</h2>
+<form (ngSubmit)="add()" name="addForm" #addForm="ngForm">
+  
+  <mat-form-field class="form-short-width">
+    <input name="time" required matInput placeholder="开球时间" [(ngModel)]="addParam.startTime">
+  </mat-form-field>
+  <mat-form-field class="form-short-width">
+    <input name="competition" required matInput placeholder="赛事" [(ngModel)]="addParam.competition">
+  </mat-form-field>
+  <mat-form-field class="form-short-width">
+    <input name="round" required matInput placeholder="轮次" [(ngModel)]="addParam.round">
+  </mat-form-field>
+  <br/>
+
+
+  <img class="score" [src]="addParam.teams[0].logo">
+  <mat-form-field class="form-short-width">
+    <input name="home-score" required matInput placeholder="主队分数" [(ngModel)]="addParam.teams[0].score">
+  </mat-form-field>
+  <mat-form-field class="form-short-width">
+    <input name="away-score" required matInput placeholder="客队分数" [(ngModel)]="addParam.teams[1].score">
+  </mat-form-field>
+  <img class="score" [src]="addParam.teams[1].logo">
+  <br/>
+
+  <mat-form-field class="form-short-width">
+    <mat-select placeholder="主队" (selectionChange)="selectTeam(0, $event)">
+      <mat-option *ngFor="let team of data.teams; let i = index" [value]="i">
+        <img [src]="team.logo">{{team.teamName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="form-short-width">
+    <input name="home-name" required matInput placeholder="主队队名" [(ngModel)]="addParam.teams[0].teamName">
+  </mat-form-field>
+  <mat-form-field class="form-short-width" id="uploadCtn1">
+    <input name="home-logo" required matInput placeholder="主队logo" [(ngModel)]="addParam.teams[0].logo">
+  </mat-form-field>
+  <button mat-button color="primary" id="uploadBtn1">选择图片</button>
+  <br/>
+
+  <mat-form-field class="form-short-width">
+      <mat-select placeholder="客队" (selectionChange)="selectTeam(1, $event)">
+        <mat-option *ngFor="let team of data.teams; let i = index" [value]="i">
+          <img [src]="team.logo">{{team.teamName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-short-width">
+      <input name="away-name" required matInput placeholder="客队队名" [(ngModel)]="addParam.teams[1].teamName">
+    </mat-form-field>
+    <mat-form-field class="form-short-width" id="uploadCtn2">
+      <input name="away-logo" required matInput placeholder="客队logo" [(ngModel)]="addParam.teams[1].logo">
+    </mat-form-field>
+    <button mat-button color="primary" id="uploadBtn2">选择图片</button>
+    <br/>
+
+  <mat-form-field class="form-short-width">
+    <mat-select placeholder="选择球队配色" (selectionChange)="selectColor($event)">
+      <mat-option *ngFor="let color of data.colors; let i = index" [value]="i">
+        <div class="color" [style.background-color]="color.colors[0]"></div><div class="color" [style.background-color]="color.colors[1]"></div>
+        {{color.colorName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="form-short-width">
+    <input name="color1" required matInput placeholder="颜色1"
+    [(ngModel)]="addParam.colors[0]" [style.background-color]="addParam.colors[0]">
+  </mat-form-field>
+  <mat-form-field class="form-short-width">
+    <input name="color2" required matInput placeholder="颜色2"
+    [(ngModel)]="addParam.colors[1]" [style.background-color]="addParam.colors[1]">
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field class="form-short-width">
+    <input name="stadium" required matInput placeholder="球场" [(ngModel)]="addParam.stadium">
+  </mat-form-field>
+  <mat-form-field class="form-short-width">
+    <input name="weather" required matInput placeholder="天气" [(ngModel)]="addParam.weather">
+  </mat-form-field>
+  <mat-form-field class="form-short-width">
+    <input name="referee" matInput placeholder="裁判" [(ngModel)]="addParam.referee">
+  </mat-form-field>
+  <mat-form-field class="form-short-width">
+    <input name="sofa" matInput placeholder="SofaScore ID" [(ngModel)]="addParam.sofaScoreId">
+  </mat-form-field>
+  <br/>
+
+  <mat-dialog-actions>
+    <button type="submit" mat-raised-button color="primary" 
+    [disabled]="!addForm.form.valid">添加</button>    
+    <button mat-button mat-dialog-close>取消</button>
+  </mat-dialog-actions>
+</form>

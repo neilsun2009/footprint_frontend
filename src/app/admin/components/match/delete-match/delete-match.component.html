@@ -1,0 +1,7 @@
+<h2 mat-dialog-title>确定删除此比赛吗？</h2>
+<mat-dialog-content>{{data.match.teams[0].teamName + ' v ' + data.match.teams[1].teamName }}</mat-dialog-content>
+<br/>
+<mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="delete()">确定</button>    
+  <button mat-button mat-dialog-close>取消</button>
+</mat-dialog-actions>

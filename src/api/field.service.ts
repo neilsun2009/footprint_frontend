@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpService, IResponse } from './http.service';
 import { Field } from '../models/field';
+import { Match } from '../models/match';
 
 @Injectable()
 export class FieldService {
 
-  private getMultiUrl = '/api/simple_fields';
+  private getSimpleUrl = '/api/simple_fields';
+  private getMultiUrl = '/api/fields';
   private addUrl = '/api/add_field';
   private updateUrl = '/api/update_field';
   private deleteUrl = '/api/delete_field';
@@ -19,7 +21,7 @@ export class FieldService {
     if (userid.length !== 0) {
       params += '&userid=' + encodeURIComponent(userid);
   }
-    this.http.get<IResponse<number>>(`${this.getMultiUrl}${params}`, callback, err);
+    this.http.get<IResponse<number>>(`${this.getSimpleUrl}${params}`, callback, err);
   }
 
   update(params, callback, err) {
@@ -32,6 +34,23 @@ export class FieldService {
 
   delete(params, callback, err) {
     this.http.post<IResponse<Field>>(this.deleteUrl, params, callback, err);
+  }
+
+  getMulti(offset: number, limit: number, matchid: string, userid: string, callback, err) {
+    let params = '?';
+    if (offset !== 0) {
+      params += '&offset=' + offset;
+    }
+    if (limit !== 0) {
+      params += '&limit=' + limit;
+    }
+    if (matchid.length !== 0) {
+      params += '&matchid=' + encodeURIComponent(matchid);
+    }
+    if (userid.length !== 0) {
+      params += '&userid=' + encodeURIComponent(userid);
+    }
+    this.http.get<IResponse<Match[]>>(`${this.getMultiUrl}${params}`, callback, err);
   }
 
 }

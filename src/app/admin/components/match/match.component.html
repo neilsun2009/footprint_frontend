@@ -1,0 +1,72 @@
+<div class="loading" *ngIf="showLoading">
+  <mat-spinner></mat-spinner>        
+</div>
+<h1>
+<mat-icon>thumbs_up_down</mat-icon>
+Match
+</h1>
+<br/>
+<button mat-raised-button color="primary" (click)="addMatch()">添加</button>
+<div class="right">
+  <form name="change-keyword" (ngSubmit)="changeKeyword()">
+    <mat-form-field class="example-full-width">
+      <input name="keyword" matInput placeholder="关键词" [(ngModel)]="keyWord">
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">检索</button>
+  </form>
+</div>
+<br/>
+<br/>
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="matches" matSort (matSortChange)="sortData($event)" matSortDisableClear="true">
+    <ng-container matColumnDef="time">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> 时间 </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.startTime | date: 'yyyy年MM月dd日 HH:mm'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="teams">
+      <mat-header-cell *matHeaderCellDef> 对阵 </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <img [src]="element.teams[0].logo">
+        {{element.teams[0].score + ' : ' + element.teams[1].score}}
+        <img [src]="element.teams[1].logo">
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="competition">
+      <mat-header-cell *matHeaderCellDef> 赛事 </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.competition + element.round}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="colors">
+      <mat-header-cell *matHeaderCellDef> 颜色 </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="color" [style.background-color]="element.colors[0]">
+            {{element.colors[0]}}               
+        </div>
+        <div class="color" [style.background-color]="element.colors[1]">
+            {{element.colors[1]}}               
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="operations">
+      <mat-header-cell *matHeaderCellDef> 操作 </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <br>  
+        <a mat-raised-button color="primary" [routerLink]="'/admin/detail/' + element._id">详情</a>          
+        <br/><br/>
+        <button mat-raised-button color="accent" (click)="updateMatch(element)">更新</button>
+        <button mat-raised-button color="warn" (click)="deleteMatch(element)">删除</button>
+        <br/><br/>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator [pageSize]="limit" [pageSizeOptions]="[limit]"
+  [length]="dataLength" (page)="changePage($event)">
+  </mat-paginator>
+</div>

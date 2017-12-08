@@ -97,7 +97,7 @@ export class PostmatchComponent implements OnInit {
   getPostmatches() {
     this.postmatches = [];
     this.showLoading = true;
-    this.commentService.getMulti(this.match._id, 'postmatch', false,
+    this.commentService.getMulti(0, 0, this.match._id, 'postmatch', false,
     (data) => {
       this.postmatches = data.data;
       this.showLoading = false;

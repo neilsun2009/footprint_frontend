@@ -10,6 +10,10 @@ import { WallpaperComponent } from './components/wallpaper/wallpaper.component';
 import { UserComponent } from './components/user/user.component';
 import { TeamComponent } from './components/team/team.component';
 import { ColorComponent } from './components/color/color.component';
+import { MatchComponent } from './components/match/match.component';
+import { DetailComponent } from './components/detail/detail.component';
+
+import { MatchResolver } from '../services/match-resolver.service';
 
 const adminRoutes: Routes = [
   {
@@ -45,6 +49,15 @@ const adminRoutes: Routes = [
       {
         path: 'color',
         component: ColorComponent
+      },
+      {
+        path: 'match',
+        component: MatchComponent
+      },
+      {
+        path: 'detail/:id',
+        component: DetailComponent,
+        resolve: {match: MatchResolver},
       }
     ]
   }
