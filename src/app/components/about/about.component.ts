@@ -6,6 +6,7 @@ import { UserService } from '../../../api/user.service';
 import { FieldService } from '../../../api/field.service';
 import { LogService } from '../../../api/log.service';
 import { Log } from '../../../models/log';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-about',
@@ -30,7 +31,8 @@ export class AboutComponent implements OnInit {
     private commentService: CommentService,
     private userService: UserService,
     private fieldService: FieldService,
-    private logService: LogService
+    private logService: LogService,
+    private titleService: TitleService
   ) {
     this.primaryColor = '#000000';
   }
@@ -42,6 +44,7 @@ export class AboutComponent implements OnInit {
       showSidebar: false,
       showLoading: false
     });
+    this.titleService.setTitle('关于');
     this.setRunningTime();
     this.getMatchCount();
     this.getChatCount();

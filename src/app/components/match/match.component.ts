@@ -8,6 +8,7 @@ import { Match } from '../../../models/match';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { parse } from 'query-string';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-match',
@@ -22,10 +23,10 @@ import { parse } from 'query-string';
       ])
     ]),
     trigger('match', [
-      state('*', style({opacity: 1, height: '*'})),
+      state('*', style({opacity: 1, transform: 'translateY(0)'})),
       // transition('false => true', animate(100)),
       transition(':enter', [
-        style({opacity: 0, height: 0}),
+        style({opacity: 0, transform: 'translateY(500px)'}),
         animate('500ms ease-out')
       ])
     ]),
@@ -48,12 +49,14 @@ export class MatchComponent implements OnInit {
   monthEnable: boolean;
   scrollLock: boolean;
   getLock: boolean;
+  hasMore: boolean;
 
   constructor(
     private masterConfigService: MasterConfigService,
     private authService: AuthService,
     private matchService: MatchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private titleService: TitleService
   ) {
     this.showLoading = true;
     this.noResult = false;
@@ -61,6 +64,7 @@ export class MatchComponent implements OnInit {
     this.scrollLock = false;
     this.getLock = false;
     this.matches = [];
+    this.hasMore = true;
   }
 
   ngOnInit() {
@@ -81,6 +85,7 @@ export class MatchComponent implements OnInit {
       showSidebar: false,
       showLoading: false
     });
+    this.titleService.setTitle('赛事列表');
     // logged in user
     this.user = this.authService.user;
     if (!this.getLock) {
@@ -148,6 +153,7 @@ export class MatchComponent implements OnInit {
     // init
     this.noResult = false;
     this.showLoading = true;
+    this.hasMore = true;
     if (this.getLock) {
       return;
     }
@@ -175,10 +181,12 @@ export class MatchComponent implements OnInit {
         this.matches = this.matches.concat(data.data);
         if (data.count === 0) {
           this.noResult = true;
+          this.hasMore = false;
           window.onscroll = null;
         } else {
           if (data.count <= offset + limit) {
             window.onscroll = null;
+            this.hasMore = false;
           } else {
             this.query.offset += this.query.limit;
             window.onscroll = () => {

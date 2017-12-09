@@ -3,6 +3,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { MasterConfigService } from '../../services/master-config.service';
 import { WallpaperService } from '../../../api/wallpaper.service';
 import { Wallpaper } from '../../../models/wallpaper';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-wallpaper',
@@ -24,7 +25,8 @@ export class WallpaperComponent implements OnInit {
 
   constructor(
     private masterConfigService: MasterConfigService,
-    private wallpaperService: WallpaperService
+    private wallpaperService: WallpaperService,
+    private titleService: TitleService
   ) { }
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class WallpaperComponent implements OnInit {
       showSidebar: false,
       showLoading: false
     });
+    this.titleService.setTitle('壁纸集');
     this.wallpaperService.getMulti(0, 0, '',
     (data) => {
       this.wallpapers = data.data;

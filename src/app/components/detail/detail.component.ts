@@ -6,6 +6,7 @@ import { MasterConfigService } from '../../services/master-config.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../api/auth.service';
 import { MatchService } from '../../../api/match.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-detail',
@@ -68,7 +69,8 @@ export class DetailComponent implements OnInit {
     private authService: AuthService,
     private matchService: MatchService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private titleService: TitleService
   ) {
     this.showScoreModel = false;
   }
@@ -87,6 +89,7 @@ export class DetailComponent implements OnInit {
         showSidebar: false,
         showLoading: false
       });
+      this.titleService.setTitle(`${this.detail.teams[0].teamName} v ${this.detail.teams[1].teamName}`);
       // section
       timeMinus = +new Date() - +new Date(this.detail.startTime);
       if (timeMinus < -30 * 60 * 1000) {

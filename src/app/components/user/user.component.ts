@@ -11,6 +11,7 @@ import { Color } from '../../../models/color';
 import { TeamService } from '../../../api/team.service';
 import { ColorService } from '../../../api/color.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-user',
@@ -56,7 +57,8 @@ export class UserComponent implements OnInit {
     private colorService: ColorService,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private titleService: TitleService
   ) {
     this.showUpdateModel = false;
   }
@@ -78,6 +80,7 @@ export class UserComponent implements OnInit {
         showSidebar: false,
         showLoading: false
       });
+      this.titleService.setTitle(this.user.username);
       this.getChatCount(this.user._id);
       this.getForecastCount(this.user._id);
       this.getPostmatchCount(this.user._id);
@@ -106,6 +109,7 @@ export class UserComponent implements OnInit {
         primaryColor: this.primaryColor,
         secondaryColor: this.secondaryColor
       });
+      this.titleService.setTitle(this.user.username);
     }, err => {
       if (err.message === 'login required') {
         alert('请先登录');

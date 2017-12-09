@@ -17,6 +17,7 @@ import { MasterConfigService } from './services/master-config.service';
 import { BgConfigService } from './services/bg-config.service';
 import { UserResolver } from './services/user-resolver.service';
 import { MatchResolver } from './services/match-resolver.service';
+import { TitleService } from './services/title.service';
 import { HttpService } from '../api/http.service';
 import { AuthService } from '../api/auth.service';
 import { AdviceService } from '../api/advice.service';
@@ -105,7 +106,8 @@ import { ChatComponent } from './components/detail/chat/chat.component';
     TeamService,
     ColorService,
     WallpaperService,
-    SofaService
+    SofaService,
+    TitleService
   ],
   bootstrap: [AppComponent]
 })

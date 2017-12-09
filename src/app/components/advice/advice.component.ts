@@ -3,6 +3,7 @@ import { MasterConfigService } from '../../services/master-config.service';
 import { BgConfigService } from '../../services/bg-config.service';
 import { AdviceService } from '../../../api/advice.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-advice',
@@ -29,7 +30,8 @@ export class AdviceComponent implements OnInit {
   constructor(
     private masterConfigService: MasterConfigService,
     private bgConfigService: BgConfigService,
-    private adviceService: AdviceService
+    private adviceService: AdviceService,
+    private titleService: TitleService
   ) { }
 
   ngOnInit() {
@@ -40,6 +42,7 @@ export class AdviceComponent implements OnInit {
       showLoading: false
     });
     this.bg = this.bgConfigService.bg;
+    this.titleService.setTitle('投稿');
   }
 
   trySubmit() {

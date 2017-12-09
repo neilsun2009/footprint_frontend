@@ -15,6 +15,7 @@ export class AddTeamComponent implements OnInit {
     teamName: string;
     logo: string;
     country: string;
+    engTeamName: string;
   };
 
   constructor(
@@ -25,6 +26,7 @@ export class AddTeamComponent implements OnInit {
     let date = new Date();
     this.addParam = {
       teamName: '',
+      engTeamName: '',
       logo: '',
       country: ''
     };

@@ -77,6 +77,9 @@
             </div>
         </div>
     </a>
+    <div class="more-button" (click)="getMatches()" *ngIf="!showLoading && hasMore">
+        加载更多
+    </div>
     <div class="loading" [@loading]="showLoading" *ngIf="showLoading">
         <i class="fa fa-futbol-o" aria-hidden="true"></i>
     </div>

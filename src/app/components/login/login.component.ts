@@ -4,6 +4,7 @@ import { BgConfigService } from '../../services/bg-config.service';
 import { AuthService } from '../../../api/auth.service';
 import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
     private masterConfigService: MasterConfigService,
     private bgConfigService: BgConfigService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private titleService: TitleService
   ) {
     this.hasLoggedIn = false;
     this.hasError = false;
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
       showSidebar: false,
       showLoading: false
     });
+    this.titleService.setTitle('登录');
     this.bg = this.bgConfigService.bg;
   }
 

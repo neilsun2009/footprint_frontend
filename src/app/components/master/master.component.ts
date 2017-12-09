@@ -48,6 +48,10 @@ export class MasterComponent implements OnInit {
    }
 
   ngOnInit() {
+    // hide global loading
+    setTimeout(() => {
+      document.getElementById('global-loading').style.display = 'none';
+    }, 500);
     // set primary user
     if (this.authService.hasLoggedIn) {
       this.menuConfigs[1].show = false;

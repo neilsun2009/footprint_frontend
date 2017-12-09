@@ -54,8 +54,10 @@
     line-height: 35px;
     transition: all 0.2s;
     opacity: 1;
-    &:hover {
-      opacity: 0.8;    
+    &:hover, &:focus, &:active {
+      // opacity: 0.8;
+      z-index: 200;
+      transform: scale(1.2);
     }
     &.red {
       color: #C0392B;      
@@ -110,6 +112,7 @@
   .single {
     .score {
       width: 100%;
+      font-size: 45px;
     }
     .bg {
       width: 50%;

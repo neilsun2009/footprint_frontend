@@ -16,6 +16,31 @@ html, body {
 pre, input, button, option {
     font-family: Helvetica, Arial, 'Microsoft YaHei UI', '微软雅黑';
 }
+#global-loading {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    font-size: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding-top: 200px;
+    background-color: #000;
+    color: rgba(255, 255, 255, 0.5);
+}
+#global-loading i{
+    animation: my-rotate 2s infinite linear;
+}
+
+@keyframes my-rotate  {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 /*min-width*/
 @media screen and (max-width: 300px) {

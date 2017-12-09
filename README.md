@@ -76,3 +76,11 @@ TypeScript + Angular + LESS + TSLint
 ### 2017.12.07
 * admin match
 * admin detail
+
+### 2017.12.08
+* title service
+* bugs fixed
+
+### 2017.12.09
+* global loading (UE fix for js loading)
+* match list manual loading button

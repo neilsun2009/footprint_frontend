@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterConfigService } from '../../services/master-config.service';
 import { BgConfigService } from '../../services/bg-config.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-index',
@@ -12,7 +13,8 @@ export class IndexComponent implements OnInit {
   bg: string[];
   constructor(
     private masterConfigService: MasterConfigService,
-    private bgConfigService: BgConfigService
+    private bgConfigService: BgConfigService,
+    private titleService: TitleService
   ) { }
 
   ngOnInit() {
@@ -23,6 +25,7 @@ export class IndexComponent implements OnInit {
       showLoading: false
     });
     this.bg = this.bgConfigService.bg;
+    this.titleService.setTitle('首页');
   }
 
 }

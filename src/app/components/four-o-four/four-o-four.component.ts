@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterConfigService } from '../../services/master-config.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-four-o-four',
@@ -8,7 +9,10 @@ import { MasterConfigService } from '../../services/master-config.service';
 })
 export class FourOFourComponent implements OnInit {
 
-  constructor(private masterConfigService: MasterConfigService) { }
+  constructor(
+    private masterConfigService: MasterConfigService,
+    private titleService: TitleService
+  ) { }
 
   ngOnInit() {
     this.masterConfigService.setConfig({
@@ -17,6 +21,7 @@ export class FourOFourComponent implements OnInit {
       showSidebar: false,
       showLoading: true
     });
+    this.titleService.setTitle('页面未找到');
     setTimeout(() => {
       this.masterConfigService.setConfig({
         showLoading: false
