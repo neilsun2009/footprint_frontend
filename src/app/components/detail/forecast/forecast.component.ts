@@ -58,8 +58,8 @@ export class ForecastComponent implements OnInit {
   showAddModel: boolean;
   showEdit: boolean;
   showAdd: boolean;
-  primaryColor: string;
-  secondaryColor: string;
+  @Input() primaryColor: string;
+  @Input() secondaryColor: string;
   forecasts: Comment[];
   showLoading: boolean;
   noResult: boolean;
@@ -78,8 +78,8 @@ export class ForecastComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.primaryColor = this.match.colors[0];
-    this.secondaryColor = this.match.colors[1];
+    // this.primaryColor = this.match.colors[0];
+    // this.secondaryColor = this.match.colors[1];
     this.addParam = {
       matchid: this.match._id,
       commentType: 'forecast',
@@ -88,12 +88,13 @@ export class ForecastComponent implements OnInit {
     this.getForecasts();
   }
 
-  getForecasts() {
-    this.forecasts = [];
-    this.showLoading = true;
-    this.commentService.getMulti(0, 0, this.match._id, 'forecast', false,
-    (data) => {
-      this.forecasts = data.data;
+  syncPutComment(data, index) {
+    if (index <= data.length - 1) {
+      this.forecasts.push(data[index]);
+      setTimeout(() => {
+        this.syncPutComment(data, index + 1);
+      }, 100);
+    } else {
       this.showLoading = false;
       this.noResult = !this.forecasts.length;
       if ((+new Date() - +new Date(this.match.startTime)) < 0) {
@@ -109,6 +110,16 @@ export class ForecastComponent implements OnInit {
           this.showAdd = false;
         }
       }
+    }
+  }
+
+  getForecasts() {
+    this.forecasts = [];
+    this.showLoading = true;
+    this.commentService.getMulti(0, 0, this.match._id, 'forecast', false,
+    (data) => {
+      // this.forecasts = data.data;
+      this.syncPutComment(data.data, 0);
     }, (err) => {
       alert(`网络错误：${err.message}`);
       console.log(err);

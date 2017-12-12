@@ -58,8 +58,8 @@ export class PostmatchComponent implements OnInit {
   showAddModel: boolean;
   showEdit: boolean;
   showAdd: boolean;
-  primaryColor: string;
-  secondaryColor: string;
+  @Input() primaryColor: string;
+  @Input() secondaryColor: string;
   postmatches: Comment[];
   showLoading: boolean;
   noResult: boolean;
@@ -83,8 +83,8 @@ export class PostmatchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.primaryColor = this.match.colors[0];
-    this.secondaryColor = this.match.colors[1];
+    // this.primaryColor = this.match.colors[0];
+    // this.secondaryColor = this.match.colors[1];
     this.addParam = {
       matchid: this.match._id,
       commentType: 'postmatch',
@@ -94,12 +94,13 @@ export class PostmatchComponent implements OnInit {
     this.getPostmatches();
   }
 
-  getPostmatches() {
-    this.postmatches = [];
-    this.showLoading = true;
-    this.commentService.getMulti(0, 0, this.match._id, 'postmatch', false,
-    (data) => {
-      this.postmatches = data.data;
+  syncPutComment(data, index) {
+    if (index <= data.length - 1) {
+      this.postmatches.push(data[index]);
+      setTimeout(() => {
+        this.syncPutComment(data, index + 1);
+      }, 100);
+    } else {
       this.showLoading = false;
       this.noResult = !this.postmatches.length;
       if ((+new Date() - +new Date(this.match.startTime)) > 0) {
@@ -115,6 +116,16 @@ export class PostmatchComponent implements OnInit {
           this.showAdd = false;
         }
       }
+    }
+  }
+
+  getPostmatches() {
+    this.postmatches = [];
+    this.showLoading = true;
+    this.commentService.getMulti(0, 0, this.match._id, 'postmatch', false,
+    (data) => {
+      // this.postmatches = data.data;
+      this.syncPutComment(data.data, 0);
     }, (err) => {
       alert(`网络错误：${err.message}`);
       console.log(err);

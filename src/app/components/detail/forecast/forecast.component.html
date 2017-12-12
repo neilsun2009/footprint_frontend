@@ -8,7 +8,7 @@
   </div>
   <div class="main">
       <div *ngFor="let forecast of forecasts">
-          <app-comment (onDelete)="onDelete()" [comment]="forecast" [showEdit]="showEdit" [match]="match" [user]="user"></app-comment>
+          <app-comment (onDelete)="onDelete()" [comment]="forecast" [showEdit]="showEdit" [match]="match" [user]="user" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor"></app-comment>
       </div>
   </div>
   <div class="none" *ngIf="noResult" [@flyUp]="noResult" [style.color]="primaryColor">

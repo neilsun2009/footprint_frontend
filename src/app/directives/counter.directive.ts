@@ -47,9 +47,10 @@ export class CounterDirective implements OnInit {
   }
 
   scrollHandler() {
-    const scrollTop = document.body.scrollTop,
+    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
       clientHeight = document.documentElement.clientHeight;
     this.elemTop = this.elem.offsetTop;
+    // console.log(document.body.scrollHeight, clientHeight, this.elemTop);
     if (this.scrollLock) {
         return;
     }

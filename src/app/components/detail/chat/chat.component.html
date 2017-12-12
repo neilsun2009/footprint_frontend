@@ -20,14 +20,16 @@
     </div>
     <div class="circle" [style.background-color]="primaryColor"></div>
   </div>
-  <div class="sender" *ngIf="showSender" [@fadeIn]="showSender" [style.background-color]="primaryColor">
-    <form *ngIf="user && user._id" name="submit-chat" (ngSubmit)="sendChat()">
-        <input [(ngModel)]="sendParam.text" placeholder="我有一句话不知当讲不当讲" name="text">
-        <button type="submit" [style.background-color]="primaryColor">发送</button>
-    </form>
-    <a class="ask-login" *ngIf="!user" routerLink="/login">
-        登录参与碎碎念
-    </a>
+  <div class="sender" *ngIf="showSender" [@fadeIn]="showSender">
+    <div class="sender-inner" [style.background-color]="primaryColor">
+        <form *ngIf="user && user._id" name="submit-chat" (ngSubmit)="sendChat()" #chatForm="ngForm"  >
+            <input [(ngModel)]="sendParam.text" required placeholder="我有一句话不知当讲不当讲" name="text">
+            <button [disabled]="!chatForm.form.valid" type="submit" [style.background-color]="primaryColor">发送</button>
+        </form>
+        <a class="ask-login" *ngIf="!user" routerLink="/login" >
+            登录参与碎碎念
+        </a>
+    </div>
   </div>
   <div class="none" *ngIf="noResult" [@flyUp]="noResult" [style.color]="primaryColor">
       本场比赛还没有碎碎念

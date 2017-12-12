@@ -84,3 +84,10 @@ TypeScript + Angular + LESS + TSLint
 ### 2017.12.09
 * global loading (UE fix for js loading)
 * match list manual loading button
+* bugs in socket.io (nginx mainly)
+
+### 2017.12.10
+* double color palette for matches
+
+### 2017.12.12
+* step-anim for match list and comment list

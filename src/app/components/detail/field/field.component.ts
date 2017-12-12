@@ -57,8 +57,8 @@ export class FieldComponent implements OnInit {
   @Input() user: User;
   field: Field;
 
-  primaryColor: string;
-  secondaryColor: string;
+  @Input() primaryColor: string;
+  @Input() secondaryColor: string;
 
   showAddModel: boolean;
   showUpdateModel: boolean;
@@ -91,8 +91,8 @@ export class FieldComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.primaryColor = this.match.colors[0];
-    this.secondaryColor = this.match.colors[1];
+    // this.primaryColor = this.match.colors[0];
+    // this.secondaryColor = this.match.colors[1];
     this.field = <Field>this.match._fields[0];
     this.addParam = {
       matchid: this.match._id,

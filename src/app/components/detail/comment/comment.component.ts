@@ -39,8 +39,8 @@ export class CommentComponent implements OnInit {
   @Output() onDelete = new EventEmitter<void>();
 
   commentType: string;
-  primaryColor: string;
-  secondaryColor: string;
+  @Input() primaryColor: string;
+  @Input() secondaryColor: string;
 
   showUpdateModel: boolean;
   showDeleteModel: boolean;
@@ -61,8 +61,8 @@ export class CommentComponent implements OnInit {
 
   ngOnInit() {
     this.commentType = this.comment.commentType;
-    this.primaryColor = this.match.colors[0];
-    this.secondaryColor = this.match.colors[1];
+    // this.primaryColor = this.match.colors[0];
+    // this.secondaryColor = this.match.colors[1];
     this.updateParam = {
       commentid: this.comment._id,
       text: this.comment.text

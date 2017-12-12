@@ -126,4 +126,21 @@ export class DetailComponent implements OnInit {
     });
   }
 
+  changeColor(isAway) {
+    let colors = isAway ? this.detail.colors2 : this.detail.colors;
+    if (isAway) {
+      if (!this.detail.colors2[0]) {
+        colors = this.detail.colors;
+      }
+    }
+    this.primaryColor = colors[0] || '#000000';
+    this.secondaryColor = colors[1] || '#ffffff';
+    this.masterConfigService.setConfig({
+      primaryColor: this.primaryColor,
+      secondaryColor: this.secondaryColor,
+      showSidebar: false,
+      showLoading: false
+    });
+  }
+
 }

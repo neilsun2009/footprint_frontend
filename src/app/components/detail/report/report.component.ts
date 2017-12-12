@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer2, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Renderer2, OnDestroy, OnChanges, SimpleChange } from '@angular/core';
 import { Match } from '../../../../models/match';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { SofaService } from '../../../../api/sofa.service';
@@ -46,11 +46,11 @@ import { SofaService } from '../../../../api/sofa.service';
     ])
   ]
 })
-export class ReportComponent implements OnInit, OnDestroy {
+export class ReportComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() match: Match;
-  primaryColor: string;
-  secondaryColor: string;
+  @Input() primaryColor: string;
+  @Input() secondaryColor: string;
   showLoading: boolean;
   noIncidents: boolean;
 
@@ -77,8 +77,8 @@ export class ReportComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.primaryColor = this.match.colors[0];
-    this.secondaryColor = this.match.colors[1];
+    // this.primaryColor = this.match.colors[0];
+    // this.secondaryColor = this.match.colors[1];
     this.getGeneral(this.match.sofaScoreId);
   }
 
@@ -119,6 +119,30 @@ export class ReportComponent implements OnInit, OnDestroy {
         alert(`网络错误：${err.message}`);
         console.log(err);
       });
+  }
+
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    if (changes['primaryColor']) {
+        let tinyCircles = document.getElementsByClassName('tiny-circle'),
+            smallCircles = document.getElementsByClassName('small-circle'),
+            primaryColor = changes.primaryColor.currentValue,
+            secondaryColor = changes.secondaryColor.currentValue;
+        // console.log(changes);
+        // tiny circle
+        for (let i = 0, len = tinyCircles.length; i < len; ++i) {
+            let circle = <HTMLElement>tinyCircles.item(i);
+            circle.style.backgroundColor = primaryColor;
+        }
+        // small circle
+        for (let i = 0, len = smallCircles.length; i < len; ++i) {
+            let circle = <HTMLElement>smallCircles.item(i);
+            circle.style.backgroundColor = secondaryColor;
+            circle.style.borderColor = primaryColor;
+            if (circle.style.color !== 'rgb(192, 57, 43)' && circle.style.color !== 'rgb(241, 196, 15)') {
+                circle.style.color = primaryColor;
+            }
+        }
+    }
   }
 
   resize() {
@@ -226,7 +250,8 @@ export class ReportComponent implements OnInit, OnDestroy {
     bigCircle.style.height = bigCircleWidth + 'px';
     bigCircle.style.top = (bigContainerWidth - bigCircleWidth) / 2 + 'px';
     bigCircle.style.left = (bigContainerWidth - bigCircleWidth) / 2 + 'px';
-    bigCircle.style.borderColor = this.primaryColor;
+    this.renderer.setProperty(bigCircle, '[style.border-color]', 'primaryColor');
+    // bigCircle.style.borderColor = this.primaryColor;
     bigCircle.addEventListener('click', (e) => {
       this.showIncidentDefaultHandler(e);
     });
@@ -276,7 +301,10 @@ export class ReportComponent implements OnInit, OnDestroy {
             circle.style.display = 'none';
         }
         this.renderer.appendChild(fragment, circle);
-        fragment.appendChild(circle);
+        // this.renderer.appendChild(bigContainer, circle);
+        // fragment.appendChild(circle);
+    // this.renderer.appendChild(bigContainer, fragment);
+        // this.renderer.setProperty(circle, '[style.background-color]', 'primaryColor');
     }
     // }
     // draw incidents
@@ -306,6 +334,9 @@ export class ReportComponent implements OnInit, OnDestroy {
             }
         }
         this.renderer.addClass(circle, 'small-circle');
+        // this.renderer.setProperty(circle, '[style.border-color]', 'primaryColor');
+        // this.renderer.setProperty(circle, '[style.background-color]', 'secondaryColor');
+        // this.renderer.setProperty(circle, '[style.color]', 'primaryColor');
         circle.style.borderColor = this.primaryColor;
         circle.style.backgroundColor = this.secondaryColor;
         // circle.style.backgroundColor = '#fff';
@@ -344,6 +375,8 @@ export class ReportComponent implements OnInit, OnDestroy {
                     } else {
                       this.incidentParam.defaultScore = '?-?';
                     }
+                } else {
+                    incident.time = 90 + addedTimeFirst + addedTimeSecond + addedExtraTime + addedPenalty;
                 }
                 break;
             case 'card':

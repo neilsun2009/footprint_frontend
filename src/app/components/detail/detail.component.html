@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="detail-container container-patch" [style.background-color]="primaryColor" [@header]="primaryColor">
+  <div class="detail-container container-patch" [@header]="primaryColor">
     <div class="header">
         <p>{{detail.competition}}</p>
     </div>
@@ -10,7 +10,7 @@
         </p>
     </div>
     <div class="scoreboard">
-        <div class="team-logo" [@logo]="primaryColor">
+        <div class="team-logo" [@logo]="primaryColor" (click)="changeColor(false)">
             <img [src]="detail.teams[0].logo" [alt]="detail.teams[0].teamName" [title]="detail.teams[0].teamName">
         </div>
         <div class="score" (click)="changeScoreCheck()" [@score]="primaryColor">
@@ -18,7 +18,7 @@
                 {{detail.teams[0].score | score}}:{{detail.teams[1].score | score}}
             </span>
         </div>
-        <div class="team-logo right" [@logoRight]="primaryColor">
+        <div class="team-logo right" [@logoRight]="primaryColor" (click)="changeColor(true)">
             <img [src]="detail.teams[1].logo" [alt]="detail.teams[1].teamName" [title]="detail.teams[1].teamName">
         </div>
     </div>
@@ -50,11 +50,11 @@
       <span [class.on]="onSection === 'postmatch'" (click)="onSection = 'postmatch'">复盘</span>
       <span [class.on]="onSection === 'field'" (click)="onSection = 'field'">现场</span>
   </div>
-  <app-forecast *ngIf="onSection === 'forecast'" [match]="detail" [user]="loggedUser"></app-forecast>
-  <app-report *ngIf="onSection === 'report'" [match]="detail"></app-report>
-  <app-postmatch *ngIf="onSection === 'postmatch'" [match]="detail" [user]="loggedUser"></app-postmatch>
-  <app-field *ngIf="onSection === 'field'" [match]="detail" [user]="loggedUser"></app-field>
-  <app-chat *ngIf="onSection === 'chat'" [match]="detail" [user]="loggedUser"></app-chat>
+  <app-forecast *ngIf="onSection === 'forecast'" [match]="detail" [user]="loggedUser" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor"></app-forecast>
+  <app-report *ngIf="onSection === 'report'" [match]="detail" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor"></app-report>
+  <app-postmatch *ngIf="onSection === 'postmatch'" [match]="detail" [user]="loggedUser" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor"></app-postmatch>
+  <app-field *ngIf="onSection === 'field'" [match]="detail" [user]="loggedUser" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor"></app-field>
+  <app-chat *ngIf="onSection === 'chat'" [match]="detail" [user]="loggedUser" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor"></app-chat>
 </div>
 
 <!-- change score model -->

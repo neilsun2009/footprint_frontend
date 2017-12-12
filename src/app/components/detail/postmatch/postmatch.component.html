@@ -8,7 +8,7 @@
   </div>
   <div class="main">
       <div *ngFor="let postmatch of postmatches">
-          <app-comment (onDelete)="onDelete()" [comment]="postmatch" [showEdit]="showEdit" [match]="match" [user]="user"></app-comment>
+          <app-comment (onDelete)="onDelete()" [comment]="postmatch" [showEdit]="showEdit" [match]="match" [user]="user" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor"></app-comment>
       </div>
   </div>
   <div class="none" *ngIf="noResult" [@flyUp]="noResult" [style.color]="primaryColor">

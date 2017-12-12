@@ -55,7 +55,7 @@
     <br/>
 
   <mat-form-field class="form-short-width">
-    <mat-select placeholder="选择球队配色" (selectionChange)="selectColor($event)">
+    <mat-select placeholder="选择球队配色" (selectionChange)="selectColor(false, $event)">
       <mat-option *ngFor="let color of data.colors; let i = index" [value]="i">
         <div class="color" [style.background-color]="color.colors[0]"></div><div class="color" [style.background-color]="color.colors[1]"></div>
         {{color.colorName}}
@@ -69,6 +69,24 @@
   <mat-form-field class="form-short-width">
     <input name="color2" required matInput placeholder="颜色2"
     [(ngModel)]="data.match.colors[1]" [style.background-color]="data.match.colors[1]">
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field class="form-short-width">
+    <mat-select placeholder="选择客场球队配色" (selectionChange)="selectColor(true, $event)">
+      <mat-option *ngFor="let color of data.colors; let i = index" [value]="i">
+        <div class="color" [style.background-color]="color.colors[0]"></div><div class="color" [style.background-color]="color.colors[1]"></div>
+        {{color.colorName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="form-short-width">
+    <input name="color2.1" matInput placeholder="客队颜色1"
+    [(ngModel)]="data.match.colors2[0]" [style.background-color]="data.match.colors2[0]">
+  </mat-form-field>
+  <mat-form-field class="form-short-width">
+    <input name="color2.2" matInput placeholder="客队颜色2"
+    [(ngModel)]="data.match.colors2[1]" [style.background-color]="data.match.colors2[1]">
   </mat-form-field>
   <br/>
 

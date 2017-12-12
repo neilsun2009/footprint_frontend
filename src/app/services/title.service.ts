@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class TitleService {
 
   setTitle(str: string) {
-    document.title = `${str} - Footprint 2.0 - Powered by Bogo`;
+    document.title = `${str} - Footprint 2.0 - Presented by Bogo`;
   }
 
 }

@@ -23,10 +23,10 @@ import { TitleService } from '../../services/title.service';
       ])
     ]),
     trigger('match', [
-      state('*', style({opacity: 1, transform: 'translateY(0)'})),
+      state('*', style({opacity: 1, transform: 'translateX(0)'})),
       // transition('false => true', animate(100)),
       transition(':enter', [
-        style({opacity: 0, transform: 'translateY(500px)'}),
+        style({opacity: 0, transform: 'translateX(-500px)'}),
         animate('500ms ease-out')
       ])
     ]),
@@ -122,7 +122,7 @@ export class MatchComponent implements OnInit {
   }
 
   scrollHandler() {
-    let scrollTop = document.body.scrollTop,
+    let scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
       height = document.documentElement.offsetHeight,
       clientHeight = document.documentElement.clientHeight;
     // console.log(scrollTop + ' ' + height + ' ' + clientHeight);
@@ -145,6 +145,15 @@ export class MatchComponent implements OnInit {
       `&keyWord=${encodeURIComponent(this.query.keyWord)}&onlyField=${this.query.onlyField}`);
     this.query.offset = 0;
     this.getMatches();
+  }
+
+  syncPutMatch(data, index) {
+    if (index <= data.length - 1) {
+      this.matches.push(data[index]);
+      setTimeout(() => {
+        this.syncPutMatch(data, index + 1);
+      }, 100);
+    }
   }
 
   getMatches() {
@@ -178,7 +187,8 @@ export class MatchComponent implements OnInit {
       (data) => {
         this.scrollLock = false;
         this.showLoading = false;
-        this.matches = this.matches.concat(data.data);
+        // this.matches = this.matches.concat(data.data);
+        this.syncPutMatch(data.data, 0);
         if (data.count === 0) {
           this.noResult = true;
           this.hasMore = false;

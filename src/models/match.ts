@@ -15,6 +15,7 @@ export class Match {
   competition?: string;
   round?: string;
   colors?: string[];
+  colors2?: string[];
   sofaScoreId?: string;
   hasForecast?: boolean; /* deprecated */
   hasChat?: boolean; /* deprecated */

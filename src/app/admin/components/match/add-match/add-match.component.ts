@@ -26,6 +26,7 @@ export class AddMatchComponent implements OnInit {
     competition: string;
     round: string;
     colors: string[];
+    colors2: string[];
     sofaScoreId: string;
     referee: string;
   };
@@ -56,6 +57,7 @@ export class AddMatchComponent implements OnInit {
       competition: '2018中超联赛',
       round: '第轮',
       colors: ['', ''],
+      colors2: ['', ''],
       sofaScoreId: '',
       referee: '',
     };
@@ -108,9 +110,13 @@ export class AddMatchComponent implements OnInit {
     };
   }
 
-  selectColor(event: MatSelectChange) {
+  selectColor(isAway: boolean, event: MatSelectChange) {
     let color = this.data.colors[+event.value];
-    this.addParam.colors = [color.colors[0], color.colors[1]];
+    if (isAway) {
+      this.addParam.colors2 = [color.colors[0], color.colors[1]];
+    } else {
+      this.addParam.colors = [color.colors[0], color.colors[1]];
+    }
   }
 
   private handleError(err) {

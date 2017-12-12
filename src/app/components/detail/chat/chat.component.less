@@ -2,6 +2,8 @@
 .chat-container {
   min-height: 400px;
   padding-top: 0;
+  transition: 0.5s background-color linear;
+  
   .loading {
     margin: 0 auto;
     padding: 20px 0;
@@ -90,11 +92,19 @@
     position: fixed;
     width: 100%;
     height: 50px;
-    padding: 10px 0 10px 10px;
     z-index: 300;
     box-sizing: border-box;
     bottom: 0;
     left: 0;
+    transition: all 0.2s;
+
+    .sender-inner {
+      padding: 10px 0 10px 10px;
+      box-sizing: border-box;
+      transition: all 0.2s;
+    
+    }
+    
     .ask-login {
       display: block;
       text-align: center;
@@ -144,7 +154,7 @@
         position: absolute;
         right: 0;
         top: 0;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.9);
         font-size: 16px;
         line-height: 30px;
         height: 30px;
@@ -154,10 +164,14 @@
         cursor: pointer;
         transition: all 0.2s;
         &:hover {
-          color: #fff;
+          color: rgba(255, 255, 255, 1);
         }
         &:active {
           outline: none;            
+        }
+        &[disabled] {
+          cursor: not-allowed;
+          color: rgba(255, 255, 255, 0.5);
         }
       }
     }

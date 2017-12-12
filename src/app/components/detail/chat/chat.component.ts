@@ -56,14 +56,17 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   @Input() match: Match;
   @Input() user: User;
+  @Input() primaryColor: string;
+  @Input() secondaryColor: string;
   showDeleteModel: boolean;
-  primaryColor: string;
-  secondaryColor: string;
+  // primaryColor: string;
+  // secondaryColor: string;
   showLoading: boolean;
   noResult: boolean;
   showSender: boolean;
   chats: Comment[];
   deleteParam: Comment;
+  myChats: string[];
 
   private socket;
 
@@ -90,8 +93,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.primaryColor = this.match.colors[0];
-    this.secondaryColor = this.match.colors[1];
+    // this.primaryColor = this.match.colors[0];
+    // this.secondaryColor = this.match.colors[1];
     this.sendParam = {
       matchid: this.match._id,
       commentType: 'chat',
@@ -108,6 +111,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   getInitChats() {
     this.chats = [];
+    this.myChats = [];
     this.showLoading = true;
     this.commentService.getMulti(0, 0, this.match._id, 'chat', false,
     (data) => {
@@ -119,6 +123,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       if (deltaTime >= -60 * 60 * 1000 && deltaTime <= 240 * 60 * 1000) {
         this.showSender = true;
         setTimeout(function() {
+          document.documentElement.scrollTop = document.documentElement.offsetHeight;
           document.body.scrollTop = document.documentElement.offsetHeight;
         }, 50);
         this.socket.open();
@@ -136,7 +141,16 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   getNewChat(chat) {
-    if (chat._user._id === this.user._id) {
+    // if (this.user && chat._user._id === this.user._id) {
+    //   return;
+    // }
+    let index = this.myChats.indexOf(chat._id);
+    setTimeout(function() {
+      document.documentElement.scrollTop = document.documentElement.offsetHeight;
+      document.body.scrollTop = document.documentElement.offsetHeight;
+    }, 50);
+    if (index !== -1) {
+      this.myChats.splice(index, 1);
       return;
     }
     this.noResult = false;
@@ -159,9 +173,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.noResult = false;
         this.chats.push(data.data);
         this.sendParam.text = '';
-        setTimeout(function() {
-          document.body.scrollTop = document.documentElement.offsetHeight;
-        }, 50);
+        this.myChats.push(data.data._id);
         // web socket
         this.socket.emit('chat-data', data.data);
       } else {

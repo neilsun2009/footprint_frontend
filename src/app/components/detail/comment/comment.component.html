@@ -1,4 +1,5 @@
-<div class="comment-container" [@comment]="primaryColor" [style.background-color]="primaryColor">
+<div class="comment-container" [@comment]="commentType">
+  <div class="comment-inner" [style.background-color]="primaryColor">
   <pre>{{comment.text}}</pre>
   <div class="operation" *ngIf="user && comment._user._id === user._id && showEdit">
       <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showUpdateModel = true"></i>
@@ -11,6 +12,7 @@
       <a target="_blank" [routerLink]="'/user/' + comment._user._id">
           {{comment._user.username | censorship}}
       </a>
+  </div>
   </div>
 </div>
 
@@ -35,7 +37,7 @@
   <div class="inner">
     <h3>确定删除这条{{commentType === 'forecast' ? '前瞻' : '复盘'}}？</h3>
     <p>{{comment.text}}</p>
-    <form (ngSubmit)="deleteComment()" name="dele-comment">
+    <form (ngSubmit)="deleteComment()" name="delete-comment">
       <button type="submit">确定</button>
       <button type="button" (click)="showDeleteModel=false">取消</button>
     </form>

@@ -49,6 +49,7 @@ export class UpdateMatchComponent implements OnInit {
       competition: this.data.match.competition,
       round: this.data.match.round,
       colors: this.data.match.colors,
+      colors2: this.data.match.colors2,
       sofaScoreId: this.data.match.sofaScoreId,
       referee: this.data.match.referee
     },
@@ -71,9 +72,13 @@ export class UpdateMatchComponent implements OnInit {
     };
   }
 
-  selectColor(event: MatSelectChange) {
+  selectColor(isAway: boolean, event: MatSelectChange) {
     let color = this.data.colors[+event.value];
-    this.data.match.colors = [color.colors[0], color.colors[1]];
+    if (isAway) {
+      this.data.match.colors2 = [color.colors[0], color.colors[1]];
+    } else {
+      this.data.match.colors = [color.colors[0], color.colors[1]];
+    }
   }
 
   private handleError(err) {

@@ -29,6 +29,10 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
+    // hide global loading
+    setTimeout(() => {
+      document.getElementById('global-loading').style.display = 'none';
+    }, 500);
   }
 
   logout() {
