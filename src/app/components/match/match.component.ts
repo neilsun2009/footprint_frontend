@@ -27,7 +27,7 @@ import { TitleService } from '../../services/title.service';
       // transition('false => true', animate(100)),
       transition(':enter', [
         style({opacity: 0, transform: 'translateX(-500px)'}),
-        animate('500ms ease-out')
+        animate('500ms linear')
       ])
     ]),
   ]

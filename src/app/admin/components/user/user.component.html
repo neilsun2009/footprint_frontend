@@ -15,7 +15,9 @@
     <mat-table #table [dataSource]="users">
       <ng-container matColumnDef="username">
         <mat-header-cell *matHeaderCellDef> 用户名 </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+        <mat-cell *matCellDef="let element">
+          <a mat-button [routerLink]="'/user/' + element._id" target="_blank">{{element.username}}</a>
+        </mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="access">

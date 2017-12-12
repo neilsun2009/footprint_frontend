@@ -21,7 +21,11 @@ Match
   <mat-table #table [dataSource]="matches" matSort (matSortChange)="sortData($event)" matSortDisableClear="true">
     <ng-container matColumnDef="time">
       <mat-header-cell *matHeaderCellDef mat-sort-header> 时间 </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.startTime | date: 'yyyy年MM月dd日 HH:mm'}} </mat-cell>
+      <mat-cell *matCellDef="let element"> 
+        <a mat-button [routerLink]="'/detail/' + element._id" target="_blank">
+          {{element.startTime | date: 'yyyy年MM月dd日 HH:mm'}} 
+        </a>          
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="teams">
