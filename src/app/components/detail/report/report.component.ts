@@ -11,9 +11,9 @@ import { SofaService } from '../../../../api/sofa.service';
     trigger('loading', [
       state('true', style({opacity: 1, transform: 'translateY(0)'})),
       // transition('false => true', animate(100)),
-      transition(':leave', [
-        animate('300ms ease-in', style({opacity: 0}))
-      ])
+    //   transition(':leave', [
+    //     animate('300ms ease-in', style({opacity: 0}))
+    //   ])
     ]),
     trigger('fadeIn', [
       state('true', style({opacity: 1})),
