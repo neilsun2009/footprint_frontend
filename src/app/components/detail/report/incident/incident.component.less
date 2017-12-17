@@ -1,0 +1,211 @@
+@import '../../../../global.less';
+.incident-container {
+  min-height: 300px;
+  padding-top: 0;
+  transition: 0.5s background-color linear;
+}
+
+#report-incidents {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 800px;
+  .tiny-circle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background-color: #000;
+    &.big {
+        width: 4px;
+        height: 4px;
+    }
+  }
+  .small-circle {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border: 3px solid #000;
+    border-radius: 50%;
+    color: #2C3E50;
+    font-size: 24px;
+    text-align: center;
+    line-height: 35px;
+    transition: all 0.2s;
+    opacity: 1;
+    &:hover, &:focus, &:active {
+      // opacity: 0.8;
+      z-index: 200;
+      transform: scale(1.2);
+    }
+    &.red {
+      color: #C0392B;      
+    }
+    &.yellow {
+      color: #F1C40F;    
+    }
+    &.green {
+      color: #2ECC71;      
+    }
+  }
+}
+
+#incidents-big-circle {
+  position: absolute;
+  border: 8px solid;
+  border-radius: 50%;
+  /*padding: 10%;*/
+  box-sizing: border-box;
+  display: none;
+  cursor: pointer;
+  .double, .single {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    transition: 0.2s all;
+    h3 {
+      font-size: 30px;
+      font-weight: normal;
+    }
+    .team {
+      display: inline-block;
+      width: 35%;
+      text-align: center;
+      img {
+        width: 125px;        
+      }
+      p {
+        font-size: 25px;        
+      }
+    }
+    .score {
+      display: inline-block;
+      width: 20%;
+      font-size: 60px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+  .single {
+    .score {
+      width: 100%;
+      font-size: 45px;
+    }
+    .bg {
+      width: 50%;
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
+      h3 {
+        font-size: 26px;
+      }
+      .score {
+        font-size: 30px;
+      }
+    }
+  }
+  .double {
+    .score {
+      transform: translateY(-60px);      
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #report-incidents {
+    .small-circle{
+      width: 24px;
+      height: 24px;
+      /*border-width: 1px;*/
+      font-size: 20px;
+      text-align: center;
+      line-height: 24px;
+    }
+  }
+  #incidents-big-circle {
+    border-width: 5px;
+    .double, .single {
+      h3 {
+        font-size: 25px;        
+      }
+      .team {
+        img {
+          width: 100px;          
+        }
+        p {   
+          font-size: 20px;
+        }
+      }
+      .score {
+        font-size: 35px;
+      }
+    }
+    .single {
+      .bg {
+        width: 40%;
+      }
+      h3 {
+        font-size: 20px;
+      }
+      .score {
+        font-size: 24px;
+      }
+    }
+    .double {
+      .score {
+        transform: translateY(-45px);        
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #report-incidents {
+    .small-circle{
+      width: 16px;
+      height: 16px;
+      /*border-width: 1px;*/
+      font-size: 12px;
+      text-align: center;
+      line-height: 16px;
+    }
+  }
+  #incidents-big-circle {
+    .double, .single {
+      h3 {
+        font-size: 16px;        
+      }
+      .team {
+        img {
+          width: 50px;          
+        }
+        p {   
+          font-size: 12px;
+        }
+      }
+      .score {
+        font-size: 22px;
+      }
+    }
+    .single {
+      h3 {
+        font-size: 14px;
+      }
+      .bg {
+        width: 40%;
+      }
+      .score {
+        font-size: 16px;
+      }
+    }
+    .double {
+      .score {
+        transform: translateY(-15px);        
+      }
+    }
+  }
+}

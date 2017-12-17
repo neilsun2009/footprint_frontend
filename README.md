@@ -92,3 +92,9 @@ TypeScript + Angular + LESS + TSLint
 ### 2017.12.12
 * step-anim for match list and comment list
 * admin link in user & match pages
+
+### 2017.12.14
+* line-up section
+
+### 2017.12.16
+* statics section

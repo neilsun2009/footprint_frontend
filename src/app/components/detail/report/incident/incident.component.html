@@ -1,0 +1,30 @@
+<div class="incident-container container-patch" [style.background-color]="secondaryColor">
+  <div id="report-incidents"  [@fadeIn]="!!incidents">
+      <div id="incidents-big-circle" [style.color]="primaryColor">
+          <div class="double" *ngIf="incidentParam.showDouble" [@scale]="incidentParam.title">
+            <h3>{{incidentParam.title}}</h3>
+            <div class="team">
+                <img [src]="match.teams[0].logo">
+                <br/>
+                <!-- <p>{{match.teams[0].teamName}}</p> -->
+            </div>
+            <div class="score" id="incidents-default-score">
+                {{incidentParam.score}}
+            </div>
+            <div class="team">
+                <img [src]="match.teams[1].logo">
+                <br/>
+                <!-- <p>{{match.teams[1].teamName}}</p> -->
+            </div>
+          </div>
+          <div class="single" *ngIf="!incidentParam.showDouble"  [@scale]="incidentParam.title + incidentParam.score">
+            <div class="bg">
+                <img [src]="match.teams[incidentParam.team].logo">
+            </div>
+            <h3>{{incidentParam.title}}</h3>
+            <div class="score">{{incidentParam.score}}</div>
+            <h3>{{incidentParam.text}}</h3>
+          </div>
+      </div>
+  </div>
+</div>

@@ -22,12 +22,14 @@
     &.big-header  {
       height: 1px;
       margin: 15px auto 20px;
+      position: relative;
       p {
         font-size: 30px;
         display: inline-block;
         background-position-y: 15px;
         background-size: 100% 1px;
         margin-top: -15px;
+        position: relative;
       }
     }
   }
@@ -80,7 +82,7 @@
     text-align: center;
     h3 {
       font-size: 20px;
-      font-weight: bold;
+      font-weight: normal;
       text-align: center;
     }
     .line {
@@ -90,7 +92,7 @@
     }
     span {
       display: inline-block;
-      padding: 0 3%;
+      padding: 0 5px;
     }
   }
 }
@@ -136,7 +138,7 @@
       text-align: center;
       font-size: 16px;
       span {
-        display: block;
+        // display: block;
         // padding-left: 5%;
       }
     }
@@ -154,6 +156,19 @@
 
 @media screen and (max-width: 500px) {
   .detail-container {
+    .header {
+      p {
+        font-size: 16px;
+      }
+      &.big-header {
+        margin: 10px auto 15px;
+        p {
+          font-size: 20px;
+          padding: 0 20px;
+          top: -5px;
+        }
+      }
+    }
     .scoreboard {
       width: 100%;
       .score {
@@ -169,7 +184,10 @@
     }
     .misc {
       width: 80%;
-      font-size: 16px;
+      font-size: 14px;
+      h3 {
+        font-size: 16px;
+      }
     }
   }
 }

@@ -1,0 +1,35 @@
+<div class="lineup-container container-patch" [style.background-color]="color.outline" [@flyIn]="color.outline">
+  <div class="logo">
+    <img [src]="team.logo" [title]="team.teamName" [alt]="team.teamName">
+  </div>
+  <!-- <div class="coach" [style.color]="color.number">
+    Coach: {{lineup.manager.name}}
+  </div> -->
+  <div class="player" *ngFor="let player of outPlayers"
+  [style.color]="color.number" [@player]="player"
+  [class.substitute]="player.substitute">
+    <span class="number"
+    [style.border-color]="player.positionNameshort === 'G' ? color.number : color.number"
+    [style.background-color]="player.positionNameshort === 'G' ? gkColor.outline : color.outline"
+    [style.color]="player.positionNameshort === 'G' ? gkColor.number : color.number">
+      {{player.shirtNumber}}
+    </span>
+    <div class="text" [style.border-color]="color.number">
+      <span class="name">{{player.player.name}}</span>
+      <span class="rating" *ngIf="player.rating" [style.background-color]="color.number" [style.color]="color.outline">{{player.rating}}</span>
+      <span class="misc">
+        <i *ngIf="player.captain" class="fa fa-copyright" aria-hidden="true"></i>
+        <i *ngFor="let sub of player.subins" class="fa fa-arrow-circle-o-up" aria-hidden="true"></i>                
+        <i *ngFor="let goal of player.goals" class="fa fa-futbol-o" aria-hidden="true"></i>
+        <i *ngFor="let assist of player.assists" class="fa fa-handshake-o" aria-hidden="true"></i>
+        <i *ngFor="let yellow of player.yellows" class="fa fa-square" [style.color]="'#F1C40F'" aria-hidden="true"></i>
+        <i *ngFor="let red of player.reds" class="fa fa-square" [style.color]="'#E74C3C'" aria-hidden="true"></i>
+        <i *ngFor="let sub of player.subouts" class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>        
+      </span>
+    </div>
+  </div>
+
+  <div class="arrow" [style.color]="color.number" (click)="togglePlayers()">
+    <i [class]="showPlayer ? 'fa fa-angle-up' : 'fa fa-angle-down'" aria-hidden="true"></i>
+  </div>
+</div>

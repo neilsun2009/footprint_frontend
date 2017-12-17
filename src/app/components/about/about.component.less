@@ -32,9 +32,9 @@ h1 {
       line-height: 24px;
       transition: 0.2s all;
     }
-    p:hover {
-      color: #fff;
-    }
+    // p:hover {
+    //   color: #fff;
+    // }
     a {
       font-weight: bold;
       color: #fff;
@@ -104,10 +104,10 @@ h1 {
 }
 
 @media screen and (max-width: 1000px) {
+  h1 {
+    font-size: 25px;
+  }
   .top-container {
-    h1 {
-      font-size: 25px;
-    }
     .running-time {
       font-size: 30px;      
     }
@@ -122,12 +122,30 @@ h1 {
 }
 
 @media screen and (max-width: 500px) {
+  h1 {
+    font-size: 20px;
+  }
   .top-container {
-    h1 {
-      font-size: 20px;
-    }
     .running-time {
       font-size: 25px;      
+    }
+    .about, .about {
+      p, a {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+  .static-container {
+    .static-detail {
+      .text {
+        font-size: 20px;
+      }
+    }
+  }
+  .log-container {
+    .log {
+      font-size: 14px;
     }
   }
 }

@@ -12,6 +12,7 @@ import { GlobalAuthGuard } from './services/global-auth-guard.service';
 import { TimePipe } from './pipes/time.pipe';
 import { CensorshipPipe } from './pipes/censorship.pipe';
 import { ScorePipe } from './pipes/score.pipe';
+import { StaticsPipe } from './pipes/statics.pipe';
 
 import { MasterConfigService } from './services/master-config.service';
 import { BgConfigService } from './services/bg-config.service';
@@ -53,6 +54,10 @@ import { StarComponent } from './components/detail/star/star.component';
 import { FieldComponent } from './components/detail/field/field.component';
 import { ReportComponent } from './components/detail/report/report.component';
 import { ChatComponent } from './components/detail/chat/chat.component';
+import { IncidentComponent } from './components/detail/report/incident/incident.component';
+import { LineupComponent } from './components/detail/report/lineup/lineup.component';
+import { StaticsComponent } from './components/detail/report/statics/statics.component';
+import { BarComponent } from './components/detail/report/bar/bar.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +73,7 @@ import { ChatComponent } from './components/detail/chat/chat.component';
     TimePipe,
     CensorshipPipe,
     ScorePipe,
+    StaticsPipe,
     CounterDirective,
     UserComponent,
     WallpaperComponent,
@@ -79,7 +85,11 @@ import { ChatComponent } from './components/detail/chat/chat.component';
     StarComponent,
     FieldComponent,
     ReportComponent,
-    ChatComponent
+    ChatComponent,
+    IncidentComponent,
+    LineupComponent,
+    StaticsComponent,
+    BarComponent
   ],
   imports: [
     BrowserModule,

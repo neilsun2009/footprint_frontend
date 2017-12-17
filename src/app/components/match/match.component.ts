@@ -23,11 +23,11 @@ import { TitleService } from '../../services/title.service';
       ])
     ]),
     trigger('match', [
-      state('*', style({opacity: 1, transform: 'translateX(0)'})),
+      state('true', style({opacity: 1, transform: 'translateX(0)'})),
       // transition('false => true', animate(100)),
       transition(':enter', [
         style({opacity: 0, transform: 'translateX(-500px)'}),
-        animate('500ms linear')
+        animate('500ms ease-out')
       ])
     ]),
   ]

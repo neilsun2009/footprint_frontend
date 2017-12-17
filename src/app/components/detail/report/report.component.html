@@ -1,38 +1,13 @@
+<app-incident *ngIf="incidents" [match]="match" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor" [incidents]="incidents"></app-incident>
+<app-lineup *ngIf="lineup" [lineup]="lineup.homeTeam" [team]="match.teams[0]"></app-lineup>
+<app-lineup *ngIf="lineup" [lineup]="lineup.awayTeam" [team]="match.teams[1]"></app-lineup>
+<app-statics *ngIf="passStatics" [statics]="passStatics" [homeTeam]="match.teams[0]" [awayTeam]="match.teams[1]" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor"></app-statics>
 <div class="report-container container-patch" [style.background-color]="secondaryColor">
   <div class="loading" [@loading]="showLoading" *ngIf="showLoading" [style.color]="primaryColor">
     <i class="fa fa-futbol-o" aria-hidden="true"></i>
   </div>
-  <div id="report-incidents"  [@fadeIn]="!!incidents">
-      <div id="incidents-big-circle" [style.color]="primaryColor">
-          <div class="double" *ngIf="incidentParam.showDouble" [@scale]="incidentParam.title">
-            <h3>{{incidentParam.title}}</h3>
-            <div class="team">
-                <img [src]="match.teams[0].logo">
-                <br/>
-                <p>{{match.teams[0].teamName}}</p>
-            </div>
-            <div class="score" id="incidents-default-score">
-                {{incidentParam.score}}
-            </div>
-            <div class="team">
-                <img [src]="match.teams[1].logo">
-                <br/>
-                <p>{{match.teams[1].teamName}}</p>
-            </div>
-          </div>
-          <div class="single" *ngIf="!incidentParam.showDouble"  [@scale]="incidentParam.title">
-            <div class="bg">
-                <img [src]="match.teams[incidentParam.team].logo">
-            </div>
-            <h3>{{incidentParam.title}}</h3>
-            <div class="score">{{incidentParam.score}}</div>
-            <h3>{{incidentParam.text}}</h3>
-          </div>
-      </div>
-  </div>
-  
-  <div class="none" *ngIf="noIncidents" [@fadeIn]="noIncidents" [style.color]="primaryColor">
-      本场比赛暂无比赛进程信息
+  <div class="none" *ngIf="noIncidents && noLineup" [@fadeIn]="noIncidents" [style.color]="primaryColor">
+      本场比赛暂无比赛详情信息
   </div>
   <div class="copyright" [style.color]="primaryColor">
       数据来源：SofaScore

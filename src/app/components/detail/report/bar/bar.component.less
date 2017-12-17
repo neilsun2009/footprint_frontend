@@ -1,0 +1,37 @@
+.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  .line {
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    top: 0;
+    left: 0;
+    &.right {
+      left: auto;
+      right: 0;
+    }
+  }
+  .border {
+    border-style: solid;
+    border-width: 2px;
+    box-sizing: border-box;
+    height: 20px;
+    position: relative;
+    top: 2px;
+    .fill {
+      position: absolute;
+      height: 100%;
+      right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    .border {
+      height: 12px;
+    }
+  }
+}

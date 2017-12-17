@@ -46,7 +46,7 @@
     <div class="nofound" *ngIf="noResult" [@match]="noResult">
         没有比赛记录
     </div>
-    <a [routerLink]="'/detail/' + match._id " class="display" *ngFor="let match of matches; let i = index;" [@match]="i">
+    <a [routerLink]="'/detail/' + match._id " class="display" *ngFor="let match of matches; let i = index;" [@match]="match._id">
         <div class="side">
             <div class="num" [style.border-color]="match.colors[0]">
                 {{i + 1}}

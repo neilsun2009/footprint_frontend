@@ -1,0 +1,118 @@
+@import '../../../../global.less';
+.lineup-container {
+  // min-height: 400px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .logo {
+    text-align: center;
+    img {
+      margin: 20px auto;
+      height: 120px;
+    }
+  }
+  .arrow {
+    font-size: 30px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.2s;
+    &:hover {
+      opacity: 1;
+      transform: scale(1.1) translateY(-2px);
+    }
+  }
+  .player {
+    position: relative;
+    line-height: 30px;
+    font-size: 20px;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    transition: all 0.2s;
+    &.substitute {
+      opacity: 0.5;
+    }
+    &:hover {
+      transform: scale(1.01) translateY(-2px);
+    }
+    .number {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      text-align: center;
+      font-weight: bold;
+    }
+    .text {
+      display: inline-block;
+      width: calc(~'100% - 40px');
+      height: 30px;
+      // overflow-y: hidden;
+      border-bottom: 1px solid #fff;
+      .name {
+        display: inline-block;
+        
+      }
+      .rating {
+        display: block;
+        font-size: 16px;
+        width: 30px;
+        height: 20px;
+        line-height: 20px;
+        float: right;
+        border-radius: 3px;
+        text-align: center;
+        position: relative;
+        top: 5px;
+      }
+      .misc {
+        font-size: 18px;
+        line-height: 30px;
+        float: right;
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+
+}
+
+@media screen and (max-width: 500px) {
+  .lineup-container {
+    .logo {
+      img {
+        height: 75px;
+      }
+    }
+    .player {
+      line-height: 20px;
+      font-size: 16px;
+      .number {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
+      }
+      .text {
+        height: 20px;
+        width: calc(~'100% - 30px');
+        .rating {
+          font-size: 12px;
+          width: 25px;
+          height: 16px;
+          line-height: 16px;
+          top: 2px;
+        }
+        .misc {
+          font-size: 12px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+}
