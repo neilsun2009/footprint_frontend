@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { MasterConfigService } from '../../services/master-config.service';
 import { AuthService } from '../../../api/auth.service';
@@ -32,7 +32,7 @@ import { TitleService } from '../../services/title.service';
     ]),
   ]
 })
-export class MatchComponent implements OnInit {
+export class MatchComponent implements OnInit, OnDestroy {
 
   query: {
     year: string;
@@ -50,6 +50,8 @@ export class MatchComponent implements OnInit {
   scrollLock: boolean;
   getLock: boolean;
   hasMore: boolean;
+  years: string[];
+  months: string[];
 
   constructor(
     private masterConfigService: MasterConfigService,
@@ -65,11 +67,20 @@ export class MatchComponent implements OnInit {
     this.getLock = false;
     this.matches = [];
     this.hasMore = true;
+    this.months = ['ALL'];
+    for (let i = 1; i <= 12; ++i) {
+      this.months.push(i + '');
+    }
+    this.years = ['ALL'];
+    for (let i = 2014, last = new Date().getFullYear(); i <= last; ++i) {
+      this.years.push(i + '');
+    }
   }
 
   ngOnInit() {
     // query
     let params = this.route.snapshot.queryParamMap;
+    document.body.scrollTop = 0;
     this.query = {
       year: params.get('year') || new Date().getFullYear() + '',
       month: params.get('month') || (new Date().getMonth() + 1) + '',
@@ -96,6 +107,11 @@ export class MatchComponent implements OnInit {
       this.popState(event);
     };
     history.replaceState(this.query, 'match', `${location.pathname}${location.search}`);
+  }
+
+  ngOnDestroy() {
+    window.onpopstate = null;
+    window.onscroll = null;
   }
 
   popState(event) {
@@ -196,12 +212,14 @@ export class MatchComponent implements OnInit {
         } else {
           if (data.count <= offset + limit) {
             window.onscroll = null;
+            this.scrollLock = true;
             this.hasMore = false;
           } else {
             this.query.offset += this.query.limit;
-            window.onscroll = () => {
+            window.addEventListener('scroll', () => {
+              // console.log(this.query.offset);
               this.scrollHandler();
-            };
+            });
           }
         }
         this.getLock = false;

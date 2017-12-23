@@ -17,8 +17,10 @@ export class GlobalAuthGuard implements CanActivate, CanActivateChild {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     // get logged user data
+    // console.log(this.authService);
     return this.authService.authAsync().map(
       (data) => {
+        // console.log(data);
         if (data.result) {
           this.authService.hasLoggedIn = true;
           this.authService.user = data.data;

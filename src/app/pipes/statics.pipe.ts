@@ -70,6 +70,9 @@ export class StaticsPipe implements PipeTransform {
       case 'Aerials won':
         re = '抢得头球';
         break;
+      case 'Counter attacks':
+        re = '反击得手';
+        break;
       default:
         re = input;
     }

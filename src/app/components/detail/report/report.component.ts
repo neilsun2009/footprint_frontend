@@ -60,6 +60,11 @@ export class ReportComponent implements OnInit {
   statics: any[];
   passStatics: any[];
 
+  staticsParam: {
+    homeColor: string;
+    awayColor: string;
+  };
+
   constructor(
     private sofaService: SofaService,
     private renderer: Renderer2
@@ -77,6 +82,10 @@ export class ReportComponent implements OnInit {
   ngOnInit() {
     // this.primaryColor = this.match.colors[0];
     // this.secondaryColor = this.match.colors[1];
+    this.staticsParam = {
+      homeColor: this.primaryColor,
+      awayColor: this.secondaryColor
+    };
     this.getGeneral(this.match.sofaScoreId);
   }
 
@@ -134,6 +143,10 @@ export class ReportComponent implements OnInit {
           // console.log(data);
           if (data.homeTeam.hasLineups) {
             this.lineup = data;
+            this.staticsParam = {
+              homeColor: '#' + data.homeTeam.color.player.outline,
+              awayColor: '#' + data.awayTeam.color.player.outline
+            };
           } else {
             this.noLineup = true;
           }

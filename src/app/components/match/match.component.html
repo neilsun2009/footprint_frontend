@@ -3,11 +3,7 @@
     <div class="select">
         <span>{{query.year}}</span>
         <select (change)="newSearch()" name="query-year" [(ngModel)]="query.year">
-            <option value="ALL">ALL</option>
-            <option value="2017">2017</option>
-            <option value="2016">2016</option>
-            <option value="2015">2015</option>
-            <option value="2014">2014</option>
+            <option *ngFor="let year of years" [value]="year">{{year}}</option>            
         </select>
   
     </div>
@@ -15,19 +11,7 @@
         <div class="line"></div>
         <span>{{query.month}}</span>
         <select [disabled]="!monthEnable" (change)="newSearch()" name="query-month" [(ngModel)]="query.month">
-            <option value="ALL">ALL</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
+            <option *ngFor="let month of months" [value]="month">{{month}}</option>
         </select>
     </div>
     <div class="find">

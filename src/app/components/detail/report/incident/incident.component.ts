@@ -46,21 +46,21 @@ export class IncidentComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private renderer: Renderer2
   ) {
-
-    // this.incidents = null;
-    this.incidentParam = {
-      showDouble: true,
-      score: '?-?',
-      title: '全场比分',
-      defaultScore: '?-?',
-      team: 0,
-      text: '',
-      minCount: 90,
-      minAngle: 0
-    };
   }
 
   ngOnInit() {
+    // this.incidents = null;
+    this.incidentParam = {
+        showDouble: true,
+        score: '?-?',
+        title: '全场比分',
+        defaultScore: `${this.match.teams[0].score === -1 ? '?' : this.match.teams[0].score}-`
+            + `${this.match.teams[1].score === -1 ? '?' : this.match.teams[1].score}`,
+        team: 0,
+        text: '',
+        minCount: 90,
+        minAngle: 0
+    };
     this.setIncidents(this.incidents);
     window.onresize = () => {
       this.resize();
@@ -103,6 +103,7 @@ export class IncidentComponent implements OnInit, OnDestroy, OnChanges {
         // containerDouble = angular.element('#incidents-double'),
         // containerSingle = angular.element('#incidents-single'),
         bigContainerWidth = bigContainer.offsetWidth,
+        bigContainerHeight = bigContainerWidth,
         bigCircleWidth,
         smallCircleWidth = 32,
         smallCircleBorderWidth = 3,
@@ -116,7 +117,7 @@ export class IncidentComponent implements OnInit, OnDestroy, OnChanges {
     bigCircleWidth = bigContainerWidth - smallCircleWidth * 6;
     // bigCircleCenter = bigContainerWidth/2;
     // set offset
-    bigContainer.style.height = bigContainerWidth + 'px';
+    // bigContainer.style.height = bigContainerWidth + 'px';
     bigCircle.style.width = bigCircleWidth + 'px';
     bigCircle.style.height = bigCircleWidth + 'px';
     bigCircle.style.top = (bigContainerWidth - bigCircleWidth) / 2 + 'px';
@@ -142,17 +143,22 @@ export class IncidentComponent implements OnInit, OnDestroy, OnChanges {
     for (let len = this.incidents.length, i = len - 1; i >= 0; --i) {
         let incident = this.incidents[i],
           circle = <HTMLElement>smallCircles.item(len - i - 1),
-          minIncidentCount = +circle.dataset.minIncidentCount;
+          minIncidentCount = +circle.dataset.minIncidentCount,
+          left, top;
         if (this.incidentParam.showDouble && this.incidentParam.title === '全场比分') {
           this.incidentParam.score = this.incidentParam.defaultScore;
         }
-        this.renderer.setStyle(circle, 'left', bigContainerWidth / 2 + (Math.sin(this.incidentParam.minAngle * incident.time) *
+        left = bigContainerWidth / 2 + (Math.sin(this.incidentParam.minAngle * incident.time) *
             (bigCircleWidth / 2 + smallCircleWidth / 2 + minIncidentCount * smallCircleWidth))
-            - smallCircleWidth / 2 - smallCircleBorderWidth + 'px');
-        this.renderer.setStyle(circle, 'top', bigContainerWidth / 2 - (Math.cos(this.incidentParam.minAngle * incident.time) *
+            - smallCircleWidth / 2 - smallCircleBorderWidth;
+        this.renderer.setStyle(circle, 'left', left + 'px');
+        top =  bigContainerWidth / 2 - (Math.cos(this.incidentParam.minAngle * incident.time) *
             (bigCircleWidth / 2 + smallCircleWidth / 2 + minIncidentCount * smallCircleWidth))
-            - smallCircleWidth / 2 - smallCircleBorderWidth + 'px');
+            - smallCircleWidth / 2 - smallCircleBorderWidth;
+        this.renderer.setStyle(circle, 'top', top + 'px');
+        bigContainerHeight = Math.max(bigContainerHeight, top + smallCircleWidth);
     }
+    bigContainer.style.height = bigContainerHeight + 'px';
   }
 
   setIncidents(incidents) {
@@ -366,6 +372,8 @@ export class IncidentComponent implements OnInit, OnDestroy, OnChanges {
         if (minIncidentCount.length < incident.time + 1) {
             minIncidentCount.length = incident.time + 1;
             minIncidentCount[incident.time] = 0;
+        } else if (!minIncidentCount[incident.time]) {
+            minIncidentCount[incident.time] = 0;
         }
         left = bigContainerWidth / 2 + (Math.sin(this.incidentParam.minAngle * incident.time) *
           (bigCircleWidth / 2 + smallCircleWidth / 2 + minIncidentCount[incident.time] * smallCircleWidth))
@@ -377,6 +385,7 @@ export class IncidentComponent implements OnInit, OnDestroy, OnChanges {
         circle.style.top = top + 'px';
         circle.dataset.minIncidentCount = minIncidentCount[incident.time];
         minIncidentCount[incident.time]++;
+        // console.log(left, top, incident.time);
         bigContainerHeight = Math.max(bigContainerHeight, top + smallCircleWidth);
         // co7insole.log(bigContainer.style.height);
         fragment.appendChild(circle);

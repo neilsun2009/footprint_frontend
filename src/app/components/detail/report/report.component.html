@@ -1,7 +1,8 @@
 <app-incident *ngIf="incidents" [match]="match" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor" [incidents]="incidents"></app-incident>
 <app-lineup *ngIf="lineup" [lineup]="lineup.homeTeam" [team]="match.teams[0]"></app-lineup>
 <app-lineup *ngIf="lineup" [lineup]="lineup.awayTeam" [team]="match.teams[1]"></app-lineup>
-<app-statics *ngIf="passStatics" [statics]="passStatics" [homeTeam]="match.teams[0]" [awayTeam]="match.teams[1]" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor"></app-statics>
+<app-statics *ngIf="passStatics" [statics]="passStatics" [homeTeam]="match.teams[0]" [awayTeam]="match.teams[1]" [primaryColor]="primaryColor" [secondaryColor]="secondaryColor"
+[homeColor]="staticsParam.homeColor" [awayColor]="staticsParam.awayColor"></app-statics>
 <div class="report-container container-patch" [style.background-color]="secondaryColor">
   <div class="loading" [@loading]="showLoading" *ngIf="showLoading" [style.color]="primaryColor">
     <i class="fa fa-futbol-o" aria-hidden="true"></i>

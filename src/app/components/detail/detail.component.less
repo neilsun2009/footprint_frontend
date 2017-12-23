@@ -64,13 +64,16 @@
       border-radius: 50%;
       box-sizing: border-box;
       span{
+        position: absolute;
+        left: 50%;
+        top: 50%;
         display: block;
         height: 100px;
         line-height: 100px;
         font-size: 100px;
-        padding-top: 50%;
+        // padding-top: 50%;
         /*font-weight: bold;*/
-        transform: translateY(-50px);
+        transform: translateY(-50%) translateX(-50%);
       }
     }
   }
@@ -125,22 +128,22 @@
     .scoreboard {
       .score {
         span {
-          display: block;
+          // display: block;
           height: 100px;
           line-height: 100px;
           font-size: 60px;
-          padding-top: 50%;
-          transform: translateY(-50px);
+          // padding-top: 50%;
+          // transform: translateY(-50px);
         }
       }
     }
     .misc {
       text-align: center;
       font-size: 16px;
-      span {
-        // display: block;
-        // padding-left: 5%;
-      }
+      // span {
+      //   // display: block;
+      //   // padding-left: 5%;
+      // }
     }
   }
   .switch-container {
@@ -177,8 +180,7 @@
           height: 30px;
           line-height: 30px;
           font-size: 30px;
-          padding-top: 50%;
-          transform: translateY(-15px);
+          // padding-top: 50%;
         }
       }
     }
@@ -187,6 +189,9 @@
       font-size: 14px;
       h3 {
         font-size: 16px;
+      }
+      .line {
+        margin: 5px 0;
       }
     }
   }

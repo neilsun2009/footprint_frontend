@@ -12,7 +12,7 @@
     <div class="item" *ngFor="let item of group.statisticsItems" [style.color]="primaryColor">
       <h3>{{item.name | statics}}</h3>
       <span>{{item.home}}</span>
-      <app-bar [home]="item.home" [away]="item.away"
+      <app-bar [home]="item.home" [away]="item.away" [homeColor]="homeColor" [awayColor]="awayColor"
       [primaryColor]="primaryColor" [secondaryColor]="secondaryColor"></app-bar>
       <span>{{item.away}}</span>
     </div>

@@ -32,6 +32,8 @@ export class StaticsComponent implements OnInit, OnChanges {
   @Input() statics: any;
   @Input() primaryColor: any;
   @Input() secondaryColor: any;
+  @Input() homeColor: string;
+  @Input() awayColor: string;
 
   groups: any[];
 

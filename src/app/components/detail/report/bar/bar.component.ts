@@ -43,6 +43,8 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() primaryColor: string;
   @Input() secondaryColor: string;
+  @Input() homeColor: string;
+  @Input() awayColor: string;
   @Input() home: string;
   @Input() away: string;
   private homeNum: number;
@@ -57,6 +59,9 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
   animLine: string;
   animFill: string;
   transformOrigin: string;
+
+  fillColor: string;
+  bgColor: string;
 
   constructor(
     private el: ElementRef,
@@ -78,8 +83,8 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
     } else {
       this.ratio = 100 * this.homeNum / (this.homeNum + this.awayNum);
     }
-    this.ratio = Math.min(99.5, this.ratio);
-    this.ratio = Math.max(0.5, this.ratio);
+    // this.ratio = Math.min(99.5, this.ratio);
+    // this.ratio = Math.max(0.5, this.ratio);
     if (this.ratio < 50) {
       this.left = this.ratio + '%';
       this.right = 'auto';
@@ -87,6 +92,8 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
       this.fillWidth = (100 - this.ratio) + '%';
       this.transformOrigin = 'right';
       this.preAnimLine = 'left';
+      this.fillColor = this.awayColor;
+      this.bgColor = this.homeColor;
     } else {
       this.left = 'auto';
       this.right = (100 - this.ratio) + '%';
@@ -94,6 +101,8 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
       this.fillWidth = /*this.ratio === 50 ? '0' : */this.ratio + '%';
       this.preAnimLine = 'right';
       this.transformOrigin = 'left';
+      this.fillColor = this.homeColor;
+      this.bgColor = this.awayColor;
     }
     this.scrollHandler();
     window.addEventListener('scroll', () => {
@@ -112,7 +121,7 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
           fill = elem.getElementsByClassName('fill')[0],
           line = elem.getElementsByClassName('linemovable')[0];
         // console.log(fill, line);
-        fill.style.backgroundColor = color;
+        // fill.style.backgroundColor = color;
         line.style.backgroundColor = color;
     }
   }

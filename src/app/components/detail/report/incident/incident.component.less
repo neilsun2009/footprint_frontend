@@ -71,9 +71,13 @@
       font-weight: normal;
     }
     .team {
-      display: inline-block;
+      float: left;
+      // display: inline-block;
       width: 35%;
       text-align: center;
+      &:last-of-type {
+        float: right;
+      }
       img {
         width: 125px;        
       }
@@ -83,7 +87,6 @@
     }
     .score {
       display: inline-block;
-      width: 20%;
       font-size: 60px;
       font-weight: bold;
       text-align: center;
@@ -110,7 +113,10 @@
   }
   .double {
     .score {
-      transform: translateY(-60px);      
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateY(-50%) translateX(-50%);      
     }
   }
 }
@@ -155,11 +161,11 @@
         font-size: 24px;
       }
     }
-    .double {
-      .score {
-        transform: translateY(-45px);        
-      }
-    }
+    // .double {
+    //   .score {
+    //     transform: translateY(-45px);        
+    //   }
+    // }
   }
 }
 
@@ -202,10 +208,10 @@
         font-size: 16px;
       }
     }
-    .double {
-      .score {
-        transform: translateY(-15px);        
-      }
-    }
+    // .double {
+    //   .score {
+    //     // transform: translateY(-15px);        
+    //   }
+    // }
   }
 }
