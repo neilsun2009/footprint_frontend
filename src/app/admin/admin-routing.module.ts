@@ -12,6 +12,7 @@ import { TeamComponent } from './components/team/team.component';
 import { ColorComponent } from './components/color/color.component';
 import { MatchComponent } from './components/match/match.component';
 import { DetailComponent } from './components/detail/detail.component';
+import { BgComponent } from './components/bg/bg.component';
 
 import { MatchResolver } from '../services/match-resolver.service';
 
@@ -37,6 +38,10 @@ const adminRoutes: Routes = [
       {
         path: 'wallpaper',
         component: WallpaperComponent
+      },
+      {
+        path: 'bg',
+        component: BgComponent
       },
       {
         path: 'user',

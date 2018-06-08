@@ -41,7 +41,7 @@ export class AdviceComponent implements OnInit {
       showSidebar: false,
       showLoading: false
     });
-    this.bg = this.bgConfigService.bg;
+    this.bg = this.bgConfigService.bgs;
     this.titleService.setTitle('投稿');
   }
 

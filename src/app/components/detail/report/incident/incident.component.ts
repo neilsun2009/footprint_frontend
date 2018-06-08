@@ -89,7 +89,7 @@ export class IncidentComponent implements OnInit, OnDestroy, OnChanges {
             let circle = <HTMLElement>smallCircles.item(i);
             circle.style.backgroundColor = secondaryColor;
             circle.style.borderColor = primaryColor;
-            if (circle.style.color !== 'rgb(192, 57, 43)' && circle.style.color !== 'rgb(241, 196, 15)') {
+            if (circle.style.color !== 'rgb(231, 76, 60)' && circle.style.color !== 'rgb(241, 196, 15)') {
                 circle.style.color = primaryColor;
             }
         }

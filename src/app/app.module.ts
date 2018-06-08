@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { LoginAuthGuard } from './services/login-auth-guard.service';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
+import { GlobalBgGuard } from './services/global-bg-guard.service';
 
 import { TimePipe } from './pipes/time.pipe';
 import { CensorshipPipe } from './pipes/censorship.pipe';
@@ -31,6 +32,7 @@ import { TeamService } from '../api/team.service';
 import { ColorService } from '../api/color.service';
 import { WallpaperService } from '../api/wallpaper.service';
 import { SofaService } from '../api/sofa.service';
+import { BgService } from '../api/bg.service';
 
 import { CounterDirective } from './directives/counter.directive';
 
@@ -105,6 +107,7 @@ import { BarComponent } from './components/detail/report/bar/bar.component';
     MatchResolver,
     LoginAuthGuard,
     GlobalAuthGuard,
+    GlobalBgGuard,
     HttpService,
     AuthService,
     AdviceService,
@@ -117,7 +120,8 @@ import { BarComponent } from './components/detail/report/bar/bar.component';
     ColorService,
     WallpaperService,
     SofaService,
-    TitleService
+    TitleService,
+    BgService
   ],
   bootstrap: [AppComponent]
 })

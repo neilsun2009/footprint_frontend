@@ -16,6 +16,7 @@ import { DetailComponent } from './components/detail/detail.component';
 
 import { LoginAuthGuard } from './services/login-auth-guard.service';
 import { GlobalAuthGuard } from './services/global-auth-guard.service';
+import { GlobalBgGuard } from './services/global-bg-guard.service';
 
 import { UserResolver } from './services/user-resolver.service';
 import { MatchResolver } from './services/match-resolver.service';
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
   {
     path: '',
     component: MasterComponent,
-    canActivate: [GlobalAuthGuard],
+    canActivate: [GlobalAuthGuard, GlobalBgGuard],
     canActivateChild: [GlobalAuthGuard],
     children: [
       {

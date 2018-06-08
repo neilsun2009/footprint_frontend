@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone, ChangeDetectorRef } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
+import { DomSanitizer, SafeUrl, SafeStyle } from '@angular/platform-browser';
 
 const transitionTime = 1500;
 
@@ -30,18 +31,28 @@ export class BackgroundComponent implements OnInit {
   @Input() bgInput: string | string[];
   private selectedBg: string;
   animBg: string;
+  // bg: SafeStyle | string;
+  bg: SafeStyle;
 
   private arrConfig: {
     length: number;
     selectedNum: number;
   };
 
-  get bg(): string {
-    return `url(${this.selectedBg})`;
-  }
+  // get bg(): string {
+  //   return `url(${this.selectedBg})`;
+  // }
 
-  constructor() {
+  constructor(
+    private sanitizer: DomSanitizer,
+    private zone: NgZone,
+    private ref: ChangeDetectorRef
+  ) {
+    // this.selectedBg = ;
     this.selectedBg = '/assets/bg-null.png';
+    this.bg = this.sanitizer.bypassSecurityTrustStyle(`url("${this.selectedBg}")`);
+    // this.setSelectedBg('/assets/bg-null.png');
+    // this.setSelectedBg('/assets/bg-1.jpg');
     this.arrConfig = {length: 0, selectedNum: 0};
   }
 
@@ -51,9 +62,22 @@ export class BackgroundComponent implements OnInit {
       arrConfig.length = bgInput.length;
       this.changeBg(true);
     } else {
-      this.selectedBg = bgInput;
+      // this.selectedBg = bgInput;
+      this.setSelectedBg(bgInput);
       this.animBg = bgInput;
     }
+  }
+
+  setSelectedBg(url) {
+    // alert(url);
+    this.selectedBg = url;
+    // this.bg = this.sanitizer.bypassSecurityTrustStyle(`url(${url})`);
+    // this.bg = safe;
+    // this.ref.markForCheck();
+    // this.ref.detectChanges();
+    // this.bg = `url("${url}")`;
+    // alert(this.bg);
+    document.getElementById('big-bg').style.backgroundImage = `url(${url})`;
   }
 
   changeBg(isFirst: boolean) {
@@ -72,7 +96,7 @@ export class BackgroundComponent implements OnInit {
     //   }, transitionTime / 2);
     // }
     setTimeout(() => {
-      this.selectedBg = bgInput[arrConfig.selectedNum];
+      this.setSelectedBg(bgInput[arrConfig.selectedNum]);
     }, isFirst ? 0 : transitionTime / 2);
     setTimeout(() => {
       this.changeBg(false);

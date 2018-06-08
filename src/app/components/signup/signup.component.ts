@@ -59,7 +59,7 @@ export class SignupComponent implements OnInit {
       showLoading: false
     });
     this.titleService.setTitle('注册');
-    this.bg = this.bgConfigService.bg;
+    this.bg = this.bgConfigService.bgs;
   }
 
   trySignup() {

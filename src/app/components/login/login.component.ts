@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
       showLoading: false
     });
     this.titleService.setTitle('登录');
-    this.bg = this.bgConfigService.bg;
+    this.bg = this.bgConfigService.bgs;
   }
 
   tryLogin() {

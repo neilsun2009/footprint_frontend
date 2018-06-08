@@ -38,6 +38,7 @@ import { ColorService } from '../../api/color.service';
 import { WallpaperService } from '../../api/wallpaper.service';
 import { SofaService } from '../../api/sofa.service';
 import { QiniuService } from '../../api/qiniu.service';
+import { BgService } from '../../api/bg.service';
 
 import { AuthGuard } from './services/auth-guard.service';
 
@@ -71,6 +72,10 @@ import { UpdateMatchComponent } from './components/match/update-match/update-mat
 import { DetailComponent } from './components/detail/detail.component';
 import { DeleteCommentComponent } from './components/detail/delete-comment/delete-comment.component';
 import { DeleteFieldComponent } from './components/detail/delete-field/delete-field.component';
+import { BgComponent } from './components/bg/bg.component';
+import { DeleteBgComponent } from './components/bg/delete-bg/delete-bg.component';
+import { UpdateBgComponent } from './components/bg/update-bg/update-bg.component';
+import { AddBgComponent } from './components/bg/add-bg/add-bg.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +107,11 @@ import { DeleteFieldComponent } from './components/detail/delete-field/delete-fi
     UpdateMatchComponent,
     DetailComponent,
     DeleteCommentComponent,
-    DeleteFieldComponent
+    DeleteFieldComponent,
+    BgComponent,
+    UpdateBgComponent,
+    AddBgComponent,
+    DeleteBgComponent
   ],
   imports: [
     CommonModule,
@@ -143,7 +152,8 @@ import { DeleteFieldComponent } from './components/detail/delete-field/delete-fi
     WallpaperService,
     SofaService,
     AuthGuard,
-    QiniuService
+    QiniuService,
+    BgService
     // {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
   ],
   entryComponents: [
@@ -165,7 +175,10 @@ import { DeleteFieldComponent } from './components/detail/delete-field/delete-fi
     UpdateMatchComponent,
     AddMatchComponent,
     DeleteCommentComponent,
-    DeleteFieldComponent
+    DeleteFieldComponent,
+    UpdateBgComponent,
+    AddBgComponent,
+    DeleteBgComponent
   ]
 })
 export class AdminModule {}

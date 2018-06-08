@@ -24,7 +24,7 @@ export class WallpaperComponent implements OnInit {
     public dialog: MatDialog,
     public snackBar: MatSnackBar
   ) {
-    this.limit = 10;
+    this.limit = 0;
     this.offset = 0;
     this.showLoading = false;
   }

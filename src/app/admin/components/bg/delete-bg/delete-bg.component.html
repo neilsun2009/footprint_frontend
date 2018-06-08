@@ -1,0 +1,7 @@
+<h2 mat-dialog-title>确定删除此背景吗？</h2>
+<mat-dialog-content>{{data.bg.name}}</mat-dialog-content>
+<br/>
+<mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="delete()">确定</button>    
+  <button mat-button mat-dialog-close>取消</button>
+</mat-dialog-actions>

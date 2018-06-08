@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MasterConfigService } from '../../services/master-config.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AuthService } from '../../../api/auth.service';
+import { BgConfigService } from '../../services/bg-config.service';
+import { DomSanitizer, SafeUrl, SafeStyle } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-master',
@@ -27,13 +29,17 @@ export class MasterComponent implements OnInit {
   }[];
   showSidebar: boolean;
   showLoading: boolean;
+  logo: SafeStyle;
 
   constructor(
     private masterConfigService: MasterConfigService,
-    private authService: AuthService
+    private bgConfigService: BgConfigService,
+    private authService: AuthService,
+    private sanitizer: DomSanitizer
   ) {
     this.primaryColor = '#000000';
     this.secondaryColor = '#ffffff';
+    this.logo = this.sanitizer.bypassSecurityTrustStyle(`url("${this.bgConfigService.logo}")`);
     this.menuConfigs = [
       { routerLink: '/', name: '首页', show: true },
       { routerLink: '/login', name: '登录/注册', show: true },

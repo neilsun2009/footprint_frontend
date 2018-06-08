@@ -11,6 +11,7 @@ import { TitleService } from '../../services/title.service';
 export class IndexComponent implements OnInit {
 
   bg: string[];
+  logoBig: string;
   constructor(
     private masterConfigService: MasterConfigService,
     private bgConfigService: BgConfigService,
@@ -20,11 +21,13 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     this.masterConfigService.setConfig({
       primaryColor: '#000000',
+      // primaryColor: '#ff0000',
       secondaryColor: '#F1C40F',
       showSidebar: false,
       showLoading: false
     });
-    this.bg = this.bgConfigService.bg;
+    this.bg = this.bgConfigService.bgs;
+    this.logoBig = this.bgConfigService.logoBig;
     this.titleService.setTitle('首页');
   }
 
